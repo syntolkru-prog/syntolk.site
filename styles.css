@@ -48,7 +48,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 .case-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;scroll-margin-top:88px}.case-card{min-width:0;border-radius:18px;background:white;overflow:hidden;box-shadow:0 0 0 1px rgba(32,36,43,.05),0 5px 16px rgba(32,36,43,.055)}.case-button{display:flex;flex-direction:column;padding:0;background:none;text-align:left;width:100%;height:100%}.case-button:focus-visible{outline-offset:-4px;border-radius:18px}
 .case-photo{width:100%;aspect-ratio:1.5;overflow:hidden;background:#dce0e5}.case-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.75);transform:scale(1);transition:transform .65s cubic-bezier(.2,.75,.25,1)}
 @media(hover:hover) and (pointer:fine){.case-button:hover .case-photo img,.case-button:focus-visible .case-photo img{transform:scale(1.06)}}
-.case-copy{padding:16px;display:flex;flex-direction:column;width:100%}.case-copy h3{font-size:21px;line-height:1.25;letter-spacing:-.03em;margin-bottom:6px}.case-copy p{font-size:14px;line-height:1.45;color:var(--muted);margin-bottom:0}
+.case-copy{padding:16px;display:flex;flex-direction:column;width:100%}.case-copy h3{font-size:21px;line-height:1.25;letter-spacing:-.03em;margin-bottom:6px}.case-copy p{font-size:14px;line-height:1.45;color:var(--muted);margin-bottom:0;min-height:2.9em}
 .gallery-actions,.gallery-fade{display:none}.cases-note{font-size:14px;line-height:1.65;text-align:center;color:var(--muted);margin:24px auto 0}.cases-note a{display:inline-block;color:var(--blue);margin-left:8px}
 
 /* Explanation */
