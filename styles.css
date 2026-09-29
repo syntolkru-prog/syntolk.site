@@ -1,4 +1,5 @@
 @font-face{font-family:Onest;src:url('fonts/onest/font.ttf') format('truetype');font-weight:100 900;font-display:swap}
+@font-face{font-family:Inter;src:url('fonts/inter/InterVariable.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
 
 /* One set of base rules, followed by tablet and phone layouts. */
 :root{--ink:#20242b;--muted:#626873;--blue:#2459e0;--paper:#fafaf9;--surface:#f0f1f3;--line:#dce0e6;--max:1184px}
@@ -108,7 +109,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
   --radius:22px;}
 #pricing,#pricing *{box-sizing:border-box}
 #pricing{scroll-behavior:smooth}
-#pricing{margin:0;background:var(--bg);color:var(--text);font-family:Onest,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+#pricing{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
 #pricing a{text-decoration:none;color:inherit}
 #pricing .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
 #pricing{padding:86px 0}
@@ -120,13 +121,13 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .pricing-switch-indicator{position:absolute;top:7px;left:7px;height:calc(100% - 14px);border-radius:999px;background:#111318;box-shadow:0 7px 18px rgba(17,19,24,.18);z-index:0;transition:left .34s cubic-bezier(.22,.61,.36,1),width .34s cubic-bezier(.22,.61,.36,1)}
 #pricing .pricing-switch button{position:relative;z-index:1;min-width:168px;border:0;background:transparent;color:#111318;font:inherit;font-size:15px;font-weight:760;padding:13px 22px;border-radius:999px;cursor:pointer;transition:color .25s ease,transform .25s ease}
 #pricing .pricing-switch button.active{color:#fff;transform:translateY(-1px)}
-#pricing .business-promo{margin:0 0 18px;padding:16px 18px;border:1px solid #cfe0ff;border-radius:16px;background:#eef4ff;display:flex;align-items:center;justify-content:center;gap:12px;text-align:center;color:#2457b8;font-size:15px;font-weight:700}
-#pricing .business-promo strong{color:#111318;font-size:16px}
-#pricing .business-promo-badge{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:999px;background:var(--blue);color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
-#pricing .llm-bonus{margin:18px 0 2px;padding:14px 15px;border:1px solid #cfe0ff;border-radius:14px;background:#f3f7ff;color:#2457b8;display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 12px}
-#pricing .llm-bonus span{font-size:12px;font-weight:820;letter-spacing:.035em;text-transform:uppercase}
-#pricing .llm-bonus strong{font-size:22px;line-height:1;color:var(--blue);letter-spacing:-.02em;white-space:nowrap}
-#pricing .llm-bonus small{grid-column:1/-1;font-size:12px;line-height:1.35;color:#5e6b82}
+#pricing .business-promo{margin:0 0 14px;padding:11px 14px;border:1px solid #cfe0ff;border-radius:12px;background:#eef4ff;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;color:#2457b8;font-size:14px;font-weight:600;line-height:1.35}
+#pricing .business-promo strong{color:#111318;font-size:14px;font-weight:650}
+#pricing .business-promo-badge{display:inline-flex;align-items:center;justify-content:center;padding:5px 8px;border-radius:999px;background:var(--blue);color:#fff;font-size:11px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+#pricing .llm-bonus{margin:14px 0 0;padding:10px 12px;border:1px solid #cfe0ff;border-radius:10px;background:#f3f7ff;color:#2457b8;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 8px;line-height:1.3}
+#pricing .llm-bonus span{font-size:12px;font-weight:700;letter-spacing:0;text-transform:none}
+#pricing .llm-bonus strong{font-size:20px;line-height:1.1;color:var(--blue);letter-spacing:-.02em;white-space:nowrap}
+#pricing .llm-bonus small{grid-column:1/-1;font-size:12px;line-height:1.3;color:#5e6b82}
 #pricing .plan.pop .llm-bonus{background:#ffffff;border-color:#cfe0ff;color:#2457b8}
 #pricing .plan.pop .llm-bonus strong{color:var(--blue)}
 #pricing .plan.pop .llm-bonus small{color:#5e6b82}
@@ -134,7 +135,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .pricing-switch{width:100%;min-width:0}
 #pricing .pricing-switch button{min-width:0;flex:1;padding:12px 14px}
 #pricing .business-promo{align-items:flex-start;flex-direction:column;text-align:left}
-#pricing .llm-bonus{padding:13px;grid-template-columns:1fr}
+#pricing .llm-bonus{padding:10px 12px;grid-template-columns:1fr}
 #pricing .llm-bonus strong{font-size:20px}
 #pricing .llm-bonus small{grid-column:auto}
 }
@@ -146,20 +147,18 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .pricing-panel.active .plan:nth-child(2){animation-delay:.06s}
 #pricing .pricing-panel.active .plan:nth-child(3){animation-delay:.12s}
 @keyframes pricingCardIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
-#pricing .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-#pricing .plan{border:1px solid #d7dce5;border-radius:22px;padding:24px;background:#fff;position:relative;box-shadow:0 10px 30px rgba(17,19,24,.07);cursor:pointer;transition:background .28s ease,color .28s ease,border-color .28s ease,box-shadow .28s ease,transform .28s ease}
+#pricing .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;align-items:start}
+#pricing .plan{border:1px solid #d7dce5;border-radius:18px;padding:20px;background:#fff;position:relative;box-shadow:0 10px 30px rgba(17,19,24,.07);cursor:pointer;transition:background .28s ease,color .28s ease,border-color .28s ease,box-shadow .28s ease,transform .28s ease}
 #pricing .plan:hover{border-color:#bcc4d0;box-shadow:0 14px 36px rgba(17,19,24,.10);transform:translateY(-2px)}
 #pricing .plan:focus-visible{outline:3px solid rgba(23,105,255,.22);outline-offset:3px}
 #pricing .plan.pop{background:#111318;color:#fff;border-color:#111318;box-shadow:0 18px 42px rgba(17,19,24,.20);transform:translateY(-2px)}
-#pricing .plan h3{margin:0;font-size:24px;line-height:1.1}
-#pricing .price{font-size:48px;font-weight:780;letter-spacing:-.04em;margin:16px 0 2px}
+#pricing .plan h3{margin:0;font-size:22px;line-height:1.2}
+#pricing .price{font-size:44px;font-weight:700;letter-spacing:-.04em;line-height:1.08;margin:12px 0 3px}
 #pricing .price .currency{white-space:nowrap}
-#pricing .per{color:#858b96;font-size:15px}
+#pricing .per{color:#858b96;font-size:14px;line-height:1.3}
 #pricing .pop .per{color:#bcc3cf}
-#pricing .features{display:grid;gap:11px;margin:22px 0 0}
-#pricing .features div{font-size:15px;line-height:1.35}
-#pricing .features div:before{content:"✓";color:var(--green);font-weight:800;margin-right:8px}
-#pricing .pop .features div:before{color:#76e3ac}
+#pricing .features{display:grid;gap:7px;margin:16px 0 0}
+#pricing .features div{font-size:15px;line-height:1.4}
 #pricing .pricing-note{margin-top:18px;color:#777e89;font-size:13px}
 @media(max-width:620px){
 #pricing .wrap{width:min(100% - 24px,1180px)}
@@ -170,14 +169,14 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing,#pricing *,#pricing *::before,#pricing *::after{animation:none!important;transition:none!important}
 }
 #pricing .section-kicker{color:#0b5cff;
-  font-family:Onest,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   font-size:14px;
   line-height:1.2;
   font-weight:800;
   letter-spacing:-.012em;
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;}
-#pricing{--syntolk-font:Onest,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+#pricing{--syntolk-font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --syntolk-ink:#111318;
   --syntolk-muted:#5f6773;
   --syntolk-blue:#1769ff;}
@@ -231,7 +230,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .mobile-only{display:none}
 #pricing .plan-details>summary{display:none}
 #pricing .business-promo>.desktop-copy{display:contents}
-#pricing .plan-details .features{margin-top:22px}
+#pricing .plan-details .features{margin-top:16px}
 @media(max-width:760px){
 #pricing{--bg:#fff;--text:#17191c;--muted:#64686e;--line:#e8e9eb;--radius:16px}
 #pricing{background:#fff}
@@ -251,24 +250,24 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .pricing-panels{margin-top:16px}
 #pricing .pricing-panel,#pricing .pricing-panel.active,#pricing .pricing-panel.active .plan{transform:none;animation:none;transition:none}
 #pricing .pricing-grid{grid-template-columns:minmax(0,1fr);gap:12px}
-#pricing .plan,#pricing .plan.pop,#pricing .plan:hover{padding:20px;cursor:default;border:1px solid #dfe3e9;border-radius:12px;box-shadow:none;transform:none;transition:none}
+#pricing .plan,#pricing .plan.pop,#pricing .plan:hover{padding:18px;cursor:default;border:1px solid #dfe3e9;border-radius:12px;box-shadow:none;transform:none;transition:none}
 #pricing .plan.pop{background:#181b20;border-color:#181b20}
 #pricing .plan h3{font-size:17px;font-weight:500;line-height:1.4;letter-spacing:-.025em}
 #pricing .price{display:inline-block;font-size:32px;font-weight:600;line-height:1.25;letter-spacing:-.045em;margin:8px 5px 0 0;vertical-align:baseline}
 #pricing .per{display:inline-block;font-size:13px;line-height:1.3;color:#6c7480}
 #pricing .pop .per{color:#b6becb}
-#pricing .plan-overview{font-size:13px;line-height:1.5;color:#6c7480;margin:12px 0 0;overflow-wrap:anywhere}
+#pricing .plan-overview{font-size:13px;line-height:1.5;color:#6c7480;margin:9px 0 0;overflow-wrap:anywhere}
 #pricing .pop .plan-overview{color:#bec5d0}
 #pricing .plan-details>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;font-size:13px;font-weight:400;cursor:pointer;list-style:none;color:inherit;padding:4px 0;margin-top:2px}
 #pricing .plan-details>summary::-webkit-details-marker{display:none}
 #pricing .plan-details>summary::after{content:'+';font-size:18px;font-weight:400}
 #pricing .plan-details[open]>summary::after{content:'−'}
-#pricing .plan-details .features{margin:0 0 16px;gap:8px;padding-top:4px}
+#pricing .plan-details .features{margin:0 0 12px;gap:6px;padding-top:4px}
 #pricing .features div{font-size:14px;line-height:1.5}
 #pricing .plan-start{display:flex;min-height:44px;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border:1px solid #dfe3e9;border-radius:7px;color:#252a33;font-size:14px;font-weight:500;background:#fff}
 #pricing .pop .plan-start{background:#fff;color:#17191c;border-color:#fff}
 #pricing .business-promo{display:block;margin:0 0 16px;padding:0;color:#677386;font-size:13px;font-weight:400;line-height:1.5;text-align:left;border:0;background:none}
-#pricing .llm-bonus,#pricing .plan.pop .llm-bonus{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;background:transparent;color:inherit;padding:12px 0 0;margin:10px 0 0;border:0;border-top:1px solid #dfe3e9;border-radius:0}
+#pricing .llm-bonus,#pricing .plan.pop .llm-bonus{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;background:transparent;color:inherit;padding:10px 0 0;margin:8px 0 0;border:0;border-top:1px solid #dfe3e9;border-radius:0}
 #pricing .plan.pop .llm-bonus{border-color:#3a404b}
 #pricing .llm-bonus span{font-size:12px;letter-spacing:0;text-transform:none;font-weight:400;color:#6c7480}
 #pricing .llm-bonus strong,#pricing .plan.pop .llm-bonus strong{font-size:18px;font-weight:600;color:#1769ff}
