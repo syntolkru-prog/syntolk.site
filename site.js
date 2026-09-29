@@ -631,7 +631,8 @@ function scheduleAuto() {
   progressBar.style.width = '0%';
   raf = requestAnimationFrame(updateProgress);
 
-  // Loop back to the first screen instead of stopping after the last one.
+  // Keep the presentation running as a carousel: after the last screen,
+  // return to the first one without changing the Auto/Pause preference.
   timer = setTimeout(() => go((index + 1) % SCREENS.length, false), duration);
 }
 
@@ -747,4 +748,133 @@ if ('IntersectionObserver' in window) {
 syncPlay();
 render();
 
+})();
+
+/* Interactive controls from the supplied account demo, scoped to this section. */
+
+(() => {
+  const root = document.getElementById('additional-features');
+  if (!root) return;
+  const formatInt = value => new Intl.NumberFormat('ru-RU').format(value);
+  const formatDecimal = value => {
+    const rounded = Math.round(value * 10) / 10;
+    return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1).replace('.', ',');
+  };
+
+  root.querySelectorAll('.af-addon-counter').forEach(card => {
+    const qtyEl = card.querySelector('.af-qty');
+    const valueEl = card.querySelector('.af-addon-value');
+    const minus = card.querySelector('.af-minus');
+    const plus = card.querySelector('.af-plus');
+    const unit = Number(card.dataset.unit);
+    const kind = card.dataset.kind;
+    let qty = 1;
+
+    const render = () => {
+      qtyEl.textContent = qty;
+      if (kind === 'storage') valueEl.textContent = `+${formatInt(unit * qty)} МБ`;
+      if (kind === 'indexed') valueEl.textContent = `+${formatDecimal(unit * qty)} ГБ`;
+      if (kind === 'fragments') valueEl.textContent = `+${formatInt(unit * qty)} фрагментов`;
+      minus.disabled = qty <= 1;
+      minus.style.opacity = qty <= 1 ? '.45' : '1';
+      minus.style.cursor = qty <= 1 ? 'default' : 'pointer';
+    };
+
+    minus.addEventListener('click', () => { if (qty > 1) { qty--; render(); } });
+    plus.addEventListener('click', () => { if (qty < 99) { qty++; render(); } });
+    render();
+  });
+
+  const llm = root.querySelector('.af-llm-addon');
+  if (llm) {
+    const slider = llm.querySelector('.af-range-input');
+    const current = llm.querySelector('.af-range-current');
+    const value = llm.querySelector('.af-llm-value');
+    const pills = [...llm.querySelectorAll('.af-price-pills button')];
+
+    const renderLLM = amount => {
+      const formatted = `${formatInt(amount)} ₽`;
+      current.textContent = formatted;
+      value.textContent = formatted;
+      pills.forEach(btn => btn.classList.toggle('af-active', Number(btn.dataset.value) === amount));
+    };
+
+    pills.forEach(btn => btn.addEventListener('click', () => {
+      const amount = Number(btn.dataset.value);
+      slider.value = amount;
+      renderLLM(amount);
+    }));
+
+    slider.addEventListener('input', () => renderLLM(Number(slider.value)));
+    renderLLM(Number(slider.value));
+  }
+
+  // Demo interaction for the company card: edit the company name in-place
+  // and keep the label in the profile header synchronized.
+  const companyField = root.querySelector('.af-company-name-field');
+  const companyText = root.querySelector('.af-company-name-text');
+  const companyChip = root.querySelector('.af-company-name-chip');
+  const companyChipText = root.querySelector('.af-company-name-chip-text');
+  const editCompanyAction = root.querySelector('.af-edit-company');
+  let companyName = companyText?.textContent.trim() || 'Моя компания';
+
+  const startCompanyEdit = () => {
+    if (!companyField || companyField.classList.contains('af-editing')) return;
+    const previous = companyName;
+    companyField.classList.add('af-editing');
+    companyField.removeAttribute('role');
+    companyField.removeAttribute('tabindex');
+    companyText.innerHTML = '';
+
+    const input = document.createElement('input');
+    input.className = 'af-company-name-input';
+    input.type = 'text';
+    input.value = companyName;
+    input.maxLength = 80;
+    input.setAttribute('aria-label', 'Название компании');
+    companyText.appendChild(input);
+    input.focus();
+    input.select();
+
+    const syncPreview = () => {
+      const value = input.value.trim();
+      companyChipText.textContent = value || 'Название компании';
+    };
+
+    const finish = save => {
+      if (!companyField.classList.contains('af-editing')) return;
+      const value = input.value.trim();
+      companyName = save && value ? value : previous;
+      companyText.textContent = companyName;
+      companyChipText.textContent = companyName;
+      companyField.classList.remove('af-editing');
+      companyField.setAttribute('role', 'button');
+      companyField.setAttribute('tabindex', '0');
+    };
+
+    input.addEventListener('input', syncPreview);
+    input.addEventListener('keydown', event => {
+      if (event.key === 'Enter') { event.preventDefault(); finish(true); }
+      if (event.key === 'Escape') { event.preventDefault(); finish(false); }
+    });
+    input.addEventListener('blur', () => finish(true), { once:true });
+  };
+
+  const activateEdit = event => {
+    if (event.type === 'click' || event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      startCompanyEdit();
+    }
+  };
+
+  companyField?.addEventListener('click', activateEdit);
+  companyField?.addEventListener('keydown', activateEdit);
+  companyChip?.addEventListener('click', activateEdit);
+  companyChip?.addEventListener('keydown', activateEdit);
+  editCompanyAction?.addEventListener('click', activateEdit);
+  editCompanyAction?.addEventListener('keydown', activateEdit);
+
+  root.querySelector('.af-invite-register')?.addEventListener('click', () => {
+    window.location.href = 'https://platform.syntolk.ru/register';
+  });
 })();
