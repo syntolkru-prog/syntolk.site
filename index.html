@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fafaf9">
+  <title>Syntolk — ваши документы, ваши ответы</title>
+  <meta name="description" content="Узнайте свою задачу. Syntolk помогает искать ответы в документах, сравнивать условия и проверять выводы по источникам. Для работы, бизнеса и обучения.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/onest/font.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-data.js" defer></script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+  <div class="nav wrap">
+    <a class="brand" href="#" aria-label="Syntolk — главная"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>Syntolk</a>
+    <nav class="desktop-nav" aria-label="Основная навигация"><a href="#cases">Для кого</a><a href="#how">Как это работает</a><a href="#pricing">Тарифы</a></nav>
+    <div class="nav-actions"><a class="login" href="https://platform.syntolk.ru/">Войти</a><a class="button button-small" href="https://platform.syntolk.ru/register">Начать бесплатно</a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Открыть меню"><span></span><span></span></button></div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#cases">Для кого</a><a href="#how">Как это работает</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы и ответы</a><a href="https://platform.syntolk.ru/">Войти в Syntolk ↗</a></nav>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-inner">
+      <h1 class="hero-enter" id="hero-title">Syntolk</h1>
+      <p class="hero-tagline hero-enter">Ваши документы. Ваши ответы.</p>
+      <p class="hero-description hero-enter">ИИ-ассистент для работы с документами: загружайте файлы, задавайте<br class="desktop-break"> вопросы и быстро находите нужные факты, риски и противоречия.</p>
+      <div class="question-experience" aria-label="Знакомые вопросы из вашей сферы">
+        <div class="question-stage">
+          <div class="question-card" id="question-panel" role="tabpanel" aria-labelledby="topic-legal" tabindex="0" aria-describedby="question-accessibility">
+            <div class="question-text"><p id="hero-question" aria-hidden="true">Какие риски для заказчика есть в договоре?</p>
+            <p id="second-question" aria-hidden="true" hidden>Какие условия изменились в новой версии договора?</p></div>
+            <a class="question-send" href="https://platform.syntolk.ru/register" aria-label="Зарегистрироваться и задать вопрос"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <span class="sr-only" id="question-accessibility">Какие риски для заказчика есть в договоре? Какие условия изменились в новой версии договора?</span>
+          </div>
+        </div>
+        <div class="topic-picker"><div class="topics" role="tablist" aria-label="Сферы применения Syntolk"><button class="topic" id="topic-legal" role="tab" aria-selected="true" aria-controls="question-panel" tabindex="0" data-topic="0">Юристы</button><button class="topic" id="topic-learning" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="1">Учёба</button><button class="topic" id="topic-medicine" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="2">Медицина</button><button class="topic" id="topic-construction" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="3">Строительство</button><button class="topic" id="topic-logistics" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="4">Логистика и закупки</button><button class="topic" id="topic-knowledge" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="5">Бизнес и руководство</button><button class="topic" id="topic-finance" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="6">Финансы и аудит</button></div></div>
+      </div>
+      <div class="hero-actions"><a class="button" href="https://platform.syntolk.ru/register">Попробовать бесплатно</a></div>
+    </div>
+  </section>
+
+  <section class="cases section" id="cases" aria-labelledby="cases-title">
+    <div class="wrap">
+      <div class="section-heading reveal"><div><p class="eyebrow">Ваша работа. Ваш контекст.</p><h2 id="cases-title">Знакомые задачи.<br> <span class="muted">Новые возможности.</span></h2></div><p class="section-intro">Для тех, кто работает с документами.<br> И хочет быстрее переходить к делу.</p></div>
+      <div class="gallery-window" id="gallery-window"><div class="case-grid" id="case-grid"><article class="case-card reveal"><button class="case-button" data-case="0" aria-haspopup="dialog" aria-label="Юристы: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-legal.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>Юристы</h3><p>Договоры, обязательства и сравнение редакций.</p></div></button></article><article class="case-card reveal"><button class="case-button" data-case="1" aria-haspopup="dialog" aria-label="Финансы: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-finance.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>Финансы</h3><p>Отчётность, сверки и причины расхождений.</p></div></button></article><article class="case-card reveal"><button class="case-button" data-case="2" aria-haspopup="dialog" aria-label="Строительство: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-construction.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>Строительство</h3><p>ТЗ, проекты, спецификации и нормативы.</p></div></button></article><article class="case-card reveal"><button class="case-button" data-case="3" aria-haspopup="dialog" aria-label="HR: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-hr.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>HR</h3><p>Резюме, требования к ролям и процессы HR.</p></div></button></article><article class="case-card reveal"><button class="case-button" data-case="4" aria-haspopup="dialog" aria-label="Аудит: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-audit.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>Аудит</h3><p>Подтверждения, обязательства и несоответствия.</p></div></button></article><article class="case-card reveal"><button class="case-button" data-case="5" aria-haspopup="dialog" aria-label="Логистика: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-logistics.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>Логистика</h3><p>Поставки, накладные, инвойсы и условия.</p></div></button></article><article class="case-card reveal"><button class="case-button" data-case="6" aria-haspopup="dialog" aria-label="Обучение: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-learning.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>Обучение</h3><p>Обучение сотрудников на материалах компании.</p></div></button></article><article class="case-card reveal"><button class="case-button" data-case="7" aria-haspopup="dialog" aria-label="Внутренние базы: посмотреть возможности"><div class="case-photo"><img src="images/cases/real-knowledge.webp" alt="" loading="lazy" decoding="async" width="640" height="480"></div><div class="case-copy"><h3>Внутренние базы</h3><p>Регламенты, инструкции и знания компании.</p></div></button></article></div><div class="gallery-fade" aria-hidden="true"></div></div>
+      <div class="gallery-actions"><button class="gallery-toggle" aria-expanded="false" aria-controls="case-grid">Посмотреть все <span aria-hidden="true">↓</span></button></div>
+      <span class="sr-only" id="gallery-status" role="status"></span>
+      <p class="cases-note reveal">Не нашли свою сферу? <span>Начните с любого документа и своего вопроса.</span> <a href="https://platform.syntolk.ru/register" aria-label="Попробовать Syntolk со своими документами">Попробовать <span aria-hidden="true">↗</span></a></p>
+    </div>
+  </section>
+
+  <section class="how-section section" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="how-heading reveal"><p class="eyebrow">Меньше поиска. Больше смысла.</p><h2 id="how-title">Всё начинается<br> с обычного вопроса.</h2><p>Вы знаете, что хотите узнать.<br> Syntolk помогает найти это в ваших файлах.</p></div>
+      <div class="steps">
+        <article class="step reveal"><span class="step-number">01</span><h3>Добавьте документы.</h3><p>Договоры, отчёты, инструкции.<br> Один файл или целую папку.</p><div class="file-types" aria-label="Форматы документов"><span>PDF</span><span>Word</span><span>Excel</span></div></article>
+        <article class="step reveal"><span class="step-number">02</span><h3>Спросите своими словами.</h3><p>Найдите важное, сравните условия<br> или разберитесь в сложной теме.</p><span class="step-detail">Без специальных команд.</span></article>
+        <article class="step reveal"><span class="step-number">03</span><h3>Проверьте ответ.</h3><p>Откройте указанные источники.<br> Убедитесь в выводах по оригиналу.</p><span class="step-detail">Документы всегда под рукой.</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-kicker">Тарифы</div>
+    <h2 class="section-title">Выберите, как будете работать с Syntolk</h2>
+    <p class="section-sub">Для личных задач или для работы всей команды.</p>
+
+    <div class="pricing-switch" role="tablist" aria-label="Тип использования">
+      <span class="pricing-switch-indicator" aria-hidden="true"></span>
+      <button type="button" class="active" data-pricing-target="personal" role="tab" aria-selected="true">Для себя</button>
+      <button type="button" data-pricing-target="business" role="tab" aria-selected="false">Для бизнеса</button>
+    </div>
+
+    <div class="pricing-panels">
+      <div class="pricing-panel active" data-pricing-panel="personal">
+        <div class="pricing-grid">
+          <article class="plan pop">
+            <h3>Базовый</h3>
+            <div class="price"><span class="currency">990 ₽</span></div>
+            <div class="per">в месяц</div>
+            <p class="plan-overview mobile-only">500 МБ хранилища · файлы до 30 МБ</p><details class="plan-details" open><summary>Все условия тарифа</summary><div class="features">
+              <div>5 000 фрагментов</div>
+              <div>250 МБ инд. данных</div>
+              <div>Файлы до 30 МБ</div>
+              <div>500 МБ хранилища</div>
+              <div>300 МБ индексации/мес</div>
+            </div>
+          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          <article class="plan">
+            <h3>Стандарт</h3>
+            <div class="price"><span class="currency">1 990 ₽</span></div>
+            <div class="per">в месяц</div>
+            <p class="plan-overview mobile-only">1.2 ГБ хранилища · файлы до 50 МБ</p><details class="plan-details" open><summary>Все условия тарифа</summary><div class="features">
+              <div>12 000 фрагментов</div>
+              <div>600 МБ инд. данных</div>
+              <div>Файлы до 50 МБ</div>
+              <div>1.2 ГБ хранилища</div>
+              <div>720 МБ индексации/мес</div>
+            </div>
+          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+        </div>
+      </div>
+
+      <div class="pricing-panel" data-pricing-panel="business">
+        <div class="business-promo" role="note" aria-label="Бонус к LLM-балансу">
+          <span class="business-promo-badge">Акция</span>
+          <strong>Бонус к LLM-балансу для корпоративных тарифов</strong>
+          <span>Чем выше тариф — тем больше средств на работу с ИИ.</span>
+        </div>
+        <div class="pricing-grid">
+          <article class="plan">
+            <h3>Старт</h3>
+            <div class="price"><span class="currency">15 000 ₽</span></div>
+            <div class="per">в месяц</div>
+            <div class="llm-bonus"><span>На LLM-баланс</span><strong>18 000 ₽</strong><small>включая бонус +20%</small></div>
+            <p class="plan-overview mobile-only">10 сотрудников · 6 ГБ хранилища</p><details class="plan-details" open><summary>Все условия тарифа</summary><div class="features">
+              <div>60 000 фрагментов</div>
+              <div>3 ГБ инд. данных</div>
+              <div>Файлы до 100 МБ</div>
+              <div>6 ГБ хранилища</div>
+              <div>3.5 ГБ индексации/мес</div>
+              <div>10 сотрудников</div>
+            </div>
+          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          <article class="plan pop">
+            <h3>Бизнес</h3>
+            <div class="price"><span class="currency">30 000 ₽</span></div>
+            <div class="per">в месяц</div>
+            <div class="llm-bonus"><span>На LLM-баланс</span><strong>39 000 ₽</strong><small>включая бонус +30%</small></div>
+            <p class="plan-overview mobile-only">50 сотрудников · 15 ГБ хранилища</p><details class="plan-details" open><summary>Все условия тарифа</summary><div class="features">
+              <div>130 000 фрагментов</div>
+              <div>7 ГБ инд. данных</div>
+              <div>Файлы до 100 МБ</div>
+              <div>15 ГБ хранилища</div>
+              <div>8 ГБ индексации/мес</div>
+              <div>50 сотрудников</div>
+            </div>
+          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          <article class="plan">
+            <h3>Про</h3>
+            <div class="price"><span class="currency">50 000 ₽</span></div>
+            <div class="per">в месяц</div>
+            <div class="llm-bonus"><span>На LLM-баланс</span><strong>75 000 ₽</strong><small>включая бонус +50%</small></div>
+            <p class="plan-overview mobile-only">100 сотрудников · 30 ГБ хранилища</p><details class="plan-details" open><summary>Все условия тарифа</summary><div class="features">
+              <div>260 000 фрагментов</div>
+              <div>14 ГБ инд. данных</div>
+              <div>Файлы до 100 МБ</div>
+              <div>30 ГБ хранилища</div>
+              <div>16 ГБ индексации/мес</div>
+              <div>100 сотрудников</div>
+            </div>
+          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-note">LLM-баланс расходуется в зависимости от выбранной модели, объёма найденного контекста и сложности задачи.</div>
+  </div>
+</section>
+
+  <section class="faq section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-layout"><div class="faq-heading reveal"><p class="eyebrow">До первого вопроса</p><h2 id="faq-title">Разберёмся<br> в деталях.</h2><a class="text-link" href="mailto:support@syntolk.ru">Задать свой вопрос <span aria-hidden="true">↗</span></a></div>
+      <div class="faq-list">
+        <details class="reveal"><summary>Что можно делать в Syntolk?<span aria-hidden="true">+</span></summary><p>Искать информацию в загруженных документах, сравнивать условия, находить расхождения и получать объяснения по вашим материалам. Для проверки ответа можно вернуться к указанным источникам.</p></details>
+        <details class="reveal"><summary>Можно искать только по одной папке или файлу?<span aria-hidden="true">+</span></summary><p>Да. Область поиска можно ограничить конкретным документом, выбранной папкой или всей доступной базой.</p></details>
+        <details class="reveal"><summary>Syntolk отправляет мои документы в интернет?<span aria-hidden="true">+</span></summary><p>Для ответов по вашей базе Syntolk использует загруженные вами документы, а не поиск в интернете. Это описание источников ответа, а не условий передачи данных. Уточнить условия обработки и хранения документов можно у команды: <a href="mailto:support@syntolk.ru">support@syntolk.ru</a>.</p></details>
+        <details class="reveal"><summary>Что будет, если нужной информации нет?<span aria-hidden="true">+</span></summary><p>Для обоснованного ответа нужны подходящие фрагменты в загруженных материалах. Если их нет, уточните вопрос или добавьте документы. Проверяйте указанные источники, прежде чем использовать вывод.</p></details>
+        <details class="reveal"><summary>Можно подключить сотрудников?<span aria-hidden="true">+</span></summary><p>В тарифах для компании предусмотрены общий баланс, управление ролями и правами доступа. В тарифе «Старт» предусмотрено 10 сотрудников, «Бизнес» — 50, «Про» — 100. Объём хранения и другие лимиты зависят от тарифа.</p></details>
+        <details class="reveal"><summary>Что такое LLM-баланс?<span aria-hidden="true">+</span></summary><p>Это баланс для работы с ИИ-моделями. Его расход зависит от модели, объёма обрабатываемого текста и сложности запроса. Модель можно выбирать под конкретную задачу.</p></details>
+        <details class="reveal"><summary>Зачем несколько ИИ-моделей?<span aria-hidden="true">+</span></summary><p>Разные задачи требуют разного баланса цены, скорости, языка и глубины анализа. Поэтому модель можно выбирать под конкретную работу.</p></details>
+        <details class="reveal"><summary>Можно использовать Syntolk просто как чат с LLM?<span aria-hidden="true">+</span></summary><p>Да. Помимо поиска по документам, в Syntolk есть обычный чат с выбранной ИИ-моделью для задач, которым не нужна ваша база файлов.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-section" aria-labelledby="final-title"><div class="wrap reveal"><span class="final-brand">Syntolk</span><h2 id="final-title">Следующий вопрос&nbsp;—<br> <span>уже ваш.</span></h2><p>Возьмите документ, с которым работаете сейчас.<br> И посмотрите на него по-новому.</p><a class="button" href="https://platform.syntolk.ru/register">Попробовать бесплатно <span aria-hidden="true">↗</span></a></div></section>
+</main>
+<footer class="site-footer"><div class="wrap footer-top"><a class="brand" href="#">Syntolk</a><p>Ваши документы. Ваши ответы.</p><a href="mailto:support@syntolk.ru">support@syntolk.ru ↗</a></div><div class="wrap footer-bottom"><span>© 2026 ООО «СИНТОЛК»</span><nav aria-label="Навигация внизу страницы"><a href="#cases">Для кого</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы и ответы</a></nav></div></footer>
+<dialog class="case-dialog" id="case-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-intro"><button class="dialog-close" aria-label="Закрыть подробности">×</button><div class="dialog-layout"><div class="dialog-visual"><img id="dialog-image" alt=""><span id="dialog-category"></span></div><div class="dialog-copy"><h2 id="dialog-title"></h2><p id="dialog-intro"></p><p class="dialog-label">С чего можно начать</p><ul class="dialog-questions" id="dialog-questions"></ul><p class="dialog-label">Что поможет сделать Syntolk</p><ul class="dialog-benefits" id="dialog-benefits"></ul><p class="dialog-files" id="dialog-files"></p><a class="button" href="https://platform.syntolk.ru/register">Попробовать на своих файлах <span aria-hidden="true">↗</span></a></div></div></dialog>
+</body>
+</html>

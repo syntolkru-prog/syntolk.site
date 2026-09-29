@@ -17,4 +17,3 @@ git push origin main
 ```
 
 Перед откатом проверьте изменения командой `git diff --cached`.
-
