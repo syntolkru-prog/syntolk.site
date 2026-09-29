@@ -6,14 +6,14 @@
 
 ## Как вернуться к исходной версии
 
-Первую загруженную версию сохраняет ветка `rollback/initial-site-2026-09-29`. История `main` также сохраняет все последующие коммиты. Чтобы восстановить эту версию после будущих изменений без переписывания истории:
+Первую загруженную версию сохраняет ветка `rollback/initial-site-2026-09-29`. История `main` также сохраняет все последующие коммиты. Чтобы восстановить эту версию после будущих изменений без переписывания истории, выполните в чистой рабочей копии:
 
 ```bash
+git fetch origin
 git switch main
-git pull
-git restore --source rollback/initial-site-2026-09-29 --staged --worktree .
+git pull --ff-only
+git restore --source origin/rollback/initial-site-2026-09-29 --staged --worktree .
+git diff --cached
 git commit -m "Restore initial Syntolk site"
 git push origin main
 ```
-
-Перед откатом проверьте изменения командой `git diff --cached`.
