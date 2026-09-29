@@ -542,3 +542,215 @@
   });
 
 })();
+
+(() => {
+  const aboutRoot = document.getElementById('syntolk-about');
+  if (!aboutRoot) return;
+
+const SCREENS = ["<h1>Syntolk Assistant</h1>\n<h2>Интеллектуальный помощник, который работает не на догадках, а на доказательствах</h2>\n<p>Syntolk Assistant — это корпоративный AI-помощник для анализа документов, поиска информации, сопоставления данных и подготовки обоснованных ответов.</p>\n<p>Его ключевое отличие — не просто способность сформулировать красивый текст, а умение <strong>найти подтверждение, проверить контекст, учесть ограничения и показать, на чём основан каждый существенный вывод</strong>.</p>", "<h2>Экспертный подход в любой отрасли</h2>\n<p>Syntolk Assistant может работать с материалами практически любой сферы, если ему предоставить соответствующую информацию:</p>\n<ul><li>юриспруденция;</li><li>финансы и бухгалтерия;</li><li>закупки;</li><li>продажи;</li><li>производство;</li><li>строительство;</li><li>медицина;</li><li>фармацевтика;</li><li>IT;</li><li>образование;</li><li>HR;</li><li>логистика;</li><li>страхование;</li><li>маркетинг;</li><li>государственное управление;</li><li>техническая документация;</li><li>внутренние регламенты и корпоративные стандарты.</li></ul>\n<p>При этом его задача — не изображать универсального специалиста, который отвечает «из головы», а <strong>погружаться в конкретную предметную область через документы, инструкции, договоры, отчёты, нормативные материалы и другие предоставленные источники</strong>.</p>\n<p>Чем больше качественной информации о сфере загружено в систему, тем точнее Syntolk Assistant может:</p>\n<ul><li>использовать профессиональную терминологию;</li><li>учитывать специфику отрасли;</li><li>сопоставлять положения разных документов;</li><li>находить противоречия;</li><li>выделять обязательные условия и исключения;</li><li>готовить ответы в формате, необходимом именно для этой области.</li></ul>\n<h3>Важный принцип</h3>\n<p>Syntolk Assistant не подменяет документы собственными догадками. Если в материалах недостаточно информации, он не будет уверенно придумывать ответ, а укажет:</p>\n<ul><li>что удалось подтвердить;</li><li>чего именно не хватает;</li><li>какие документы необходимо проверить;</li><li>где источники расходятся между собой.</li></ul>", "<h1>Почему это больше, чем обычный AI</h1>\n<p>Обычная нейросеть может быстро сформулировать убедительный ответ. Однако убедительный текст не всегда означает точный, проверенный и применимый ответ.</p>\n<p>Syntolk Assistant использует другой подход:</p>\n<blockquote><strong><em>сначала доказательства — затем проверка — только потом вывод.</em></strong></blockquote>\n<h2>Сравнение подходов</h2>\n<div class=\"table-wrap\"><table><thead><tr><th><strong>Обычный AI-подход</strong></th><th><strong>Подход Syntolk Assistant</strong></th></tr></thead><tbody><tr><td>Может ответить на основе общих знаний</td><td>Работает на основе предоставленных материалов и найденных источников</td></tr><tr><td>Иногда заполняет пробелы предположениями</td><td>Отдельно указывает, если данных недостаточно</td></tr><tr><td>Может привести общий ответ без привязки к документу</td><td>Привязывает выводы к конкретным документам и фрагментам</td></tr><tr><td>Не всегда учитывает исключения и ограничения</td><td>Проверяет условия, исключения, даты, суммы и формулировки</td></tr><tr><td>Может смешать сведения из разных объектов</td><td>Разделяет документы, договоры, версии, стороны и периоды</td></tr><tr><td>Формирует ответ, который звучит убедительно</td><td>Формирует ответ, который можно проверить</td></tr><tr><td>Не всегда показывает происхождение информации</td><td>Добавляет ссылки и указатели на использованные источники, если они доступны</td></tr><tr><td>Может усилить смысл исходного текста</td><td>Сохраняет модальность: «может», «вправе», «рекомендуется», «не менее»</td></tr><tr><td>Может выбрать одну из противоречащих версий</td><td>Показывает обе версии и указывает источник каждой</td></tr><tr><td>Даёт один общий текст</td><td>Структурирует ответ по отдельным вопросам и смысловым блокам</td></tr></tbody></table></div>", "<h1>Работа с источниками</h1>\n<p>Одна из главных особенностей Syntolk Assistant — возможность показывать, <strong>откуда взята информация</strong>.</p>\n<p>В ответах могут использоваться:</p>\n<ul><li>ссылки на конкретные документы;</li><li>указатели на отдельные фрагменты;</li><li>названия файлов;</li><li>ссылки на подтверждающие части текста;</li><li>перечень использованных источников в конце ответа.</li></ul>\n<p>Это позволяет не просто прочитать результат, а самостоятельно проверить:</p>\n<ol><li>какой документ был использован;</li><li>какая часть документа подтверждает вывод;</li><li>относится ли положение к нужному договору, периоду или организации;</li><li>не были ли пропущены ограничения и исключения;</li><li>соответствует ли ответ исходной формулировке.</li></ol>\n<p>Такой формат особенно важен там, где ответ должен быть не только понятным, но и проверяемым: в договорах, закупках, финансовых расчётах, внутренних процедурах, нормативных документах и деловой переписке.</p>", "<h1>Сложный многоэтапный анализ</h1>\n<p>Syntolk Assistant не ограничивается поиском первого подходящего фрагмента.</p>\n<p>Для подготовки качественного ответа он может последовательно:</p>\n<ol><li>Разобрать запрос на отдельные задачи.</li><li>Определить нужный документ, объект, лицо, период или версию.</li><li>Найти релевантные материалы.</li><li>Проверить несколько источников.</li><li>Прочитать документ глубже, если найденный фрагмент вырван из контекста.</li><li>Сопоставить связанные положения.</li><li>Проверить даты, суммы, условия, исключения и ограничения.</li><li>Найти возможные противоречия.</li><li>Отделить подтверждённые факты от неподтверждённых предположений.</li><li>Сформировать структурированный ответ с указанием источников.</li></ol>\n<p>Иными словами, система использует не поверхностную генерацию текста, а <strong>многоступенчатую логическую обработку информации</strong>.</p>\n<p>При этом внутренний ход рассуждений не подменяет источники: в итог попадают только те выводы, которые можно подтвердить предоставленными материалами.</p>", "<h1>Точность без выдумок</h1>\n<p>Syntolk Assistant придерживается принципа:</p>\n<blockquote><strong><em>Если факт нельзя доказать — его нельзя выдавать как установленный.</em></strong></blockquote>\n<p>Поэтому система не должна:</p>\n<ul><li>придумывать отсутствующие условия;</li><li>выдавать предположение за факт;</li><li>приписывать документу то, чего в нём нет;</li><li>смешивать положения разных договоров;</li><li>самостоятельно выбирать более удобную версию при противоречии;</li><li>превращать частный пример в общее правило;</li><li>менять степень обязательности формулировки;</li><li>использовать отсутствие упоминания как доказательство отсутствия события.</li></ul>\n<p>Например, если документ содержит формулировку «может быть предусмотрено», нельзя автоматически заменить её на «обязательно предусмотрено».</p>\n<p>Если в документах не найдено подтверждение, корректный ответ будет выглядеть так:</p>\n<blockquote><em>«В предоставленных документах недостаточно информации, чтобы точно ответить на этот вопрос».</em></blockquote>\n<p>Это не ограничение, а важный элемент надёжности: пользователь видит не только найденную информацию, но и границы подтверждённого знания.</p>", "<h1>Работа с противоречиями</h1>\n<p>Если разные документы содержат разные сведения, Syntolk Assistant не скрывает расхождение и не выбирает одну версию без основания.</p>\n<p>Он может показать:</p>\n<ul><li>позицию первого документа;</li><li>позицию второго документа;</li><li>даты и версии;</li><li>относящиеся к ним условия;</li><li>источник каждой формулировки;</li><li>информацию, которой не хватает для окончательного разрешения противоречия.</li></ul>\n<p>Такой подход позволяет пользователю самостоятельно принять решение на основе полной картины, а не на основе случайно выбранного фрагмента.</p>", "<h1>Работа с большими массивами документов</h1>\n<p>Syntolk Assistant подходит для анализа не только одного файла, но и больших документальных массивов:</p>\n<ul><li>архивов договоров;</li><li>внутренних баз знаний;</li><li>нормативной документации;</li><li>проектной документации;</li><li>регламентов;</li><li>тендерных материалов;</li><li>претензионной переписки;</li><li>кадровых и корпоративных документов;</li><li>технических заданий;</li><li>финансовых и управленческих отчётов.</li></ul>\n<p>Он может помогать:</p>\n<ul><li>находить нужные документы;</li><li>выделять релевантные положения;</li><li>сравнивать версии;</li><li>группировать информацию;</li><li>составлять сводки;</li><li>обнаруживать расхождения;</li><li>отвечать на вопросы по содержимому папки или базы документов.</li></ul>", "<h1>Примеры задач</h1>\n<h2>Анализ договора</h2>\n<p>Syntolk Assistant может выделить:</p>\n<ul><li>предмет договора;</li><li>обязанности сторон;</li><li>сроки;</li><li>стоимость;</li><li>порядок оплаты;</li><li>ответственность;</li><li>основания расторжения;</li><li>ограничения;</li><li>исключения;</li><li>порядок урегулирования споров.</li></ul>\n<h2>Сравнение документов</h2>\n<p>Система может сопоставить:</p>\n<ul><li>две версии договора;</li><li>разные редакции регламента;</li><li>предложения нескольких поставщиков;</li><li>документы разных подразделений;</li><li>условия до и после внесения изменений.</li></ul>\n<h2>Работа с нормативными материалами</h2>\n<p>При наличии соответствующих документов Syntolk Assistant может:</p>\n<ul><li>найти нужную статью или пункт;</li><li>сопоставить связанные положения;</li><li>выделить условия применения;</li><li>указать исключения;</li><li>подготовить структурированное объяснение на основе текста источника.</li></ul>\n<h2>Подготовка делового ответа</h2>\n<p>Система может создать:</p>\n<ul><li>служебную записку;</li><li>аналитическую справку;</li><li>краткое резюме документа;</li><li>таблицу различий;</li><li>перечень рисков, прямо указанных в материалах;</li><li>проект ответа контрагенту;</li><li>структурированную презентацию;</li><li>выводы для руководителя.</li></ul>", "<h1>Главное преимущество</h1>\n<p>Главное преимущество Syntolk Assistant — сочетание трёх возможностей:</p>\n<h3>1. Понимание контекста</h3>\n<p>Система анализирует не отдельное слово или фразу, а связь между положениями, разделами, документами, датами и условиями.</p>\n<h3>2. Доказательность</h3>\n<p>Существенные утверждения связываются с конкретными источниками, чтобы пользователь мог проверить результат.</p>\n<h3>3. Адаптация под отрасль</h3>\n<p>Если предоставить материалы нужной сферы, Syntolk Assistant может работать с ними в профессиональном формате: использовать терминологию, учитывать структуру документов и отвечать в соответствии с содержанием конкретной предметной области.</p>\n<hr>\n<h1>Syntolk Assistant — это не просто генератор текста</h1>\n<p>Это инструмент, который помогает превратить массив документов в понятные и проверяемые ответы.</p>\n<p>Он не просто сообщает:</p>\n<blockquote><em>«Вот ответ».</em></blockquote>\n<p>Он стремится показать:</p>\n<ul><li>почему сделан именно такой вывод;</li><li>на какой документ он опирается;</li><li>какая формулировка подтверждает результат;</li><li>какие условия нужно учитывать;</li><li>где есть исключения;</li><li>где информации недостаточно;</li><li>где документы противоречат друг другу.</li></ul>\n<h2>Итог</h2>\n<p><strong>Syntolk Assistant — это интеллектуальный помощник для профессиональной работы с информацией.</strong></p>\n<p>Он подходит для любой отрасли, если ему предоставить материалы этой отрасли, и позволяет:</p>\n<ul><li>глубже анализировать документы;</li><li>быстрее находить нужную информацию;</li><li>получать структурированные ответы;</li><li>видеть источники и подтверждения;</li><li>учитывать ограничения и исключения;</li><li>выявлять противоречия;</li><li>снижать риск неподтверждённых выводов;</li><li>превращать сложные массивы данных в понятный результат.</li></ul>\n<blockquote><strong><em>Не просто отвечает.</em></strong><br><strong><em>Проверяет, сопоставляет, объясняет и показывает основания для каждого вывода.</em></strong></blockquote>"];
+const TITLES = ["Syntolk Assistant", "Экспертный подход в любой отрасли", "Почему это больше, чем обычный AI", "Работа с источниками", "Сложный многоэтапный анализ", "Точность без выдумок", "Работа с противоречиями", "Работа с большими массивами документов", "Примеры задач", "Главное преимущество"];
+const content = aboutRoot.querySelector('#assistant-content');
+const scrollArea = aboutRoot.querySelector('#assistant-scroll-area');
+const screenEl = aboutRoot.querySelector('.screen');
+const counter = aboutRoot.querySelector('#assistant-counter');
+const sceneTitle = aboutRoot.querySelector('#assistant-scene-title');
+const prev = aboutRoot.querySelector('#assistant-prev');
+const next = aboutRoot.querySelector('#assistant-next');
+const dots = aboutRoot.querySelector('#assistant-dots');
+const play = aboutRoot.querySelector('#assistant-play');
+const progressBar = aboutRoot.querySelector('#assistant-progress');
+let index = 0;
+const AUTO_INTERVAL = 6000;
+let autoplay = true;
+let hoverPaused = false;
+let touchPaused = false;
+let timer = null;
+let raf = null;
+let startedAt = 0;
+let duration = 0;
+let revealTimers = [];
+let touchStartX = null;
+  let storyVisible = !('IntersectionObserver' in window);
+
+SCREENS.forEach((_, i) => {
+  const b = document.createElement('button');
+  b.className = 'dot';
+  b.setAttribute('aria-label', `Экран ${i+1}`);
+  b.addEventListener('click', () => go(i, true));
+  dots.appendChild(b);
+});
+
+function readingDuration() {
+  return AUTO_INTERVAL;
+}
+
+function clearTimers() {
+  clearTimeout(timer); timer = null;
+  cancelAnimationFrame(raf); raf = null;
+  revealTimers.forEach(clearTimeout); revealTimers = [];
+}
+
+function markRevealables() {
+  const firstHeading = content.querySelector('h1,h2,h3');
+  if (firstHeading) firstHeading.classList.add('screen-heading');
+
+  content.classList.remove('page-enter','page-enter-active');
+  content.classList.add('page-enter');
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => content.classList.add('page-enter-active'));
+  });
+  const t = setTimeout(() => {
+    content.classList.remove('page-enter','page-enter-active');
+  }, 700);
+  revealTimers.push(t);
+}
+
+function updateProgress() {
+  if (!autoplay) { progressBar.style.width = '0%'; return; }
+  const elapsed = performance.now() - startedAt;
+  const pct = Math.min(100, (elapsed / duration) * 100);
+  progressBar.style.width = pct + '%';
+  if (pct < 100) raf = requestAnimationFrame(updateProgress);
+}
+
+function scheduleAuto() {
+  clearTimeout(timer);
+  cancelAnimationFrame(raf);
+  timer = null;
+  raf = null;
+
+  // Any hover/touch interaction pauses the slideshow without changing
+  // the user's Auto/Pause preference. Leaving the screen starts a fresh 6 s.
+  if (!autoplay || hoverPaused || touchPaused || !storyVisible) {
+    progressBar.style.width = '0%';
+    return;
+  }
+
+  duration = readingDuration();
+  startedAt = performance.now();
+  progressBar.style.width = '0%';
+  raf = requestAnimationFrame(updateProgress);
+
+  if (index < SCREENS.length - 1) {
+    timer = setTimeout(() => go(index + 1, false), duration);
+  } else {
+    timer = setTimeout(() => {
+      autoplay = false;
+      syncPlay();
+      progressBar.style.width = '100%';
+    }, duration);
+  }
+}
+
+function render() {
+  clearTimers();
+  content.classList.add('is-changing');
+  setTimeout(() => {
+    content.innerHTML = SCREENS[index];
+    scrollArea.scrollTo({top:0,behavior:'instant'});
+    counter.textContent = `${index + 1} / ${SCREENS.length}`;
+    sceneTitle.textContent = TITLES[index];
+    prev.disabled = index === 0;
+    next.disabled = index === SCREENS.length - 1;
+    [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===index));
+    content.classList.remove('is-changing');
+    markRevealables();
+    scheduleAuto();
+  }, 220);
+}
+
+function go(i, manual=false) {
+  if (i < 0 || i >= SCREENS.length || i === index) return;
+  index = i;
+  // Manual navigation no longer disables Auto. If the pointer is over the
+  // screen, hover pause keeps the current page still until the pointer leaves.
+  render();
+}
+
+function syncPlay() {
+  play.classList.toggle('paused', autoplay);
+  play.setAttribute('aria-label', autoplay ? 'Пауза автоматического показа' : 'Включить автоматический показ');
+  aboutRoot.querySelector('#assistant-play-text').textContent = autoplay ? 'Авто' : 'Пауза';
+}
+
+prev.addEventListener('click',()=>go(index-1,true));
+next.addEventListener('click',()=>go(index+1,true));
+play.addEventListener('click',()=>{autoplay=!autoplay;syncPlay();scheduleAuto();});
+
+aboutRoot.addEventListener('keydown', e=>{
+  if (e.key==='ArrowRight') go(index+1,true);
+  if (e.key==='ArrowLeft') go(index-1,true);
+  if (e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)) {e.preventDefault();autoplay=!autoplay;syncPlay();scheduleAuto();}
+});
+
+// Desktop: merely moving the pointer onto the laptop screen pauses Auto.
+// No click is required. Leaving the screen always starts a NEW full 6-second timer.
+screenEl.addEventListener('mouseenter', () => {
+  hoverPaused = true;
+  clearTimeout(timer);
+  cancelAnimationFrame(raf);
+  timer = null;
+  raf = null;
+  progressBar.style.width = '0%';
+});
+
+screenEl.addEventListener('mouseleave', () => {
+  hoverPaused = false;
+  scheduleAuto();
+});
+
+// Wheel scrolling is free while the pointer is over the screen; hover already
+// keeps the slideshow paused, so scrolling never permanently disables Auto.
+scrollArea.addEventListener('wheel', () => {}, {passive:true});
+
+// Touch devices have no hover. A touch temporarily pauses the slideshow;
+// after the finger is lifted, a fresh 6-second timer starts.
+scrollArea.addEventListener('touchstart',e=>{
+  touchPaused = true;
+  clearTimeout(timer);
+  cancelAnimationFrame(raf);
+  timer = null;
+  raf = null;
+  progressBar.style.width = '0%';
+  touchStartX=e.changedTouches[0].clientX;
+},{passive:true});
+
+scrollArea.addEventListener('touchend',e=>{
+  if (touchStartX!==null) {
+    const dx=e.changedTouches[0].clientX-touchStartX;
+    if (Math.abs(dx)>55) go(index + (dx<0?1:-1), true);
+  }
+  touchStartX=null;
+  touchPaused = false;
+  scheduleAuto();
+},{passive:true});
+
+scrollArea.addEventListener('touchcancel',()=>{
+  touchStartX=null;
+  touchPaused = false;
+  scheduleAuto();
+},{passive:true});
+
+
+if ('IntersectionObserver' in window) {
+  const storyObserver = new IntersectionObserver(([entry]) => {
+    const visible = entry.isIntersecting && entry.intersectionRatio >= 0.2;
+    if (visible === storyVisible) return;
+    storyVisible = visible;
+    if (visible) {
+      scheduleAuto();
+    } else {
+      clearTimeout(timer);
+      cancelAnimationFrame(raf);
+      timer = null;
+      raf = null;
+      progressBar.style.width = '0%';
+    }
+  }, {threshold:[0,0.2]});
+  storyObserver.observe(aboutRoot);
+}
+
+syncPlay();
+render();
+
+})();
