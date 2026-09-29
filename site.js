@@ -631,15 +631,8 @@ function scheduleAuto() {
   progressBar.style.width = '0%';
   raf = requestAnimationFrame(updateProgress);
 
-  if (index < SCREENS.length - 1) {
-    timer = setTimeout(() => go(index + 1, false), duration);
-  } else {
-    timer = setTimeout(() => {
-      autoplay = false;
-      syncPlay();
-      progressBar.style.width = '100%';
-    }, duration);
-  }
+  // Loop back to the first screen instead of stopping after the last one.
+  timer = setTimeout(() => go((index + 1) % SCREENS.length, false), duration);
 }
 
 function render() {
@@ -650,8 +643,8 @@ function render() {
     scrollArea.scrollTo({top:0,behavior:'instant'});
     counter.textContent = `${index + 1} / ${SCREENS.length}`;
     sceneTitle.textContent = TITLES[index];
-    prev.disabled = index === 0;
-    next.disabled = index === SCREENS.length - 1;
+    prev.disabled = false;
+    next.disabled = false;
     [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===index));
     content.classList.remove('is-changing');
     markRevealables();
@@ -660,8 +653,9 @@ function render() {
 }
 
 function go(i, manual=false) {
-  if (i < 0 || i >= SCREENS.length || i === index) return;
-  index = i;
+  const target = ((i % SCREENS.length) + SCREENS.length) % SCREENS.length;
+  if (target === index) return;
+  index = target;
   // Manual navigation no longer disables Auto. If the pointer is over the
   // screen, hover pause keeps the current page still until the pointer leaves.
   render();
