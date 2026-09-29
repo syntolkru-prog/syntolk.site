@@ -53,6 +53,48 @@
     </div>
   </section>
 
+  <section class="section" id="syntolk-about" aria-labelledby="assistant-about-title">
+  <div class="wrap">
+    <div class="eyebrow"><span class="spark"></span>Syntolk Assistant</div>
+    <h2 class="question" id="assistant-about-title">Почему Syntolk — больше, чем обычный AI</h2>
+    <div class="sub">Ответ раскрывается поэтапно — можно смотреть автоматически или листать вручную.</div>
+
+    <div class="laptop" aria-label="Интерактивный рассказ о Syntolk Assistant">
+      <div class="lid">
+        <div class="camera"></div>
+        <div class="screen">
+          <div class="appbar">
+            <div style="display:flex;gap:8px;align-items:center">
+              <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;display:inline-block"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block"></span>
+            </div>
+            <span id="assistant-scene-title" style="display:none">Ответ</span>
+          </div>
+          <div class="screen-body" id="assistant-scroll-area" tabindex="0" aria-label="Текст презентации">
+            <article class="content" id="assistant-content" aria-live="polite"></article>
+          </div>
+          <div class="controls">
+            <button class="navbtn" id="assistant-prev" aria-label="Предыдущий экран">←</button>
+            <div class="counter" id="assistant-counter">1 / 10</div>
+            <div class="dots" id="assistant-dots" aria-label="Навигация по экранам"></div>
+            <button class="playbtn paused" id="assistant-play" aria-label="Пауза автоматического показа"><span class="play-icon"></span><span id="assistant-play-text">Авто</span></button>
+            <button class="navbtn" id="assistant-next" aria-label="Следующий экран">→</button>
+          </div>
+          <div class="progress"><span id="assistant-progress"></span></div>
+        </div>
+      </div>
+      <div class="base"></div>
+    </div>
+
+    <div class="hint">
+      <span><b class="kbd">← →</b> листать</span>
+      <span><b class="kbd">колесо</b> читать внутри экрана</span>
+      <span><b class="kbd">пробел</b> пауза / авто</span>
+    </div>
+  </div>
+</section>
+
   <section class="how-section section" id="how" aria-labelledby="how-title">
     <div class="wrap">
       <div class="how-heading reveal"><p class="eyebrow">Меньше поиска. Больше смысла.</p><h2 id="how-title">Всё начинается<br> с обычного вопроса.</h2><p>Вы знаете, что хотите узнать.<br> Syntolk помогает найти это в ваших файлах.</p></div>
