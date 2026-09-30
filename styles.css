@@ -712,6 +712,8 @@ button,input,select,textarea{font-family:inherit}
   #additional-features .af-buy { min-height: 35px; padding: 6px; font-size: 11.5px; }
   #additional-features .af-price-pills { gap: 4px; margin-bottom: 7px; }
   #additional-features .af-price-pills button { padding: 4px 5px; min-height: 27px; font-size: 10px; }
+  #additional-features .af-purchase-period,
+  #additional-features .af-price-pills { display: none; }
   #additional-features .af-range-labels { gap: 2px; font-size: 9px; }
   #additional-features .af-range-labels b { font-size: 10px; }
   #additional-features .af-profile { padding: 11px; }
