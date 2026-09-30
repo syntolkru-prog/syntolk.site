@@ -34,10 +34,13 @@
   rail.tabIndex = 0;
   tabs.forEach(tab => { tab.tabIndex = -1; });
 
-  let centers = [], relativeCenters = [], period = 0, origin = 0, world = 0;
+  const QUESTION_INTERVAL = 3500;
+  const TRANSITION_DURATION = 600;
+  const smoothstep = value => value * value * (3 - 2 * value);
+  let centers = [], relativeCenters = [], period = 0, origin = 0, world = 0, railWidth = 0;
   let selected = 0, variant = 0, mode = 'idle', timer = 0, frame = 0;
   let heroVisible = true, pointer = null, suppressClickUntil = 0;
-  let litTab = null, questionAnimation = null, measuredWidth = 0;
+  let litTab = null, measuredWidth = 0, opacity = 1, nextBeat = 0;
   const modulo = (value, size) => ((value % size) + size) % size;
   const logicalIndex = virtual => modulo(virtual, sectorCount);
   const canRun = () => !document.hidden && heroVisible && !$('#case-dialog').open;
@@ -62,9 +65,11 @@
     if (!period) return;
     const local = origin + modulo(world - origin, period);
     track.style.transform = `translate3d(${-local}px,0,0)`;
-    const center = local + rail.clientWidth / 2;
+    const center = local + railWidth / 2;
     let nearest = visualTabs[0], distance = Infinity;
     visualTabs.forEach((tab, index) => {
+      // Highlight and text switch together, including across the duplicated seam.
+      if (Number(tab.dataset.topic) !== logicalIndex(selected)) return;
       const gap = Math.abs(centers[index] - center);
       if (gap < distance) { distance = gap; nearest = tab; }
     });
@@ -74,9 +79,10 @@
       litTab = nearest;
     }
   }
-  function stopTimer() {
+  function stopTimer(resetBeat = true) {
     clearTimeout(timer);
     timer = 0;
+    if (resetBeat) nextBeat = 0;
   }
   function stopMotion() {
     cancelAnimationFrame(frame);
@@ -104,12 +110,13 @@
     questionText.style.setProperty('--question-height', Math.ceil(tallest) + 'px');
   }
   function hideQuestionForMotion() {
-    questionAnimation?.cancel();
-    questionAnimation = null;
-    questionText.classList.add('is-moving');
+    setQuestionOpacity(0);
+  }
+  function setQuestionOpacity(value) {
+    opacity = value;
+    questionText.style.opacity = String(value);
   }
   function paintQuestion() {
-    const finishingMotion = questionText.classList.contains('is-moving');
     const entry = scenarios[logicalIndex(selected)];
     tabs.forEach((tab, index) => tab.setAttribute('aria-selected', String(index === logicalIndex(selected))));
     rail.setAttribute('aria-activedescendant', tabs[logicalIndex(selected)].id);
@@ -117,119 +124,100 @@
     question.textContent = entry.questions[variant];
     secondary.hidden = true;
     $('#question-accessibility').textContent = entry.questions[variant];
-    questionAnimation?.cancel();
-    questionAnimation = null;
-    if (finishingMotion) questionText.classList.remove('is-moving');
-    else if (!reduced.matches) questionAnimation = question.animate(
-      [{opacity: 0}, {opacity: 1}], {duration: 350, easing: 'ease-out'}
-    );
   }
   function schedule() {
-    stopTimer();
+    stopTimer(false);
     if (mode !== 'idle' || !canRun()) return;
+    const now = performance.now();
+    // The midpoint of each transition is the beat: 3.5 s between text changes.
+    // Transition time is included, never added to the interval.
+    if (!nextBeat || nextBeat < now) {
+      nextBeat = now + QUESTION_INTERVAL - (reduced.matches ? 0 : TRANSITION_DURATION / 2);
+    }
     timer = setTimeout(() => {
       timer = 0;
       if (!canRun() || mode !== 'idle') return;
-      if (variant === 0) {
-        variant = 1;
-        paintQuestion();
-        schedule();
-      } else {
-        advanceClockwise();
-      }
-    }, 3500);
+      const began = nextBeat;
+      nextBeat += QUESTION_INTERVAL;
+      transitionTo(variant === 0 ? selected : selected + 1, variant === 0 ? 1 : 0, began);
+    }, Math.max(0, nextBeat - now));
   }
-  function commit(virtual) {
-    selected = virtual;
-    variant = 0;
-    mode = 'idle';
-    world = targetFor(virtual);
-    draw();
-    paintQuestion();
-    schedule();
-  }
-  function animateTo(target, duration, done) {
+  function transitionTo(virtual, nextVariant, began = performance.now(), releaseSpeed = null) {
     stopMotion();
-    if (reduced.matches || duration <= 0 || Math.abs(target - world) < 1) {
-      world = target;
-      draw();
-      done();
-      return;
-    }
-    const start = world;
-    let began;
+    mode = 'transition';
+    const start = world, target = targetFor(virtual), startOpacity = opacity;
+    const duration = reduced.matches ? 0 : TRANSITION_DURATION;
+    let swapped = false;
+    // A fling ends directly on a sector; there is no second snap animation.
+    const distance = target - start;
+    const slope = releaseSpeed === null || !distance ? 0 : Math.max(0, Math.min(3, releaseSpeed * duration / distance));
     const tick = now => {
-      if (began === undefined) began = now;
-      const progress = Math.min(1, (now - began) / duration);
-      const eased = progress < .5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      if (!canRun()) { pauseCarousel(); return; }
+      const progress = duration ? Math.max(0, Math.min(1, (now - began) / duration)) : 1;
+      const eased = releaseSpeed === null ? smoothstep(progress)
+        : smoothstep(progress) + slope * progress * (1 - progress) ** 2;
       world = start + (target - start) * eased;
+      if (progress >= .5 && !swapped) {
+        setQuestionOpacity(0);
+        selected = virtual;
+        variant = nextVariant;
+        paintQuestion();
+        swapped = true;
+      }
+      setQuestionOpacity(progress < .5 ? startOpacity * (1 - smoothstep(progress * 2)) : smoothstep((progress - .5) * 2));
       draw();
       if (progress < 1) frame = requestAnimationFrame(tick);
-      else { frame = 0; world = target; draw(); done(); }
+      else {
+        frame = 0;
+        mode = 'idle';
+        schedule();
+      }
     };
-    frame = requestAnimationFrame(tick);
-  }
-  function advanceClockwise() {
-    stopTimer();
-    mode = 'auto-moving';
-    hideQuestionForMotion();
-    const next = selected + 1;
-    animateTo(targetFor(next), 1400, () => commit(next));
+    tick(performance.now());
   }
   function choose(virtual) {
     stopTimer();
-    stopMotion();
-    mode = 'selecting';
-    hideQuestionForMotion();
-    const target = targetFor(virtual);
-    const duration = Math.max(450, Math.min(1800, Math.abs(target - world) * 4));
-    animateTo(target, duration, () => commit(virtual));
+    const began = performance.now();
+    nextBeat = began + QUESTION_INTERVAL;
+    transitionTo(virtual, 0, began);
   }
   function settle() {
-    mode = 'settling';
-    hideQuestionForMotion();
-    const nearest = nearestVirtual(world);
-    const target = targetFor(nearest);
-    const duration = Math.max(260, Math.min(480, Math.abs(target - world) * 2));
-    animateTo(target, duration, () => commit(nearest));
+    choose(nearestVirtual(world));
   }
   function startInertia(speed) {
-    if (reduced.matches || Math.abs(speed) < .08) { settle(); return; }
-    mode = 'inertia';
-    let velocity = Math.max(-2.4, Math.min(2.4, speed));
-    let last = performance.now(), elapsed = 0;
-    const coast = now => {
-      const dt = Math.min(50, Math.max(1, now - last));
-      last = now;
-      elapsed += dt;
-      world += velocity * dt;
-      velocity *= Math.pow(.966, dt / 16);
-      draw();
-      if (Math.abs(velocity) > .035 && elapsed < 2800) frame = requestAnimationFrame(coast);
-      else { frame = 0; settle(); }
-    };
-    frame = requestAnimationFrame(coast);
+    stopTimer();
+    const velocity = reduced.matches ? 0 : Math.max(-2.4, Math.min(2.4, speed));
+    const target = nearestVirtual(world + velocity * 220);
+    const began = performance.now();
+    nextBeat = began + QUESTION_INTERVAL;
+    transitionTo(target, 0, began, velocity);
   }
   function pauseCarousel() {
     stopTimer();
-    if (mode === 'idle') return;
     stopMotion();
     pointer = null;
     rail.classList.remove('is-dragging');
-    commit(nearestVirtual(world));
-  }
-  function measure() {
-    const interruptedMotion = questionText.classList.contains('is-moving');
-    stopTimer();
-    stopMotion();
+    if (mode !== 'idle') {
+      selected = nearestVirtual(world);
+      variant = 0;
+    }
     mode = 'idle';
+    world = targetFor(selected);
+    paintQuestion();
+    setQuestionOpacity(1);
+    draw();
+  }
+  function measure(force = false) {
+    const width = rail.clientWidth;
+    if (!width || (!force && width === railWidth)) return;
+    if (period) pauseCarousel();
+    railWidth = width;
     centers = visualTabs.map(tab => tab.offsetLeft + tab.offsetWidth / 2);
     period = centers[sectorCount * 3] - centers[sectorCount * 2];
     relativeCenters = tabs.map((_, index) => centers[sectorCount * 2 + index] - centers[sectorCount * 2]);
-    origin = centers[sectorCount * 2] - rail.clientWidth / 2;
+    origin = centers[sectorCount * 2] - railWidth / 2;
     world = targetFor(selected);
     draw();
-    if (interruptedMotion) paintQuestion();
     schedule();
   }
 
@@ -318,7 +306,8 @@
     else schedule();
   });
   reduced.addEventListener('change', () => {
-    if (reduced.matches && mode !== 'idle') pauseCarousel();
+    pauseCarousel();
+    schedule();
     reserveQuestionSpace();
   });
   if ('IntersectionObserver' in window) {
@@ -331,12 +320,12 @@
   measure();
   paintQuestion();
   reserveQuestionSpace();
-  document.fonts.ready.then(() => { measure(); reserveQuestionSpace(); });
+  document.fonts.ready.then(() => { measure(true); reserveQuestionSpace(); });
   if ('ResizeObserver' in window) new ResizeObserver(() => {
     measure();
     if (questionText.clientWidth !== measuredWidth) reserveQuestionSpace();
   }).observe(rail);
-  window.addEventListener('resize', reserveQuestionSpace);
+  window.addEventListener('resize', () => { measure(); reserveQuestionSpace(); });
 
   // Original pricing interaction and responsive details from syntolk.ru.
 
@@ -523,7 +512,7 @@
     $('#dialog-files').textContent = entry.files;
     oldOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';
-    clearTimeout(timer);
+    pauseCarousel();
     dialog.showModal();
     dialog.scrollTop = 0;
     $('.dialog-close').focus({ preventScroll: true });
@@ -554,6 +543,7 @@
   phone.addEventListener('change', sync);
   sync();
 })();
+
 
 (() => {
   const aboutRoot = document.getElementById('syntolk-about');
