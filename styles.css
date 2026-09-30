@@ -703,13 +703,14 @@ button,input,select,textarea{font-family:inherit}
   #additional-features .af-copy p { font-size: 14px; line-height: 1.55; margin-bottom: 0; }
   #additional-features .af-card-shell { min-width: 0; padding: 11px; border-radius: 18px; }
   #additional-features .af-addon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  #additional-features .af-addon { min-width: 0; padding: 9px; border-radius: 12px; }
+  #additional-features .af-addon { min-width: 0; padding: 9px; border-radius: 12px; display: flex; flex-direction: column; }
   #additional-features .af-addon h4 { white-space: normal; overflow: visible; text-overflow: clip; font-size: 11.5px; line-height: 1.25; min-height: 29px; margin-bottom: 6px; overflow-wrap: anywhere; }
   #additional-features .af-addon small { font-size: 10.5px; line-height: 1.35; }
   #additional-features .af-stepper { gap: 4px; margin: 6px 0 8px; }
   #additional-features .af-stepper button,
   #additional-features .af-stepper span { flex: 0 0 29px; width: 29px; min-width: 29px; height: 30px; font-size: 12px; }
   #additional-features .af-buy { min-height: 35px; padding: 6px; font-size: 11.5px; }
+  #additional-features .af-addon .af-buy { margin-top: auto; }
   #additional-features .af-price-pills { gap: 4px; margin-bottom: 7px; }
   #additional-features .af-price-pills button { padding: 4px 5px; min-height: 27px; font-size: 10px; }
   #additional-features .af-purchase-period,
