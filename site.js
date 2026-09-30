@@ -184,12 +184,19 @@
     stopMotion();
     if (reduced.matches || Math.abs(speed) < .08) { settle(); return; }
     const velocity = Math.max(-6, Math.min(6, speed));
-    const virtual = nearestVirtual(world + velocity * 300);
+    const strength = Math.abs(velocity);
+    // A stronger release coasts farther and longer. The logarithmic duration
+    // keeps fast swipes light while avoiding an abrupt stop.
+    const duration = Math.min(1450, 420 + 470 * Math.log1p(strength));
+    const projected = world + velocity * duration / 1.8;
+    const virtual = nearestVirtual(projected);
     const start = world, target = targetFor(virtual), distance = target - start;
-    let duration = 300 + 280 * Math.log1p(Math.abs(velocity));
-    // Preserve release velocity; finish with zero velocity at the actual center.
-    // Longer, stronger flings travel further instead of sharing a fixed 600 ms.
-    if (distance * velocity > 0) duration = Math.min(duration, 3 * Math.abs(distance / velocity));
+    // Cubic Hermite easing preserves the release momentum and eases to exactly
+    // zero velocity at the selected center. Keeping the initial slope above
+    // smoothstep's neutral point prevents a second acceleration after release.
+    const releaseSlope = distance * velocity > 0
+      ? Math.max(1.55, Math.min(2.6, velocity * duration / distance))
+      : 1.8;
     const began = performance.now();
     mode = 'inertia';
     hideQuestionForMotion();
@@ -197,7 +204,7 @@
       if (!canRun()) { pauseCarousel(); return; }
       const progress = Math.min(1, Math.max(0, (now - began) / duration));
       world = start + distance * smoothstep(progress)
-        + velocity * duration * progress * (1 - progress) ** 2;
+        + distance * releaseSlope * progress * (1 - progress) ** 2;
       draw();
       if (progress < 1) frame = requestAnimationFrame(coast);
       else {
