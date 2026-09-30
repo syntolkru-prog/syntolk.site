@@ -795,7 +795,7 @@ render();
     const renderLLM = amount => {
       const formatted = `${formatInt(amount)} ₽`;
       current.textContent = formatted;
-      value.textContent = formatted;
+      if (value) value.textContent = formatted;
       pills.forEach(btn => btn.classList.toggle('af-active', Number(btn.dataset.value) === amount));
     };
 
