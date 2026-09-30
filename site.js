@@ -776,7 +776,7 @@ render();
       if (kind === 'indexed') valueEl.textContent = `+${formatDecimal(unit * qty)} ГБ`;
       if (kind === 'fragments') valueEl.textContent = `+${formatInt(unit * qty)} фрагментов`;
       minus.disabled = qty <= 1;
-      minus.style.opacity = qty <= 1 ? '.45' : '1';
+      minus.style.opacity = qty <= 1 ? '.65' : '1';
       minus.style.cursor = qty <= 1 ? 'default' : 'pointer';
     };
 

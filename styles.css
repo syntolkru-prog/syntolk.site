@@ -449,19 +449,19 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
   .af-icon.af-green{background:#e8fbf1;color:#0fbf68}.af-icon.af-blue{background:#e9f2ff;color:#1670ff}.af-icon.af-purple{background:#f4e9ff;color:#9c3ff1}
 
   .af-visual{position:relative}
-  .af-card-shell{background:rgba(255,255,255,.86);border:1px solid rgba(212,223,239,.85);box-shadow:var(--shadow);border-radius:28px;padding:18px;backdrop-filter:blur(10px)}
+  .af-card-shell{background:rgba(255,255,255,.96);border:1px solid #d4deeb;box-shadow:0 18px 50px rgba(38,72,128,.14);border-radius:28px;padding:18px;backdrop-filter:blur(10px)}
   .af-panel-title{font-size:13px;font-weight:800;color:#3e4a5f;margin:0 0 13px}
 
   /* Section 1 */
   .af-addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .af-addon{border:1px solid var(--line);border-radius:15px;padding:13px;background:#fff}
+  .af-addon{border:1px solid #d5dfeb;border-radius:15px;padding:13px;background:#fff;box-shadow:0 3px 10px rgba(38,72,128,.06)}
   .af-addon h4{font-size:12px;line-height:1.3;margin:0 0 9px;font-weight:800;display:flex;gap:6px;align-items:center}
   .af-addon small{display:block;color:#5c687a;font-size:11px;margin-bottom:10px}
-  .af-stepper{display:flex;align-items:center;gap:8px;margin:6px 0 10px}.af-stepper button{border:1px solid #e2e8f1;background:#f8fafc;width:29px;height:28px;border-radius:8px;color:#4a5568;cursor:pointer;transition:.18s ease}.af-stepper button:hover{background:#eef4ff;border-color:#cbdcff;color:#1768ff}.af-stepper span{min-width:34px;height:28px;border:1px solid #e2e8f1;border-radius:8px;display:grid;place-items:center;font-size:12px}
-  .af-buy{width:100%;border:1px solid #e4e9f1;background:#f8fafc;border-radius:9px;padding:8px 10px;font-weight:750;color:#334155;font-size:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:.18s ease}.af-buy:hover{background:#eef4ff;border-color:#cbdcff;color:#1768ff;transform:translateY(-1px)}
-  .af-price-pills{display:flex;gap:6px;margin:4px 0 10px;flex-wrap:wrap}.af-price-pills button{border:0;padding:6px 9px;border-radius:8px;background:#f2f5f9;font-size:11px;color:#334155;cursor:pointer;transition:.18s ease}.af-price-pills button:hover{background:#e7eef9}.af-price-pills .af-active{background:#2677ff;color:#fff}
-  .af-range-input{width:100%;height:18px;margin:0;accent-color:#2777ff;cursor:pointer}
-  .af-range-labels{display:flex;justify-content:space-between;color:#667085;font-size:10px;margin:4px 0 7px}.af-range-labels b{color:#2677ff;font-size:12px}
+  .af-stepper{display:flex;align-items:center;gap:8px;margin:6px 0 10px}.af-stepper button{border:1px solid #c7d3e1;background:#f3f7fb;width:29px;height:28px;border-radius:8px;color:#34445a;font-weight:600;cursor:pointer;transition:.18s ease}.af-stepper button:hover{background:#e8f1ff;border-color:#9ebcf2;color:#1768ff}.af-stepper span{min-width:34px;height:28px;border:1px solid #c7d3e1;border-radius:8px;display:grid;place-items:center;font-size:12px;color:#25364d;background:#fff}
+  .af-buy{width:100%;border:1px solid #cbd7e4;background:#f1f5f9;border-radius:9px;padding:8px 10px;font-weight:650;color:#2f4058;font-size:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:.18s ease}.af-buy:hover{background:#e7f0ff;border-color:#9ebcf2;color:#1768ff;transform:translateY(-1px)}
+  .af-price-pills{display:flex;gap:6px;margin:4px 0 10px;flex-wrap:wrap}.af-price-pills button{border:1px solid #d0dbe7;padding:6px 9px;border-radius:8px;background:#edf2f7;font-size:11px;color:#34445a;cursor:pointer;transition:.18s ease}.af-price-pills button:hover{background:#e3edf9;border-color:#aec5e5}.af-price-pills .af-active{background:#2677ff;border-color:#2677ff;color:#fff}
+  .af-range-input{width:100%;height:18px;margin:0;accent-color:#2777ff;background:#d4deea;border:1px solid #c1cedd;border-radius:999px;cursor:pointer}
+  .af-range-labels{display:flex;justify-content:space-between;color:#53627a;font-size:10px;margin:4px 0 7px}.af-range-labels b{color:#1768ff;font-size:12px}
   .af-addon-value{font-variant-numeric:tabular-nums}
   .af-llm-selected{display:flex;justify-content:space-between;align-items:center;margin:0 0 7px;font-size:10px;color:#667085}.af-llm-selected strong{font-size:12px;color:#2677ff}
 
@@ -508,8 +508,8 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
   #additional-features .af-section{gap:clamp(26px,4vw,54px)}
   #additional-features .af-visual{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
   #additional-features .af-panel-title,#additional-features .af-mini-head strong{font-size:14px}
-  #additional-features .af-addon h4{font-size:13px;line-height:1.25;font-weight:500;color:#3e4a5f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  #additional-features .af-addon small{font-size:12px;line-height:1.4}
+  #additional-features .af-addon h4{font-size:13px;line-height:1.25;font-weight:550;color:#263750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #additional-features .af-addon small{font-size:12px;line-height:1.4;color:#53627a}
   #additional-features .af-stepper button,#additional-features .af-stepper span{width:34px;height:34px;font-size:13px}
   #additional-features .af-stepper span{min-width:38px}
   #additional-features .af-buy{min-height:36px;font-size:12px}
