@@ -589,19 +589,108 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
   #additional-features .af-folder-row .af-date{font-size:10px;color:#6d7e98}
   #additional-features .af-arrow{color:#7188a4;font-size:17px}
 
+/* Landing text uses Onest; pricing and account UI use the approved Inter. */
+:root{--font-copy:Onest,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-interface:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body{font-family:var(--font-copy);font-synthesis:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,input,select,textarea{font-family:inherit}
+#pricing .section-title,#pricing .section-sub{font-family:var(--font-copy)}
+#pricing .section-title{font-weight:550;line-height:1.15;color:#20242b}
+#pricing .plan h3,#pricing .price,#pricing .llm-bonus strong{font-weight:600}
+#additional-features .af-hero h2{font-size:clamp(34px,4vw,54px);line-height:1.15;font-weight:550;letter-spacing:-.04em}
+#additional-features .af-title-dark,#additional-features .af-copy h3{color:#20242b}
+#additional-features .af-title-muted{color:#626873}
+#additional-features .af-copy h3{font-weight:550;line-height:1.16}
+#additional-features .af-panel-title,#additional-features .af-mini-head strong,
+#additional-features .af-profile-main h4,#additional-features .af-invite-head{font-weight:600}
+#additional-features .af-chip,#additional-features .af-tag,#additional-features .af-buy{font-weight:550}
+#additional-features .af-invite button{font-family:var(--font-interface);font-weight:550}
+#syntolk-about .counter,#syntolk-about .playbtn{font-weight:500;font-variant-numeric:tabular-nums}
+#syntolk-about .content .screen-heading,#syntolk-about .content h1,
+#syntolk-about .content h2,#syntolk-about .content h3,#syntolk-about .content > h2:first-child{font-weight:600}
+#syntolk-about .content strong{font-weight:600}
+.site-footer__group{display:block;min-width:0}
+.site-footer__group>summary{display:block;list-style:none;margin:0 0 10px;font-size:14px;font-weight:600;line-height:1.3;cursor:default}
+.site-footer__group>summary::-webkit-details-marker{display:none}
+.site-footer__links{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.af-company-details>summary{font-size:14px;font-weight:600;line-height:1.4;list-style:none;margin-bottom:10px;cursor:default}
+.af-company-details>summary::-webkit-details-marker{display:none}
+
+@media(max-width:760px){
+  /* Separate tariff buttons, with no surrounding tray or moving pill. */
+  #pricing .pricing-switch{min-width:0;width:auto;display:flex;justify-content:flex-start;gap:8px;padding:0;margin:20px 0 0;border:0;border-radius:0;background:transparent;box-shadow:none}
+  #pricing .pricing-switch-indicator{display:none}
+  #pricing .pricing-switch button{flex:0 1 auto;min-width:112px;min-height:36px;padding:8px 16px;border:1px solid #cfd5de;border-radius:8px;background:white;color:#20242b;font-size:13px;font-weight:500;line-height:1.4;transform:none;box-shadow:none}
+  #pricing .pricing-switch button.active{background:#20242b;border-color:#20242b;color:white;transform:none}
+  #pricing .pricing-switch button:hover{border-color:#20242b}
+  #syntolk-about{min-height:0;padding:38px 16px 46px}
+  #syntolk-about .screen{height:clamp(330px,52svh,400px);min-height:0;display:flex;flex-direction:column}
+  #syntolk-about .appbar{height:28px;flex:0 0 28px;padding:0 10px}
+  #syntolk-about .appbar span[style]{width:7px!important;height:7px!important}
+  #syntolk-about .screen-body{height:auto;flex:1;min-height:0;padding:13px 12px 16px}
+  #syntolk-about .content .screen-heading,#syntolk-about .content>h2:first-child{font-size:16px;line-height:1.3;margin-bottom:8px}
+  #syntolk-about .content h1{font-size:15px;line-height:1.35}
+  #syntolk-about .content h2{font-size:14px;line-height:1.35}
+  #syntolk-about .content h3{font-size:13px;line-height:1.4}
+  #syntolk-about .content p,#syntolk-about .content li,#syntolk-about .content blockquote{font-size:13px;line-height:1.5;font-weight:400}
+  #syntolk-about .content p{margin-bottom:8px}
+  #syntolk-about .content li{margin:3px 0}
+  #syntolk-about .controls{position:relative;flex:0 0 40px;height:40px;padding:0 8px;gap:8px}
+  #syntolk-about .navbtn{width:28px;height:28px;border-radius:7px;font-size:16px;box-shadow:none}
+  #syntolk-about .counter{font-size:11px;min-width:42px;font-weight:400}
+  #syntolk-about .playbtn{font-size:11px;font-weight:400;padding:6px 3px}
+  #syntolk-about th,#syntolk-about td{font-size:12px;line-height:1.45;padding:6px 8px}
+  .site-footer__main{display:block;padding-top:28px;padding-bottom:24px}
+  .site-footer__brand{font-size:24px;gap:7px}
+  .site-footer__logo{width:32px;height:32px;flex-basis:32px}
+  .site-footer__desc{font-size:13px;line-height:1.6;margin:16px 0;max-width:330px}
+  .site-footer__company,.site-footer__mail{font-size:12px;line-height:1.5}
+  .site-footer__company{margin-bottom:6px;font-weight:500}
+  .site-footer__nav{display:block;margin-top:28px}
+  .site-footer__group{border-top:1px solid #e6e8ec}
+  .site-footer__group>summary{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px;padding:12px 0;margin:0;font-size:13px;font-weight:500;cursor:pointer}
+  .site-footer__group>summary::after{content:'+';font-size:18px;font-weight:400;color:#858c97}
+  .site-footer__group[open]>summary::after{content:'−'}
+  .site-footer__links{gap:0;padding-bottom:10px}
+  .site-footer__group a{font-size:12px;min-height:34px;padding:6px 0}
+  .site-footer__bottom{font-size:10px;line-height:1.5;padding-top:16px;padding-bottom:22px}
+  #additional-features .af-company-details>summary{display:flex;align-items:center;justify-content:space-between;min-height:36px;margin:0;font-size:12px;font-weight:500;cursor:pointer}
+  #additional-features .af-company-details>summary::after{content:'+';font-size:16px;color:#647590}
+  #additional-features .af-company-details[open]>summary::after{content:'−'}
+  #additional-features .af-company-fields{padding-top:6px}
+}
+
 /* Mobile layout: keep text and account previews within the viewport. */
 @media (max-width: 600px) {
-  .hero h1 { font-size: clamp(43px, 12.3vw, 48px); }
-  .hero-tagline { font-size: clamp(25px, 7vw, 28px); }
-  .section-heading h2, .faq-heading h2 { font-size: clamp(28px, 7.7vw, 30px); }
-  #syntolk-about .question { font-size: clamp(27px, 7.7vw, 30px); }
-  #pricing .section-title { font-size: clamp(27px, 7.7vw, 30px); }
-  .final-section h2 { font-size: clamp(28px, 7.8vw, 31px); }
-  .button { min-height: 44px; font-size: 14px; }
+  .hero h1 { font-size: 38px; }
+  .hero-tagline { font-size: 23px; line-height: 1.2; margin-bottom: 16px; }
+  .section-heading h2, .faq-heading h2 { font-size: 26px; }
+  #syntolk-about .question { font-size: 26px; margin-bottom: 22px; text-wrap: balance; }
+  #pricing .section-title { font-size: 26px; }
+  .final-section h2 { font-size: 27px; }
+  .button { min-height: 38px; padding: 9px 18px; font-size: 13px; font-weight: 500; }
+  .hero { --hero-cta-gap: 22px; padding-top: 28px; }
+  .hero-description { font-size: 14px; line-height: 1.55; }
+  .question-experience { margin-top: 22px; gap: 14px; }
+  .question-card { grid-template-columns: minmax(0,1fr) 28px; padding: 8px 10px; gap: 8px; border-radius: 11px; }
+  #hero-question { font-size: 14px; font-weight: 400; line-height: 1.4; }
+  .question-send { width: 28px; height: 28px; border-radius: 8px; }
+  .question-send svg { width: 17px; height: 17px; }
+  .topic { min-height: 28px; padding: 4px 8px; font-size: 11px; font-weight: 500; }
+  .hero-actions .button { width: auto; min-width: 0; min-height: 38px; padding: 9px 22px; }
+  .gallery-toggle { min-height: 34px; padding: 7px 14px; gap: 9px; border-radius: 8px; font-size: 12px; }
+  .gallery-toggle span { font-size: 15px; }
+  .cases-note { font-size: 12px; margin-top: 16px; }
+  .faq-list summary { font-size: 14px; padding: 15px 0; }
+  .faq-list details p { font-size: 14px; }
+  .final-section .button { width: auto; min-width: 0; min-height: 38px; font-size: 13px; box-shadow: 0 5px 14px #2459e026; }
+  #pricing .section-sub { font-size: 14px; margin-top: 12px; }
+  #pricing .plan { padding: 15px; }
+  #pricing .plan-start { min-height: 36px; padding: 7px 12px; font-size: 13px; }
+  #pricing .plan-details>summary { min-height: 36px; font-size: 12px; }
 
   #additional-features .af-page { padding: 44px 16px 54px; }
   #additional-features .af-hero { padding: 0 0 22px; }
-  #additional-features .af-hero h2 { font-size: clamp(27px, 7.7vw, 30px); line-height: 1.12; }
+  #additional-features .af-hero h2 { font-size: 26px; line-height: 1.15; }
   #additional-features .af-hero p { margin-top: 15px; font-size: 14px; line-height: 1.55; }
   #additional-features .af-section,
   #additional-features .af-section.af-reverse { grid-template-columns: minmax(0, 1fr); gap: 17px; padding: 24px 0 38px; }
@@ -610,7 +699,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
   #additional-features .af-copy { min-width: 0; max-width: 100%; width: 100%; }
   #additional-features .af-section .af-copy { order: -1; }
   #additional-features .af-section .af-visual { order: 0; }
-  #additional-features .af-copy h3 { font-size: clamp(24px, 6.9vw, 27px); line-height: 1.16; margin-bottom: 12px; }
+  #additional-features .af-copy h3 { font-size: 23px; line-height: 1.2; margin-bottom: 10px; }
   #additional-features .af-copy p { font-size: 14px; line-height: 1.55; margin-bottom: 0; }
   #additional-features .af-card-shell { min-width: 0; padding: 11px; border-radius: 18px; }
   #additional-features .af-addon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -627,12 +716,17 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
   #additional-features .af-range-labels b { font-size: 10px; }
   #additional-features .af-profile { padding: 11px; }
   #additional-features .af-profile-top { gap: 10px; padding-bottom: 12px; }
-  #additional-features .af-avatar { width: 48px; height: 48px; flex: 0 0 48px; font-size: 20px; }
+  #additional-features .af-avatar { width: 40px; height: 40px; flex: 0 0 40px; font-size: 18px; }
   #additional-features .af-profile-main { min-width: 0; }
-  #additional-features .af-profile-main h4 { font-size: 18px; }
+  #additional-features .af-profile-main h4 { font-size: 16px; margin-bottom: 5px; }
   #additional-features .af-chips { gap: 4px; }
   #additional-features .af-chip { font-size: 10px; }
-  #additional-features .af-invite button { min-height: 40px; font-size: 12px; }
+  #additional-features .af-invite button { min-height: 34px; padding: 7px; font-size: 12px; }
+  #additional-features .af-company { padding: 4px 0 0; }
+  #additional-features .af-actions { display: none; }
+  #additional-features .af-action { padding: 3px 6px; font-size: 10px; }
+  #additional-features .af-invite { margin-top: 4px; padding: 10px; border-radius: 10px; }
+  #additional-features .af-invite p { margin: 4px 0 7px; font-size: 11px; }
   #additional-features .af-access-card,
   #additional-features .af-mini-card,
   #additional-features .af-person-row,

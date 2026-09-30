@@ -253,7 +253,7 @@
     </div>
     <div class="af-copy">
       <h3>Докупайте только то, что действительно нужно</h3>
-      <p>Не обязательно сразу переходить на более дорогой тариф. В Syntolk можно отдельно подключать дополнительное файловое хранилище, индексируемые данные, фрагменты и LLM-баланс — именно тогда, когда это нужно вашей работе.</p>
+      <p>Добавляйте хранилище, индексированные данные, фрагменты и LLM-баланс по мере необходимости — без перехода на более дорогой тариф.</p>
     </div>
     <div class="af-dots af-r"></div>
   </section>
@@ -261,7 +261,7 @@
   <section class="af-section af-reverse">
     <div class="af-copy">
       <h3>Создавайте команду для корпоративной работы</h3>
-      <p>На корпоративных тарифах вы можете приглашать сотрудников, собирать рабочую команду и организовывать совместную работу с документами внутри одной компании. Всё — в едином пространстве Syntolk.</p>
+      <p>Приглашайте сотрудников и работайте с документами в едином пространстве компании. Доступно на корпоративных тарифах.</p>
     </div>
     <div class="af-visual">
       <div class="af-card-shell af-profile">
@@ -275,12 +275,13 @@
           <div>↻</div>
         </div>
         <div class="af-company">
-          <h5>🏢 Информация о компании</h5><p>Данные вашей организации</p>
+          <details class="af-company-details responsive-details" open><summary>Информация о компании</summary><div class="af-company-fields">
           <div class="af-field af-company-name-static">
             <strong>Название компании</strong>
             <span class="af-company-name-text">Моя компания</span>
           </div>
           <div class="af-field"><strong>Код компании</strong>26cd7b6e-1da2-4f0c-b556-a1fd67629a56</div>
+          </div></details>
           <div class="af-invite">
             <div class="af-invite-head">👥 Пригласительная ссылка</div>
             <p>Создайте ссылку для приглашения сотрудников</p>
@@ -330,7 +331,7 @@
     </div>
     <div class="af-copy">
       <h3>Организуйте папки и доступы под свои процессы</h3>
-      <p>Стройте удобную структуру папок для разных задач и отделов: договоры, заказы, законы, проекты и любые другие рабочие направления. Сотрудники получают доступ только к тем разделам, которые нужны им для работы.</p>
+      <p>Создавайте папки для отделов и задач. Открывайте сотрудникам доступ только к нужным документам.</p>
     </div>
     <div class="af-dots af-r"></div>
   </section>
@@ -368,21 +369,18 @@
       <a class="site-footer__mail" href="mailto:support@syntolk.ru">support@syntolk.ru</a>
     </div>
     <nav class="site-footer__nav" aria-label="Навигация внизу страницы">
-      <div class="site-footer__group">
-        <h3>Продукт</h3>
+      <details class="site-footer__group responsive-details" open><summary>Продукт</summary><div class="site-footer__links">
         <a href="#syntolk-about">Как это работает</a>
         <a href="#additional-features">Возможности</a>
         <a href="#pricing">Тарифы</a>
-      </div>
-      <div class="site-footer__group">
-        <h3>Поддержка</h3>
+      </div></details>
+      <details class="site-footer__group responsive-details" open><summary>Поддержка</summary><div class="site-footer__links">
         <a href="#faq">FAQ</a>
-      </div>
-      <div class="site-footer__group">
-        <h3>Правовая</h3>
+      </div></details>
+      <details class="site-footer__group responsive-details" open><summary>Правовая</summary><div class="site-footer__links">
         <a href="https://syntolk.ru/privacy">Политика конфиденциальности</a>
         <a href="https://syntolk.ru/terms">Пользовательское соглашение</a>
-      </div>
+      </div></details>
     </nav>
   </div>
   <div class="wrap site-footer__bottom"><span>© 2026 ООО «СИНТОЛК». Все права защищены.</span></div>

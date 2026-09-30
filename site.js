@@ -543,6 +543,18 @@
 
 })();
 
+// Compact accordions on phones; their contents stay visible on desktop.
+(() => {
+  const phone = matchMedia('(max-width: 760px)');
+  const groups = [...document.querySelectorAll('.responsive-details')];
+  const sync = () => groups.forEach(group => { group.open = !phone.matches; });
+  groups.forEach(group => group.querySelector('summary').addEventListener('click', event => {
+    if (!phone.matches) event.preventDefault();
+  }));
+  phone.addEventListener('change', sync);
+  sync();
+})();
+
 (() => {
   const aboutRoot = document.getElementById('syntolk-about');
   if (!aboutRoot) return;
