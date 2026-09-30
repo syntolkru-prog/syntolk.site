@@ -320,14 +320,31 @@
           <div class="af-mini-head"><strong>👥 Сотрудники</strong><span>↻</span></div>
           <div class="af-person-row"><div class="af-person-dot">П</div><div class="af-grow">Пользователь</div><span class="af-tag af-orange">Владелец</span><span class="af-tag af-green">Активен</span></div>
         </div>
-        <div class="af-mini-card">
-          <div class="af-mini-head"><div class="af-folder-head"><div class="af-folder-icon">▱</div><div class="af-folder-title"><strong>Права доступа к папкам</strong><span>Управляйте доступом сотрудников к папкам</span></div></div><span>↻</span></div>
+        <div class="af-mini-card af-folder-access-card">
+          <div class="af-mini-head af-folder-access-trigger" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Открыть права доступа к папкам"><div class="af-folder-head"><div class="af-folder-icon">▱</div><div class="af-folder-title"><strong>Права доступа к папкам</strong><span>Управляйте доступом сотрудников к папкам</span></div></div><span>↻</span></div>
           <div class="af-folder-list">
-            <div class="af-folder-row"><div class="af-folder-icon">▱</div><div class="af-name">файлы<span class="af-date">Создана: 14.09.2026</span></div><span class="af-arrow">›</span></div>
-            <div class="af-folder-row"><div class="af-folder-icon">▱</div><div class="af-name">ГПХ<span class="af-date">Создана: 18.08.2026</span></div><span class="af-arrow">›</span></div>
-            <div class="af-folder-row"><div class="af-folder-icon">▱</div><div class="af-name">заказы<span class="af-date">Создана: 02.08.2026</span></div><span class="af-arrow">›</span></div>
-            <div class="af-folder-row"><div class="af-folder-icon">▱</div><div class="af-name">законы<span class="af-date">Создана: 02.08.2026</span></div><span class="af-arrow">›</span></div>
+            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="файлы"><div class="af-folder-icon">▱</div><div class="af-name">файлы<span class="af-date">Создана: 14.09.2026</span></div><span class="af-arrow">›</span></div>
+            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="ГПХ"><div class="af-folder-icon">▱</div><div class="af-name">ГПХ<span class="af-date">Создана: 18.08.2026</span></div><span class="af-arrow">›</span></div>
+            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="заказы"><div class="af-folder-icon">▱</div><div class="af-name">заказы<span class="af-date">Создана: 02.08.2026</span></div><span class="af-arrow">›</span></div>
+            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="законы"><div class="af-folder-icon">▱</div><div class="af-name">законы<span class="af-date">Создана: 02.08.2026</span></div><span class="af-arrow">›</span></div>
           </div>
+        </div>
+      </div>
+      <div class="af-permission-dialog" hidden>
+        <div class="af-permission-backdrop" data-af-permission-close></div>
+        <div class="af-permission-panel" role="dialog" aria-modal="true" aria-labelledby="af-permission-title">
+          <button class="af-permission-close" type="button" aria-label="Закрыть">×</button>
+          <h4 id="af-permission-title">Управление правами доступа к папке «<span class="af-dialog-folder">файлы</span>»</h4>
+          <p class="af-dialog-sub">Добавить права доступа</p>
+          <label class="af-employee-field"><span>Сотрудник</span><select class="af-employee-select"><option value="">Выберите сотрудника</option><option value="Пользователь">Пользователь</option></select></label>
+          <div class="af-permission-toggles">
+            <button class="af-permission-toggle" type="button" data-permission="Загрузка" aria-pressed="true"><span class="af-switch af-on"></span>Загрузка</button>
+            <button class="af-permission-toggle" type="button" data-permission="Скачивание" aria-pressed="false"><span class="af-switch"></span>Скачивание</button>
+            <button class="af-permission-toggle" type="button" data-permission="Вопросы" aria-pressed="false"><span class="af-switch"></span>Вопросы</button>
+            <button class="af-permission-toggle" type="button" data-permission="Удаление" aria-pressed="true"><span class="af-switch af-on"></span>Удаление</button>
+          </div>
+          <button class="af-dialog-add" type="button">Добавить</button>
+          <div class="af-dialog-current"><b>Текущие права доступа</b><span class="af-dialog-status">Нет назначенных прав доступа. Добавьте права доступа для пользователей.</span></div>
         </div>
       </div>
     </div>
