@@ -298,6 +298,41 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
   #pricing .pricing-switch button{min-width:0;min-height:42px;padding:9px 10px}
 }
 
+/* Keep the personal/business choice as two clear buttons on every viewport. */
+#pricing .pricing-switch{
+  width:max-content;
+  min-width:0;
+  padding:0;
+  gap:8px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+#pricing .pricing-switch-indicator{display:none}
+#pricing .pricing-switch button{
+  min-width:168px;
+  min-height:44px;
+  padding:10px 18px;
+  border:1px solid #cfd5de;
+  border-radius:8px;
+  background:#fff;
+  color:#20242b;
+  box-shadow:none;
+  transform:none;
+  transition:background .16s ease,border-color .16s ease,color .16s ease;
+}
+#pricing .pricing-switch button.active{
+  background:#20242b;
+  border-color:#20242b;
+  color:#fff;
+  transform:none;
+}
+@media(max-width:760px){
+  #pricing .pricing-switch{width:max-content;max-width:100%;padding:0;gap:8px}
+  #pricing .pricing-switch button{min-width:112px;min-height:36px;padding:8px 16px;font-size:13px;border-radius:8px}
+}
+
 #syntolk-about{
     --bg:#f4f5f7;
     --panel:#ffffff;
@@ -755,4 +790,34 @@ button,input,select,textarea{font-family:inherit}
   #additional-features .af-stepper button,
   #additional-features .af-stepper span { flex-basis: 27px; width: 27px; min-width: 27px; height: 28px; }
   #additional-features .af-range-labels { font-size: 8.5px; }
+}
+
+/* Touch screens should not replay desktop hover/press transforms as a jump. */
+@media (max-width: 760px) and (hover: none) and (pointer: coarse) {
+  #pricing .pricing-panel,
+  #pricing .pricing-panel.active,
+  #pricing .pricing-panel.active .plan,
+  #pricing .plan,
+  #pricing .plan.pop,
+  #pricing .plan:hover,
+  #pricing .plan:active,
+  #pricing .plan:focus {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+  #pricing .plan-details,
+  #pricing .plan-details > summary,
+  #pricing .plan-details .features {
+    animation: none !important;
+    transition: none !important;
+  }
+  #additional-features .af-buy:hover,
+  #additional-features .af-stepper button:hover,
+  #additional-features .af-price-pills button:hover,
+  #additional-features .af-folder-access-trigger:hover,
+  #additional-features .af-folder-row:hover {
+    transform: none !important;
+    transition: none !important;
+  }
 }
