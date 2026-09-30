@@ -183,28 +183,36 @@
     stopTimer();
     stopMotion();
     if (reduced.matches || Math.abs(speed) < .08) { settle(); return; }
-    const velocity = Math.max(-6, Math.min(6, speed));
+    const velocity = Math.max(-4.2, Math.min(4.2, speed));
     const strength = Math.abs(velocity);
-    // A stronger release coasts farther and longer. The logarithmic duration
-    // keeps fast swipes light while avoiding an abrupt stop.
-    const duration = Math.min(1450, 420 + 470 * Math.log1p(strength));
-    const projected = world + velocity * duration / 1.8;
+    // Scale distance and time independently: a strong swipe travels farther,
+    // while every release keeps enough time for a calm deceleration.
+    const coastTime = 350 + 70 * Math.log1p(strength);
+    const projected = world + velocity * coastTime;
     const virtual = nearestVirtual(projected);
     const start = world, target = targetFor(virtual), distance = target - start;
-    // Cubic Hermite easing preserves the release momentum and eases to exactly
-    // zero velocity at the selected center. Keeping the initial slope above
-    // smoothstep's neutral point prevents a second acceleration after release.
+    const duration = Math.min(2600, 1050 + 800 * Math.log1p(strength));
     const releaseSlope = distance * velocity > 0
-      ? Math.max(1.55, Math.min(2.6, velocity * duration / distance))
-      : 1.8;
+      ? Math.max(.8, Math.min(2.2, Math.abs(velocity * duration / distance)))
+      : 1;
     const began = performance.now();
     mode = 'inertia';
     hideQuestionForMotion();
     const coast = now => {
       if (!canRun()) { pauseCarousel(); return; }
       const progress = Math.min(1, Math.max(0, (now - began) / duration));
-      world = start + distance * smoothstep(progress)
-        + distance * releaseSlope * progress * (1 - progress) ** 2;
+      // Quintic Hermite curve: it continues the release momentum, then reaches
+      // both zero speed and zero acceleration at the center. That soft tail is
+      // what removes the visible last-moment stop.
+      const progress2 = progress * progress;
+      const progress3 = progress2 * progress;
+      const progress4 = progress3 * progress;
+      const progress5 = progress4 * progress;
+      const eased = releaseSlope * progress
+        + (10 - 6 * releaseSlope) * progress3
+        + (8 * releaseSlope - 15) * progress4
+        + (6 - 3 * releaseSlope) * progress5;
+      world = start + distance * eased;
       draw();
       if (progress < 1) frame = requestAnimationFrame(coast);
       else {
