@@ -812,7 +812,7 @@ render();
   // Interactive folder permissions demo for section 03.
   const permissionDialog = root.querySelector('.af-permission-dialog');
   if (permissionDialog) {
-    const folderTriggers = [...root.querySelectorAll('.af-folder-access-trigger, .af-folder-row')];
+    const folderTriggers = [...root.querySelectorAll('.af-folder-row')];
     const folderLabel = permissionDialog.querySelector('.af-dialog-folder');
     const employeeSelect = permissionDialog.querySelector('.af-employee-select');
     const permissionButtons = [...permissionDialog.querySelectorAll('.af-permission-toggle')];
