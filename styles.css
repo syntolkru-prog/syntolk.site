@@ -286,9 +286,19 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .section-title{text-wrap:balance}
 #pricing .section-sub{font-size:16px;line-height:1.55;margin:16px 0 0;color:#68717e;letter-spacing:-.008em}
 #pricing .pricing-note{font-size:13px;line-height:1.55}
+
 }
 #pricing [hidden]{display:none!important}
 #pricing :focus-visible{outline:3px solid #1769ff;outline-offset:3px}
+
+/* Compact plan switcher: the surrounding surface sits on the same level as the active pill. */
+#pricing .pricing-switch{min-width:360px;width:max-content;padding:4px;gap:4px;border:0;border-radius:999px;background:#f2f4f7;box-shadow:0 8px 22px rgba(17,19,24,.12),inset 0 0 0 1px rgba(214,219,228,.9)}
+#pricing .pricing-switch button{min-height:44px;min-width:168px;padding:10px 18px;border-radius:999px}
+#pricing .pricing-switch-indicator{top:4px;height:calc(100% - 8px);border-radius:999px;box-shadow:0 5px 14px rgba(17,19,24,.2)}
+@media (max-width:560px){
+  #pricing .pricing-switch{width:100%;min-width:0;padding:4px;border-radius:999px}
+  #pricing .pricing-switch button{min-width:0;min-height:42px;padding:9px 10px}
+}
 
 #syntolk-about{
     --bg:#f4f5f7;
