@@ -336,14 +336,15 @@
           <button class="af-permission-close" type="button" aria-label="Закрыть">×</button>
           <h4 id="af-permission-title">Управление правами доступа к папке «<span class="af-dialog-folder">файлы</span>»</h4>
           <p class="af-dialog-sub">Добавить права доступа</p>
-          <label class="af-employee-field"><span>Сотрудник</span><select class="af-employee-select"><option value="">Выберите сотрудника</option><option value="Пользователь">Пользователь</option></select></label>
+          <div class="af-employee-field"><span>Сотрудник</span><div class="af-employee-select af-employee-static" aria-disabled="true">Выберите сотрудника</div></div>
           <div class="af-permission-toggles">
+            <button class="af-permission-toggle" type="button" data-permission="Чтение" aria-pressed="true"><span class="af-switch af-on"></span>Чтение</button>
             <button class="af-permission-toggle" type="button" data-permission="Загрузка" aria-pressed="true"><span class="af-switch af-on"></span>Загрузка</button>
             <button class="af-permission-toggle" type="button" data-permission="Скачивание" aria-pressed="false"><span class="af-switch"></span>Скачивание</button>
             <button class="af-permission-toggle" type="button" data-permission="Вопросы" aria-pressed="false"><span class="af-switch"></span>Вопросы</button>
             <button class="af-permission-toggle" type="button" data-permission="Удаление" aria-pressed="true"><span class="af-switch af-on"></span>Удаление</button>
           </div>
-          <button class="af-dialog-add" type="button">Добавить</button>
+          <a class="af-dialog-add" href="https://platform.syntolk.ru/register">Добавить</a>
           <div class="af-dialog-current"><b>Текущие права доступа</b><span class="af-dialog-status">Нет назначенных прав доступа. Добавьте права доступа для пользователей.</span></div>
         </div>
       </div>

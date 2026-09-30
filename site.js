@@ -814,15 +814,13 @@ render();
   if (permissionDialog) {
     const folderTriggers = [...root.querySelectorAll('.af-folder-row')];
     const folderLabel = permissionDialog.querySelector('.af-dialog-folder');
-    const employeeSelect = permissionDialog.querySelector('.af-employee-select');
     const permissionButtons = [...permissionDialog.querySelectorAll('.af-permission-toggle')];
     const status = permissionDialog.querySelector('.af-dialog-status');
-    const addButton = permissionDialog.querySelector('.af-dialog-add');
     const closeButton = permissionDialog.querySelector('.af-permission-close');
     const closeBackdrop = permissionDialog.querySelector('.af-permission-backdrop');
     const savedRights = new Map();
     let activeFolder = 'файлы';
-    let selectedRights = new Set(['Загрузка', 'Удаление']);
+    let selectedRights = new Set(['Чтение', 'Загрузка', 'Удаление']);
     let lastTrigger = null;
     let previousOverflow = '';
 
@@ -838,8 +836,7 @@ render();
       activeFolder = folder || 'файлы';
       lastTrigger = trigger || null;
       folderLabel.textContent = activeFolder;
-      selectedRights = new Set(savedRights.get(activeFolder) || ['Загрузка', 'Удаление']);
-      employeeSelect.value = '';
+      selectedRights = new Set(savedRights.get(activeFolder) || ['Чтение', 'Загрузка', 'Удаление']);
       status.textContent = 'Нет назначенных прав доступа. Добавьте права доступа для пользователей.';
       renderRights();
       permissionDialog.hidden = false;
@@ -871,20 +868,6 @@ render();
       else selectedRights.add(permission);
       renderRights();
     }));
-
-    addButton?.addEventListener('click', () => {
-      if (!employeeSelect.value) {
-        status.textContent = 'Выберите сотрудника, чтобы добавить права доступа.';
-        employeeSelect.focus();
-        return;
-      }
-      savedRights.set(activeFolder, new Set(selectedRights));
-      const rights = [...selectedRights];
-      status.textContent = rights.length
-        ? `${employeeSelect.value}: ${rights.join(', ')}.`
-        : `${employeeSelect.value}: права не выбраны.`;
-      lastTrigger?.classList.add('af-selected');
-    });
 
     closeButton?.addEventListener('click', closePermissionDialog);
     closeBackdrop?.addEventListener('click', closePermissionDialog);
