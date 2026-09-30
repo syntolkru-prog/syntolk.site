@@ -500,7 +500,8 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 
   /* Match the landing page's type scale without changing account-demo colors. */
   #additional-features .af-hero h2{font-size:clamp(38px,4.5vw,58px);line-height:1.08;font-weight:600;letter-spacing:-.045em;color:var(--muted)}
-  #additional-features .af-hero h2 .af-brand{color:inherit}
+  #additional-features .af-hero h2 .af-title-dark{color:var(--ink)}
+  #additional-features .af-hero h2 .af-title-muted{color:var(--muted)}
   #additional-features .af-hero p{font-size:clamp(16px,1.45vw,18px);line-height:1.55}
   #additional-features .af-copy h3{font-size:clamp(31px,3.25vw,44px);line-height:1.12;font-weight:600;letter-spacing:-.04em}
   #additional-features .af-copy p{font-size:16px;line-height:1.6}
