@@ -2,7 +2,7 @@
 @font-face{font-family:Inter;src:url('fonts/inter/InterVariable.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
 
 /* One set of base rules, followed by tablet and phone layouts. */
-:root{--ink:#20242b;--muted:#626873;--blue:#2459e0;--paper:#fafaf9;--surface:#f4f5f7;--line:#dce0e6;--max:1184px}
+:root{--ink:#20242b;--muted:#626873;--blue:#2459e0;--paper:#fafaf9;--surface:#fafaf9;--line:#dce0e6;--max:1184px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Onest,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
@@ -58,8 +58,8 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 
 /* FAQ and footer */
 .faq{background:var(--surface)}.faq-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:64px}.faq-heading .text-link{margin-top:22px}.faq-list details{border-bottom:1px solid #d1d6de}.faq-list details:first-child{border-top:1px solid #d1d6de}.faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:24px;list-style:none;cursor:pointer;font-size:16px;line-height:1.5;padding:20px 0}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary span{font-size:24px;line-height:1;flex:none;color:var(--muted)}.faq-list details[open] summary span{transform:rotate(45deg)}.faq-list details p{font-size:15px;line-height:1.7;color:var(--muted);margin:0 28px 22px 0}.faq-list p a{color:var(--blue);overflow-wrap:anywhere}
-.final-section{position:relative;overflow:hidden;text-align:center;padding:96px 0 104px;background:linear-gradient(135deg,#f3f6ff 0%,#edf2ff 52%,#f8faff 100%);border-top:1px solid #e1e7f2;border-bottom:1px solid #dfe6f3}.final-section:before{content:'';position:absolute;width:560px;height:260px;left:50%;bottom:-170px;transform:translateX(-50%);border-radius:50%;background:#d9e4ff80;filter:blur(8px)}.final-content{position:relative;z-index:1;max-width:780px}.final-section h2{font-size:clamp(46px,5.5vw,72px);line-height:1.05;letter-spacing:-.06em;font-weight:600}.final-section h2 span{color:var(--blue)}.final-section p{max-width:520px;margin:24px auto 30px;font-size:17px;line-height:1.6;color:#5c6b82}.final-section .button{min-width:250px;box-shadow:0 12px 24px #2459e03d;transition:transform .2s ease,box-shadow .2s ease}.final-section .button:hover{transform:translateY(-2px);box-shadow:0 16px 30px #2459e04d}
-.site-footer{padding:0;background:#20242b;color:#f5f7fb;border-top:0}.footer-main{display:grid;grid-template-columns:minmax(240px,1.2fr) 1fr auto;align-items:start;gap:40px;padding:42px 0 34px}.footer-brand{color:#fff;font-size:25px}.footer-brand-block p{margin-top:10px;font-size:14px;color:#aeb7c6}.footer-nav{display:grid;grid-template-columns:repeat(3,auto);align-content:start;gap:10px 24px}.footer-nav a{font-size:14px;color:#cbd3e0}.footer-nav a:hover{color:#fff}.footer-contact{display:flex;flex-direction:column;align-items:flex-end;gap:6px}.footer-contact span{font-size:12px;color:#8793a7}.footer-contact strong{font-size:14px;font-weight:500;color:#fff}.footer-meta{display:flex;justify-content:space-between;align-items:center;padding:18px 0 22px;border-top:1px solid #39414f;color:#8793a7;font-size:12px}
+.final-section{position:relative;overflow:hidden;text-align:center;padding:96px 0 104px;background:#fafaf9;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.final-section:before{display:none}.final-content{position:relative;z-index:1;max-width:780px}.final-section h2{font-size:clamp(46px,5.5vw,72px);line-height:1.05;letter-spacing:-.06em;font-weight:600}.final-section h2 span{color:var(--blue)}.final-section p{max-width:520px;margin:24px auto 30px;font-size:17px;line-height:1.6;color:#5c6b82}.final-section .button{min-width:250px;box-shadow:0 12px 24px #2459e03d;transition:transform .2s ease,box-shadow .2s ease}.final-section .button:hover{transform:translateY(-2px);box-shadow:0 16px 30px #2459e04d}
+.site-footer{padding:0;background:#fafaf9;color:var(--ink);border-top:0}.footer-main{display:grid;grid-template-columns:minmax(240px,1.2fr) 1fr auto;align-items:start;gap:40px;padding:42px 0 34px}.footer-brand{color:var(--ink);font-size:25px}.footer-brand-block p{margin-top:10px;font-size:14px;color:var(--muted)}.footer-nav{display:grid;grid-template-columns:repeat(3,auto);align-content:start;gap:10px 24px}.footer-nav a{font-size:14px;color:var(--muted)}.footer-nav a:hover{color:var(--ink)}.footer-contact{display:flex;flex-direction:column;align-items:flex-end;gap:6px}.footer-contact span{font-size:12px;color:var(--muted)}.footer-contact strong{font-size:14px;font-weight:500;color:var(--ink)}.footer-meta{display:flex;justify-content:space-between;align-items:center;padding:18px 0 22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
 
 /* Dialogs remain legible and scroll within the viewport. */
 .case-dialog{padding:0;border:0;border-radius:22px;width:min(960px,calc(100% - 40px));height:min(420px,calc(100dvh - 40px));max-height:calc(100dvh - 40px);font-family:inherit;color:var(--ink);background:white;overflow:hidden;overscroll-behavior:contain}.case-dialog::backdrop{background:#141b2b80;backdrop-filter:blur(6px)}
@@ -116,7 +116,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .section-kicker{font-size:13px;font-weight:780;color:var(--blue);margin-bottom:12px}
 #pricing .section-title{font-size:clamp(34px,4vw,54px);line-height:1.04;letter-spacing:-.045em;margin:0;max-width:900px}
 #pricing .section-sub{font-size:18px;color:#606775;margin-top:18px;max-width:760px}
-#pricing{background:#fff}
+#pricing{background:#fafaf9}
 #pricing .pricing-switch{display:flex;width:max-content;min-width:360px;justify-content:center;gap:6px;padding:7px;border:1px solid #d6dbe4;border-radius:999px;background:#fff;margin:32px auto 0;position:relative;isolation:isolate;box-shadow:0 10px 28px rgba(17,19,24,.10)}
 #pricing .pricing-switch-indicator{position:absolute;top:7px;left:7px;height:calc(100% - 14px);border-radius:999px;background:#111318;box-shadow:0 7px 18px rgba(17,19,24,.18);z-index:0;transition:left .34s cubic-bezier(.22,.61,.36,1),width .34s cubic-bezier(.22,.61,.36,1)}
 #pricing .pricing-switch button{position:relative;z-index:1;min-width:168px;border:0;background:transparent;color:#111318;font:inherit;font-size:15px;font-weight:760;padding:13px 22px;border-radius:999px;cursor:pointer;transition:color .25s ease,transform .25s ease}
@@ -242,7 +242,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing{padding:56px 0}
 #pricing .section-title{font-size:clamp(29px,8.3vw,36px);font-weight:600;line-height:1.12;letter-spacing:-.045em;overflow-wrap:normal}
 #pricing .section-kicker{font-size:13px;font-weight:500;line-height:1.4;margin:0 0 12px;color:#1769ff}
-#pricing{padding:48px 0;background:#fff}
+#pricing{padding:48px 0;background:#fafaf9}
 #pricing .pricing-switch{display:flex;min-width:0;width:100%;margin:24px 0 0;border-radius:10px;background:#f1f3f6;border:0;box-shadow:none;padding:4px;gap:4px}
 #pricing .pricing-switch button{flex:1;min-width:0;min-height:44px;font-size:14px;line-height:1.2;font-weight:500;padding:10px 8px;border-radius:7px;transform:none;transition:color .16s}
 #pricing .pricing-switch button.active{transform:none;color:#17191c}
@@ -390,7 +390,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #syntolk-about .content blockquote{font-size:15px}}
 @media (prefers-reduced-motion:reduce){#syntolk-about *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 #syntolk-about .reveal{opacity:1;transform:none;filter:none}}
-#syntolk-about{background:#f7f8fa}
+#syntolk-about{background:#fafaf9}
 #syntolk-about .question .muted{color:#626873}
 
 /* Scoped adaptation of the supplied Syntolk account demo. */
@@ -417,7 +417,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
     isolation:isolate;
     font-family:Onest,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     color:var(--ink);
-    background:#f6f8fa;
+    background:#fafaf9;
     overflow-x:hidden;
   }
   #additional-features::before, #additional-features::after{
