@@ -68,8 +68,7 @@
     const center = local + railWidth / 2;
     let nearest = visualTabs[0], distance = Infinity;
     visualTabs.forEach((tab, index) => {
-      // Highlight and text switch together, including across the duplicated seam.
-      if (Number(tab.dataset.topic) !== logicalIndex(selected)) return;
+      // The visual highlight belongs to the center, including during a drag/fling.
       const gap = Math.abs(centers[index] - center);
       if (gap < distance) { distance = gap; nearest = tab; }
     });
@@ -142,20 +141,16 @@
       transitionTo(variant === 0 ? selected : selected + 1, variant === 0 ? 1 : 0, began);
     }, Math.max(0, nextBeat - now));
   }
-  function transitionTo(virtual, nextVariant, began = performance.now(), releaseSpeed = null) {
+  function transitionTo(virtual, nextVariant, began = performance.now()) {
     stopMotion();
     mode = 'transition';
     const start = world, target = targetFor(virtual), startOpacity = opacity;
     const duration = reduced.matches ? 0 : TRANSITION_DURATION;
     let swapped = false;
-    // A fling ends directly on a sector; there is no second snap animation.
-    const distance = target - start;
-    const slope = releaseSpeed === null || !distance ? 0 : Math.max(0, Math.min(3, releaseSpeed * duration / distance));
     const tick = now => {
       if (!canRun()) { pauseCarousel(); return; }
       const progress = duration ? Math.max(0, Math.min(1, (now - began) / duration)) : 1;
-      const eased = releaseSpeed === null ? smoothstep(progress)
-        : smoothstep(progress) + slope * progress * (1 - progress) ** 2;
+      const eased = smoothstep(progress);
       world = start + (target - start) * eased;
       if (progress >= .5 && !swapped) {
         setQuestionOpacity(0);
@@ -186,11 +181,33 @@
   }
   function startInertia(speed) {
     stopTimer();
-    const velocity = reduced.matches ? 0 : Math.max(-2.4, Math.min(2.4, speed));
-    const target = nearestVirtual(world + velocity * 220);
+    stopMotion();
+    if (reduced.matches || Math.abs(speed) < .08) { settle(); return; }
+    const velocity = Math.max(-6, Math.min(6, speed));
+    const virtual = nearestVirtual(world + velocity * 300);
+    const start = world, target = targetFor(virtual), distance = target - start;
+    let duration = 300 + 280 * Math.log1p(Math.abs(velocity));
+    // Preserve release velocity; finish with zero velocity at the actual center.
+    // Longer, stronger flings travel further instead of sharing a fixed 600 ms.
+    if (distance * velocity > 0) duration = Math.min(duration, 3 * Math.abs(distance / velocity));
     const began = performance.now();
-    nextBeat = began + QUESTION_INTERVAL;
-    transitionTo(target, 0, began, velocity);
+    mode = 'inertia';
+    hideQuestionForMotion();
+    const coast = now => {
+      if (!canRun()) { pauseCarousel(); return; }
+      const progress = Math.min(1, Math.max(0, (now - began) / duration));
+      world = start + distance * smoothstep(progress)
+        + velocity * duration * progress * (1 - progress) ** 2;
+      draw();
+      if (progress < 1) frame = requestAnimationFrame(coast);
+      else {
+        frame = 0;
+        // Reuse the existing fade-in after the fling has stopped, with no second snap.
+        nextBeat = now + QUESTION_INTERVAL - TRANSITION_DURATION / 2;
+        transitionTo(virtual, 0, now - TRANSITION_DURATION / 2);
+      }
+    };
+    coast(began);
   }
   function pauseCarousel() {
     stopTimer();
