@@ -498,21 +498,6 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
     #additional-features .af-page{padding-inline:14px}.af-hero{padding-top:0}.af-eyebrow{font-size:12px}.af-hero p{font-size:15px}.af-copy h3{font-size:33px}.af-copy p{font-size:15px}.af-addon-grid{grid-template-columns:1fr}.af-card-shell{padding:12px}.af-perm-row{grid-template-columns:1fr 1fr;gap:8px}.af-perm-row .af-select{grid-column:1/-1}.af-modal{padding:14px}.af-dark-frame{padding:30px 10px}.af-features{gap:11px}.af-feature{font-size:14px}
   }
 
-  /* Keep the folder demo as readable and visibly layered as the add-on cards. */
-  #additional-features .af-mini-card{border-color:#d5dfeb;box-shadow:0 3px 10px rgba(38,72,128,.06)}
-  #additional-features .af-mini-head strong{font-size:15px;color:#2f4058}
-  #additional-features .af-person-row{background:#f7faff;border:1px solid #dce6f1}
-  #additional-features .af-person-row .af-grow{font-size:13px;color:#2f4058}
-  #additional-features .af-tag{font-size:10px}
-  #additional-features .af-tag.af-green{background:#dff8e8;color:#178a51}
-  #additional-features .af-folder-head .af-folder-icon,#additional-features .af-folder-row .af-folder-icon{border:1px solid #ffca50;background:#fff0c2;color:#e89700}
-  #additional-features .af-folder-title strong{font-size:13px;color:#2f4058}
-  #additional-features .af-folder-title span{font-size:10px;color:#647590}
-  #additional-features .af-folder-row{background:#f7faff;border-color:#d7e2ef;box-shadow:0 2px 8px rgba(38,72,128,.06)}
-  #additional-features .af-folder-row .af-name{font-size:13px;color:#2f4058}
-  #additional-features .af-folder-row .af-date{font-size:10px;color:#6d7e98}
-  #additional-features .af-arrow{color:#7188a4;font-size:17px}
-
   /* Interactive folder access demo in section 03. */
   #additional-features .af-folder-access-trigger{border-radius:10px;cursor:pointer;transition:background .22s ease,box-shadow .22s ease,transform .22s ease}
   #additional-features .af-folder-access-trigger:hover,#additional-features .af-folder-access-trigger:focus-visible{background:#f1f6ff;box-shadow:0 5px 14px rgba(38,91,173,.10);transform:translateY(-1px)}
@@ -589,3 +574,18 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
     #additional-features .af-perm-row{grid-template-columns:repeat(2,minmax(0,1fr))}
     #additional-features .af-toggle{white-space:nowrap}
   }
+
+  /* Keep the folder demo as readable and visibly layered as the add-on cards. */
+  #additional-features .af-mini-card{border-color:#d5dfeb;box-shadow:0 3px 10px rgba(38,72,128,.06)}
+  #additional-features .af-mini-head strong{font-size:15px;color:#2f4058}
+  #additional-features .af-person-row{background:#f7faff;border:1px solid #dce6f1}
+  #additional-features .af-person-row .af-grow{font-size:13px;color:#2f4058}
+  #additional-features .af-tag{font-size:10px}
+  #additional-features .af-tag.af-green{background:#dff8e8;color:#178a51}
+  #additional-features .af-folder-head .af-folder-icon,#additional-features .af-folder-row .af-folder-icon{border:1px solid #ffca50;background:#fff0c2;color:#e89700}
+  #additional-features .af-folder-title strong{font-size:13px;color:#2f4058}
+  #additional-features .af-folder-title span{font-size:10px;color:#647590}
+  #additional-features .af-folder-row{background:#f7faff;border:1px solid #d7e2ef;box-shadow:0 2px 8px rgba(38,72,128,.06)}
+  #additional-features .af-folder-row .af-name{font-size:13px;color:#2f4058}
+  #additional-features .af-folder-row .af-date{font-size:10px;color:#6d7e98}
+  #additional-features .af-arrow{color:#7188a4;font-size:17px}
