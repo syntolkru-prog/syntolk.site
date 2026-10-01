@@ -975,3 +975,48 @@ button,input,select,textarea{font-family:inherit}
   #pricing [data-pricing-panel="business"] .plan-benefits .team-size span,
   #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size span{font-size:11px}
 }
+
+
+/* Use one quiet badge style and compact controls across both pricing modes. */
+#pricing .plan-badge,
+#pricing .plan.pop .plan-badge{
+  background:#f2f4f7;
+  color:#566274;
+  box-shadow:none;
+  font-weight:500;
+  animation:none;
+  transform:none;
+  transition:background-color .18s ease,color .18s ease;
+}
+#pricing .plan:hover .plan-badge,
+#pricing .plan:focus-visible .plan-badge{
+  background:#edf1f6;
+  color:#4d5c70;
+  box-shadow:none;
+  transform:none;
+}
+#pricing .pricing-switch{margin:24px auto 0;padding:0;gap:6px;border:0;border-radius:0;background:transparent;box-shadow:none}
+#pricing .pricing-switch button{
+  min-width:136px;
+  min-height:38px;
+  padding:8px 14px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:550;
+}
+#pricing .plan-start,
+#pricing .plan.pop .plan-start{
+  min-height:40px;
+  margin-top:14px;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:550;
+}
+#pricing .plan-start span{font-size:14px}
+@media(max-width:760px){
+  #pricing .pricing-switch{margin:20px auto 0;gap:7px}
+  #pricing .pricing-switch button{min-width:120px;min-height:36px;padding:7px 12px;border-radius:11px;font-size:12.5px}
+  #pricing .plan-start,
+  #pricing .plan.pop .plan-start{min-height:36px;margin-top:9px;padding:7px 10px;font-size:12px}
+}
