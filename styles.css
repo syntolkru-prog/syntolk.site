@@ -950,3 +950,28 @@ button,input,select,textarea{font-family:inherit}
   #pricing [data-pricing-panel="business"] .plan-start,
   #pricing [data-pricing-panel="business"] .plan.pop .plan-start{min-height:36px;margin-top:9px;padding:7px 10px;font-size:12px}
 }
+
+
+/* Keep business benefit copy at the same reading size as the plan features. */
+#pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus>span,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus>span,
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-label,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-label{font-size:14px}
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-discount strong,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount strong,
+#pricing [data-pricing-panel="business"] .plan-benefits .team-size strong,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size strong{font-size:14px}
+#pricing [data-pricing-panel="business"] .plan-benefits .team-size span,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size span{font-size:13px}
+@media(max-width:760px){
+  #pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus>span,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus>span,
+  #pricing [data-pricing-panel="business"] .plan-benefits .addon-label,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-label{font-size:12px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .addon-discount strong,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount strong,
+  #pricing [data-pricing-panel="business"] .plan-benefits .team-size strong,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size strong{font-size:13px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .team-size span,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size span{font-size:11px}
+}
