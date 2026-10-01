@@ -1108,3 +1108,47 @@ button,input,select,textarea{font-family:inherit}
   #pricing [data-pricing-panel="business"] .plan-start,
   #pricing [data-pricing-panel="business"] .plan.pop .plan-start{min-height:40px;margin-top:10px;padding:8px 11px;font-size:13px}
 }
+
+/* Compact business cards and match their CTA controls to personal plans. */
+#pricing [data-pricing-panel="business"] .plan-benefits{gap:7px;margin-top:12px}
+#pricing [data-pricing-panel="business"] .plan-benefits .team-size,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size{min-height:38px;padding:7px 11px}
+#pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus{min-height:58px;padding:8px 11px}
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-discount,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount{min-height:36px;padding:6px 9px}
+#pricing [data-pricing-panel="business"] .plan-start,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-start{
+  min-height:40px;margin-top:14px;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:550;
+}
+
+/* A quiet brand checkmark keeps every plan's feature list easy to scan. */
+#pricing .plan-details .features>div{
+  display:grid;
+  grid-template-columns:14px minmax(0,1fr);
+  align-items:baseline;
+  column-gap:8px;
+}
+#pricing .plan-details .features>div::before{
+  content:"✓";
+  color:#1769ff;
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.4;
+}
+#pricing .plan.pop .plan-details .features>div::before{color:#a9c8ff}
+
+@media(max-width:760px){
+  #pricing [data-pricing-panel="business"] .plan-benefits{gap:4px;margin-top:8px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .team-size,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size{min-height:34px;padding:6px 9px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus{min-height:48px;padding:7px 10px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .addon-discount,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount{min-height:34px;padding:5px 8px}
+  #pricing [data-pricing-panel="business"] .plan-start,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-start{
+    min-height:36px;margin-top:9px;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:550;
+  }
+}
