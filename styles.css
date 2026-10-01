@@ -157,6 +157,8 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .pop .per{color:#bcc3cf}
 #pricing .features{display:grid;gap:7px;margin:16px 0 0}
 #pricing .features div{font-size:15px;line-height:1.4}
+#pricing .addon-discount{display:inline-flex;align-items:center;width:max-content;max-width:100%;margin:10px 0 0;padding:4px 9px;border-left:2px solid #b8c9df;border-radius:0 6px 6px 0;background:#f4f7fb;color:#4f6b8f;font-size:13px;line-height:1.35;font-weight:600}
+#pricing .plan.pop .addon-discount{border-left-color:#91acd0;background:rgba(255,255,255,.08);color:#9db5d5}
 #pricing .pricing-note{margin-top:18px;color:#777e89;font-size:13px}
 @media(max-width:620px){
 #pricing .wrap{width:min(100% - 24px,1180px)}
@@ -262,6 +264,7 @@ h2{font-size:clamp(34px,4vw,54px)}h3{font-size:24px}button{border:0}
 #pricing .plan-details[open]>summary::after{content:'−'}
 #pricing .plan-details .features{margin:0 0 12px;gap:6px;padding-top:4px}
 #pricing .features div{font-size:14px;line-height:1.5}
+#pricing .addon-discount{font-size:12px;padding:4px 7px}
 #pricing .plan-start{display:flex;min-height:44px;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border:1px solid #dfe3e9;border-radius:7px;color:#252a33;font-size:14px;font-weight:500;background:#fff}
 #pricing .pop .plan-start{background:#fff;color:#17191c;border-color:#fff}
 #pricing .business-promo{display:block;margin:0 0 16px;padding:0;color:#677386;font-size:13px;font-weight:400;line-height:1.5;text-align:left;border:0;background:none}
