@@ -1020,3 +1020,91 @@ button,input,select,textarea{font-family:inherit}
   #pricing .plan-start,
   #pricing .plan.pop .plan-start{min-height:36px;margin-top:9px;padding:7px 10px;font-size:12px}
 }
+/* Business pricing reference layout. */
+#pricing .pricing-switch{margin:32px auto 0;gap:8px}
+#pricing .pricing-switch button{min-width:168px;min-height:44px;padding:10px 18px;border-radius:8px;font-size:15px;font-weight:700}
+#pricing .pricing-switch button.active{background:#20242b;border-color:#20242b;color:#fff}
+#pricing .business-promo{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  margin:0 0 14px;padding:11px 14px;border:1px solid #d6e2ff;border-radius:12px;
+  background:#f3f7ff;color:#5e7192;font-size:14px;font-weight:600;line-height:1.35;text-align:center;
+}
+#pricing .business-promo strong{color:#171a20;font-size:14px;font-weight:700}
+#pricing .business-promo-badge{padding:5px 8px;border-radius:999px;background:#1769ff;color:#fff;font-size:11px;font-weight:700}
+#pricing .business-promo>span:last-child{color:#5e7192;font-weight:600}
+#pricing [data-pricing-panel="business"] .plan:nth-child(1) .plan-badge{background:#f0f2f5;color:#626b79}
+#pricing [data-pricing-panel="business"] .plan:nth-child(2) .plan-badge{background:#fff;color:#1769ff}
+#pricing [data-pricing-panel="business"] .plan:nth-child(3) .plan-badge{background:#edf3ff;color:#1769ff}
+#pricing [data-pricing-panel="business"] .plan-benefits{display:grid;gap:9px;margin:14px 0 0;padding:0}
+#pricing [data-pricing-panel="business"] .plan-benefits .team-size,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;
+  min-height:41px;margin:0;padding:8px 12px;border:1px solid #dce3ed;border-radius:10px;background:#f8f9fb;
+}
+#pricing [data-pricing-panel="business"] .plan-benefits .team-size strong,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size strong{color:#252a33;font-size:14px;font-weight:650;line-height:1.25;white-space:nowrap}
+#pricing [data-pricing-panel="business"] .plan-benefits .team-size span,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size span{color:#66758e;font-size:12px;font-weight:400;line-height:1.25;white-space:nowrap}
+#pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;gap:2px 8px;
+  min-height:62px;margin:0;padding:9px 12px;border:1px solid #cfe0ff;border-radius:10px;background:#f3f7ff;color:#2457b8;
+}
+#pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus>span,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus>span{grid-column:1;grid-row:1;color:#2457b8;font-size:12px;font-weight:700;line-height:1.25}
+#pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus strong,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus strong{grid-column:2;grid-row:1;color:#1769ff;font-size:20px;font-weight:700;line-height:1.1;white-space:nowrap}
+#pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus small,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus small{grid-column:1/-1;grid-row:2;margin:0;padding:0;background:none;color:#5e6b82;font-size:12px;font-weight:500;line-height:1.25}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus{background:#fff;border-color:#cfe0ff;color:#2457b8}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus strong{color:#1769ff}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus small{color:#5e6b82}
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-discount,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount{
+  display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;gap:6px;
+  min-height:38px;margin:0;padding:7px 10px;border:1px solid #dce3ed;border-radius:9px;background:#f8f9fb;color:#344052;font-size:13px;font-weight:400;line-height:1.25;
+}
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-was,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-was{color:#8993a1;font-size:11px;font-weight:400;white-space:nowrap;text-decoration:line-through}
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-discount strong,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount strong{color:#2457b8;font-size:14px;font-weight:650;white-space:nowrap}
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-label,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-label{color:#53647e;font-size:12px;font-weight:400;white-space:nowrap}
+#pricing [data-pricing-panel="business"] .plan-benefits .addon-percent,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-percent{color:#1769ff;font-size:12px;font-weight:650;white-space:nowrap}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount{background:#20242b;border-color:#3a414c;color:#d4dbe5}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount strong{color:#e4e8ee}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-label{color:#c5ccd7}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-percent{color:#a9c8ff}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size{background:#20242b;border-color:#3a414c}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size strong{color:#f0f2f5}
+#pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size span{color:#b6becb}
+#pricing [data-pricing-panel="business"] .plan-start,
+#pricing [data-pricing-panel="business"] .plan.pop .plan-start{min-height:46px;margin-top:18px;padding:10px 14px;border-radius:9px;font-size:14px;font-weight:600}
+@media(max-width:760px){
+  #pricing .pricing-switch{width:max-content;max-width:100%;margin:22px auto 0;gap:8px}
+  #pricing .pricing-switch button{min-width:120px;min-height:36px;padding:8px 12px;border-radius:8px;font-size:13px}
+  #pricing .business-promo{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:4px 9px;margin-bottom:12px;padding:12px;font-size:12px;line-height:1.4;text-align:left}
+  #pricing .business-promo-badge{grid-row:1/3;align-self:start;padding:5px 7px;font-size:9px}
+  #pricing .business-promo strong{font-size:12px;line-height:1.35}
+  #pricing .business-promo>span:last-child{font-size:11px;line-height:1.4}
+  #pricing [data-pricing-panel="business"] .plan-benefits{gap:5px;margin-top:10px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .team-size,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size{min-height:36px;padding:7px 9px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .team-size strong,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size strong{font-size:12px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .team-size span,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .team-size span{font-size:10px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus{min-height:50px;padding:8px 10px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus strong,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus strong{font-size:17px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .llm-bonus small,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .llm-bonus small{font-size:11px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .addon-discount,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-discount{gap:4px;padding:6px 8px;font-size:12px}
+  #pricing [data-pricing-panel="business"] .plan-benefits .addon-percent,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-benefits .addon-percent{font-size:11px}
+  #pricing [data-pricing-panel="business"] .plan-start,
+  #pricing [data-pricing-panel="business"] .plan.pop .plan-start{min-height:40px;margin-top:10px;padding:8px 11px;font-size:13px}
+}
