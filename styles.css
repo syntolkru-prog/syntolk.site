@@ -1157,5 +1157,7 @@ button,input,select,textarea{font-family:inherit}
   #pricing [data-pricing-panel="personal"] .plan-overview{display:grid;gap:3px;margin-top:9px}
   #pricing .personal-llm-overview{display:flex;align-items:center;gap:8px;color:#245da8;font-weight:650;line-height:1.4}
   #pricing .personal-llm-overview::before{content:"✓";color:#1769ff;font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+  #pricing .plan.pop .personal-llm-overview{color:#c4d7ff}
+  #pricing .plan.pop .personal-llm-overview::before{color:#a9c8ff}
   #pricing [data-pricing-panel="personal"] .features>.personal-llm-feature{display:none}
 }
