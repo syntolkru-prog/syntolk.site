@@ -824,3 +824,30 @@ button,input,select,textarea{font-family:inherit}
     transition: none !important;
   }
 }
+
+/* Pricing benefit labels and amounts follow the requested reading order. */
+#pricing .llm-bonus,#pricing .plan.pop .llm-bonus{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:5px 8px;min-height:44px;margin:14px 0 0;padding:8px 12px;border:1px solid #cfe0ff;border-radius:10px;background:#f3f7ff}
+#pricing .llm-bonus strong,#pricing .plan.pop .llm-bonus strong{grid-column:1;grid-row:1;font-size:17px;color:#1769ff}
+#pricing .llm-bonus span,#pricing .plan.pop .llm-bonus span{grid-column:2;grid-row:1;color:#2457b8;font-size:12px;font-weight:400;white-space:nowrap}
+#pricing .llm-bonus small,#pricing .plan.pop .llm-bonus small{grid-column:3;grid-row:1;display:inline-flex;align-items:center;justify-content:center;margin:0;padding:4px 7px;border-radius:999px;background:#e3edff;color:#1769ff;font-size:10px;font-weight:700;line-height:1;white-space:nowrap}
+#pricing .plan.pop .llm-bonus{background:#f3f7ff;border-color:#cfe0ff}
+#pricing .plan.pop .llm-bonus small{background:#dce9ff;color:#1759bd}
+#pricing .addon-discount,#pricing .plan.pop .addon-discount{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;gap:6px;width:100%;max-width:none;min-height:40px;margin:9px 0 0;padding:7px 10px;border:1px solid #dce3ed;border-radius:9px;background:#f8f9fb;color:#344052;font-size:13px;font-weight:400;line-height:1.25}
+#pricing .addon-was,#pricing .plan.pop .addon-was{color:#8993a1;font-size:11px;font-weight:400;white-space:nowrap;text-decoration:line-through}
+#pricing .addon-discount strong,#pricing .plan.pop .addon-discount strong{color:#2457b8;font-size:13px;font-weight:650;white-space:nowrap}
+#pricing .addon-label,#pricing .plan.pop .addon-label{min-width:0;color:#53647e;font-size:12px;font-weight:400;white-space:nowrap}
+#pricing .addon-percent,#pricing .plan.pop .addon-percent{padding:4px 6px;border-radius:999px;background:#e3edff;color:#1769ff;font-size:10px;font-weight:700;line-height:1;white-space:nowrap}
+#pricing .plan.pop .addon-discount{background:#20242b;border-color:#3a414c;color:#d4dbe5}
+#pricing .plan.pop .addon-was{color:#9ea7b4}
+#pricing .plan.pop .addon-discount strong{color:#e4e8ee}
+#pricing .plan.pop .addon-label{color:#c5ccd7}
+#pricing .plan.pop .addon-percent{background:#2e405c;color:#a9c8ff}
+@media(max-width:620px){
+  #pricing .llm-bonus,#pricing .plan.pop .llm-bonus{gap:4px;padding:7px 9px}
+  #pricing .llm-bonus strong,#pricing .plan.pop .llm-bonus strong{font-size:14px}
+  #pricing .llm-bonus span,#pricing .plan.pop .llm-bonus span,#pricing .addon-label,#pricing .plan.pop .addon-label{font-size:11px}
+  #pricing .llm-bonus small,#pricing .plan.pop .llm-bonus small,#pricing .addon-percent,#pricing .plan.pop .addon-percent{font-size:9px;padding:4px 5px}
+  #pricing .addon-discount,#pricing .plan.pop .addon-discount{gap:4px;padding:6px 7px;font-size:12px}
+  #pricing .addon-was,#pricing .plan.pop .addon-was{font-size:10px}
+  #pricing .addon-discount strong,#pricing .plan.pop .addon-discount strong{font-size:12px}
+}
