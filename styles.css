@@ -1190,3 +1190,17 @@ button,input,select,textarea{font-family:inherit}
   #pricing .pricing-payment-note{margin:13px 0 3px;font-size:13px;line-height:1.5}
   #pricing .pricing-note{margin-top:0}
 }
+
+/* Use the same clean white badge across all six personal and business plans. */
+#pricing .pricing-panel .plan .plan-badge,
+#pricing .pricing-panel .plan.pop .plan-badge,
+#pricing .pricing-panel .plan:hover .plan-badge,
+#pricing .pricing-panel .plan:focus-visible .plan-badge,
+#pricing [data-pricing-panel="business"] .plan:nth-child(1) .plan-badge,
+#pricing [data-pricing-panel="business"] .plan:nth-child(2) .plan-badge,
+#pricing [data-pricing-panel="business"] .plan:nth-child(3) .plan-badge{
+  background:#fff;
+  color:#596372;
+  border:1px solid #e3e6eb;
+  box-shadow:none;
+}
