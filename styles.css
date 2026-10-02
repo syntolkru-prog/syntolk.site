@@ -1176,3 +1176,15 @@ button,input,select,textarea{font-family:inherit}
   #pricing .section-sub{font-size:clamp(29px,8.3vw,36px);line-height:1.12;letter-spacing:-.045em}
   #pricing .section-sub{margin:0}
 }
+
+/* Keep the payment details clearly readable beneath the LLM usage note. */
+#pricing .pricing-payment-note{
+  margin-top:6px;
+  color:#454d58;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.5;
+}
+@media(max-width:760px){
+  #pricing .pricing-payment-note{font-size:13px;line-height:1.5}
+}
