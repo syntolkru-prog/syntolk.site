@@ -713,7 +713,7 @@ const dots = aboutRoot.querySelector('#assistant-dots');
 const play = aboutRoot.querySelector('#assistant-play');
 const progressBar = aboutRoot.querySelector('#assistant-progress');
 let index = 0;
-const AUTO_INTERVAL = 6000;
+const AUTO_INTERVAL = 18000;
 let autoplay = true;
 let hoverPaused = false;
 let touchPaused = false;
@@ -773,7 +773,7 @@ function scheduleAuto() {
   raf = null;
 
   // Any hover/touch interaction pauses the slideshow without changing
-  // the user's Auto/Pause preference. Leaving the screen starts a fresh 6 s.
+  // the user's Auto/Pause preference. Leaving the screen starts a fresh 18 s.
   if (!autoplay || hoverPaused || touchPaused || !storyVisible) {
     progressBar.style.width = '0%';
     return;
@@ -836,7 +836,7 @@ aboutRoot.addEventListener('keydown', e=>{
 });
 
 // Desktop: merely moving the pointer onto the laptop screen pauses Auto.
-// No click is required. Leaving the screen always starts a NEW full 6-second timer.
+// No click is required. Leaving the screen always starts a NEW full 18-second timer.
 screenEl.addEventListener('mouseenter', () => {
   hoverPaused = true;
   clearTimeout(timer);
@@ -856,7 +856,7 @@ screenEl.addEventListener('mouseleave', () => {
 scrollArea.addEventListener('wheel', () => {}, {passive:true});
 
 // Touch devices have no hover. A touch temporarily pauses the slideshow;
-// after the finger is lifted, a fresh 6-second timer starts.
+// after the finger is lifted, a fresh 18-second timer starts.
 scrollArea.addEventListener('touchstart',e=>{
   touchPaused = true;
   clearTimeout(timer);
