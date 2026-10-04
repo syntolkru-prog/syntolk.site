@@ -17,10 +17,10 @@
 <header class="site-header">
   <div class="nav wrap">
     <a class="brand" href="#main" aria-label="Syntolk — главная"><img class="brand-logo" src="images/syntolk-mark.png" alt="" aria-hidden="true">Syntolk</a>
-    <nav class="desktop-nav" aria-label="Основная навигация"><a href="#cases">Для кого</a><a href="#how">Как это работает</a><a href="#pricing">Тарифы</a></nav>
-    <div class="nav-actions"><a class="login" href="https://platform.syntolk.ru/">Войти</a><a class="button button-small" href="https://platform.syntolk.ru/register">Начать бесплатно</a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Открыть меню"><span></span><span></span></button></div>
+    <nav class="desktop-nav" aria-label="Основная навигация"><a href="#cases">Для кого</a><a href="#syntolk-about">Как это работает</a><a href="#pricing">Тарифы</a></nav>
+    <div class="nav-actions"><a class="login" href="https://platform.syntolk.ru/">Войти</a><a class="button button-small" href="https://platform.syntolk.ru/register" aria-label="Начать бесплатно"><span class="nav-start-long">Начать бесплатно</span><span class="nav-start-short" aria-hidden="true">Начать</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Открыть меню"><span></span><span></span></button></div>
   </div>
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#cases">Для кого</a><a href="#how">Как это работает</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы и ответы</a><a href="https://platform.syntolk.ru/">Войти в Syntolk ↗</a></nav>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#cases">Для кого</a><a href="#syntolk-about">Как это работает</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы и ответы</a><a href="https://platform.syntolk.ru/">Войти в Syntolk ↗</a></nav>
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
@@ -37,7 +37,7 @@
             <span class="sr-only" id="question-accessibility">Какие риски для заказчика есть в договоре? Какие условия изменились в новой версии договора?</span>
           </div>
         </div>
-        <div class="topic-picker"><div class="topics" role="tablist" aria-label="Сферы применения Syntolk"><button class="topic" id="topic-legal" role="tab" aria-selected="true" aria-controls="question-panel" tabindex="0" data-topic="0">Юристы</button><button class="topic" id="topic-learning" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="1">Учёба</button><button class="topic" id="topic-medicine" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="2">Медицина</button><button class="topic" id="topic-construction" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="3">Строительство</button><button class="topic" id="topic-logistics" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="4">Логистика и закупки</button><button class="topic" id="topic-knowledge" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="5">Бизнес и руководство</button><button class="topic" id="topic-finance" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="6">Финансы и аудит</button></div></div>
+        <div class="topic-picker"><div class="topics" role="tablist" aria-label="Сферы применения Syntolk"><button class="topic" id="topic-legal" role="tab" aria-selected="true" aria-controls="question-panel" tabindex="0" data-topic="0">Юристы</button><button class="topic" id="topic-learning" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="1">Учёба</button><button class="topic" id="topic-medicine" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="2">Медицина</button><button class="topic" id="topic-construction" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="3">Строительство</button><button class="topic" id="topic-logistics" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="4">Логистика и закупки</button><button class="topic" id="topic-knowledge" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="5">Бизнес и руководство</button><button class="topic" id="topic-finance" role="tab" aria-selected="false" aria-controls="question-panel" tabindex="-1" data-topic="6">Финансы и аудит</button></div><button class="question-play" id="question-play" type="button" aria-label="Приостановить смену вопросов" aria-pressed="false"><span class="question-play-icon" aria-hidden="true">Ⅱ</span><span id="question-play-text">Пауза</span></button></div>
       </div>
       <div class="hero-actions"><a class="button" href="https://platform.syntolk.ru/register">Попробовать бесплатно</a></div>
     </div>
@@ -74,7 +74,7 @@
           </div>
           <div class="controls">
             <button class="navbtn" id="assistant-prev" aria-label="Предыдущий экран">←</button>
-            <div class="counter" id="assistant-counter">1 / 9</div>
+              <div class="counter" id="assistant-counter">1 / 9</div>
             <div class="dots" id="assistant-dots" aria-label="Навигация по экранам"></div>
             <button class="playbtn paused" id="assistant-play" aria-label="Пауза автоматического показа"><span class="play-icon"></span><span id="assistant-play-text">Авто</span></button>
             <button class="navbtn" id="assistant-next" aria-label="Следующий экран">→</button>
@@ -107,7 +107,8 @@
     <div class="pricing-panels">
       <div class="pricing-panel" data-pricing-panel="personal">
         <div class="pricing-grid">
-          <article class="plan pop">
+          <article class="plan">
+            <div class="plan-badge">Личные задачи</div>
             <h3>Базовый</h3>
             <div class="price"><span class="currency">990 ₽</span></div>
             <div class="per">в месяц</div>
@@ -119,8 +120,9 @@
               <div>500 МБ хранилища</div>
               <div>300 МБ индексации/мес</div>
             </div>
-          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
-          <article class="plan">
+          </details><a class="plan-start" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          <article class="plan pop">
+            <div class="plan-badge">Оптимальный выбор</div>
             <h3>Стандарт</h3>
             <div class="price"><span class="currency">1 990 ₽</span></div>
             <div class="per">в месяц</div>
@@ -132,8 +134,9 @@
               <div>1.1 ГБ хранилища</div>
               <div>660 МБ индексации/мес</div>
             </div>
-          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          </details><a class="plan-start" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
           <article class="plan">
+            <div class="plan-badge">Максимум лимитов</div>
             <h3>Максимум</h3>
             <div class="price"><span class="currency">3 990 ₽</span></div>
             <div class="per">в месяц</div>
@@ -145,7 +148,7 @@
               <div>2.4 ГБ хранилища</div>
               <div>1.4 ГБ индексации/мес</div>
             </div>
-          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          </details><a class="plan-start" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
         </div>
       </div>
 
@@ -156,7 +159,7 @@
             <h3>Старт</h3>
             <div class="price"><span class="currency">10 000 ₽</span></div>
             <div class="per">в месяц</div>
-            <div class="plan-benefits" aria-label="Бонусы и стоимость команды">
+            <div class="plan-benefits" aria-label="Выгода тарифа">
               <div class="team-size"><strong>10 сотрудников</strong><span>≈ 1 000 ₽ / сотрудника</span></div>
               <div class="llm-bonus"><strong>12 000 ₽</strong><span>На LLM-баланс</span><small>включая бонус +20%</small></div>
               <div class="addon-discount"><del class="addon-was">400 ₽</del><strong>300 ₽</strong><span class="addon-label">Дополнения</span><span class="addon-percent">−25%</span></div>
@@ -167,7 +170,6 @@
               <div>Файлы до 100 МБ</div>
               <div>6.6 ГБ хранилища</div>
               <div>4 ГБ индексации/мес</div>
-
             </div>
           </details><a class="plan-start" href="https://platform.syntolk.ru/register">Выбрать Старт <span aria-hidden="true">↗</span></a></article>
           <article class="plan pop">
@@ -175,7 +177,7 @@
             <h3>Бизнес</h3>
             <div class="price"><span class="currency">20 000 ₽</span></div>
             <div class="per">в месяц</div>
-            <div class="plan-benefits" aria-label="Бонусы и стоимость команды">
+            <div class="plan-benefits" aria-label="Выгода тарифа">
               <div class="team-size"><strong>50 сотрудников</strong><span>≈ 400 ₽ / сотрудника</span></div>
               <div class="llm-bonus"><strong>26 000 ₽</strong><span>На LLM-баланс</span><small>включая бонус +30%</small></div>
               <div class="addon-discount"><del class="addon-was">400 ₽</del><strong>200 ₽</strong><span class="addon-label">Дополнения</span><span class="addon-percent">−50%</span></div>
@@ -186,7 +188,6 @@
               <div>Файлы до 100 МБ</div>
               <div>14.5 ГБ хранилища</div>
               <div>8.8 ГБ индексации/мес</div>
-
             </div>
           </details><a class="plan-start" href="https://platform.syntolk.ru/register">Выбрать Бизнес <span aria-hidden="true">↗</span></a></article>
           <article class="plan">
@@ -194,7 +195,7 @@
             <h3>Про</h3>
             <div class="price"><span class="currency">30 000 ₽</span></div>
             <div class="per">в месяц</div>
-            <div class="plan-benefits" aria-label="Бонусы и стоимость команды">
+            <div class="plan-benefits" aria-label="Выгода тарифа">
               <div class="team-size"><strong>100 сотрудников</strong><span>≈ 300 ₽ / сотрудника</span></div>
               <div class="llm-bonus"><strong>45 000 ₽</strong><span>На LLM-баланс</span><small>включая бонус +50%</small></div>
               <div class="addon-discount"><del class="addon-was">400 ₽</del><strong>100 ₽</strong><span class="addon-label">Дополнения</span><span class="addon-percent">−75%</span></div>
@@ -205,7 +206,6 @@
               <div>Файлы до 100 МБ</div>
               <div>23.2 ГБ хранилища</div>
               <div>14.1 ГБ индексации/мес</div>
-
             </div>
           </details><a class="plan-start" href="https://platform.syntolk.ru/register">Выбрать Про <span aria-hidden="true">↗</span></a></article>
         </div>
@@ -336,9 +336,9 @@
           </div>
         </div>
       </div>
-      <div class="af-permission-dialog" hidden>
+      <dialog class="af-permission-dialog" aria-labelledby="af-permission-title" hidden>
         <div class="af-permission-backdrop" data-af-permission-close></div>
-        <div class="af-permission-panel" role="dialog" aria-modal="true" aria-labelledby="af-permission-title">
+        <div class="af-permission-panel">
           <button class="af-permission-close" type="button" aria-label="Закрыть">×</button>
           <h4 id="af-permission-title">Управление правами доступа к папке «<span class="af-dialog-folder">файлы</span>»</h4>
           <p class="af-dialog-sub">Добавить права доступа</p>
@@ -353,7 +353,7 @@
           <a class="af-dialog-add" href="https://platform.syntolk.ru/register">Добавить</a>
           <div class="af-dialog-current"><b>Текущие права доступа</b><span class="af-dialog-status">Нет назначенных прав доступа. Добавьте права доступа для пользователей.</span></div>
         </div>
-      </div>
+      </dialog>
     </div>
     <div class="af-copy">
       <h3>Организуйте папки и доступы под свои процессы</h3>

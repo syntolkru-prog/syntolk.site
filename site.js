@@ -41,9 +41,18 @@
   let selected = 0, variant = 0, mode = 'idle', timer = 0, frame = 0;
   let heroVisible = true, pointer = null, suppressClickUntil = 0;
   let litTab = null, measuredWidth = 0, opacity = 1, nextBeat = 0;
+  let questionAutoplay = !reduced.matches;
+  const questionPlay = $('#question-play');
   const modulo = (value, size) => ((value % size) + size) % size;
   const logicalIndex = virtual => modulo(virtual, sectorCount);
-  const canRun = () => !document.hidden && heroVisible && !$('#case-dialog').open;
+  const isReadingQuestion = () => rail.contains(document.activeElement) || panel.contains(document.activeElement);
+  const canRun = () => questionAutoplay && !isReadingQuestion() && !document.hidden && heroVisible && !$('#case-dialog').open;
+  function syncQuestionPlay() {
+    questionPlay.setAttribute('aria-pressed', String(!questionAutoplay));
+    questionPlay.setAttribute('aria-label', questionAutoplay ? 'Приостановить смену вопросов' : 'Включить смену вопросов');
+    $('#question-play-text').textContent = questionAutoplay ? 'Пауза' : 'Авто';
+    questionPlay.querySelector('.question-play-icon').textContent = questionAutoplay ? 'Ⅱ' : '▶';
+  }
 
   function targetFor(virtual) {
     const turn = Math.floor(virtual / sectorCount);
@@ -138,17 +147,17 @@
       if (!canRun() || mode !== 'idle') return;
       const began = nextBeat;
       nextBeat += QUESTION_INTERVAL;
-      transitionTo(variant === 0 ? selected : selected + 1, variant === 0 ? 1 : 0, began);
+      transitionTo(variant === 0 ? selected : selected + 1, variant === 0 ? 1 : 0, began, true);
     }, Math.max(0, nextBeat - now));
   }
-  function transitionTo(virtual, nextVariant, began = performance.now()) {
+  function transitionTo(virtual, nextVariant, began = performance.now(), automatic = false) {
     stopMotion();
     mode = 'transition';
     const start = world, target = targetFor(virtual), startOpacity = opacity;
     const duration = reduced.matches ? 0 : TRANSITION_DURATION;
     let swapped = false;
     const tick = now => {
-      if (!canRun()) { pauseCarousel(); return; }
+      if (document.hidden || $('#case-dialog').open || (automatic && !canRun())) { pauseCarousel(); return; }
       const progress = duration ? Math.max(0, Math.min(1, (now - began) / duration)) : 1;
       const eased = smoothstep(progress);
       world = start + (target - start) * eased;
@@ -199,7 +208,7 @@
     mode = 'inertia';
     hideQuestionForMotion();
     const coast = now => {
-      if (!canRun()) { pauseCarousel(); return; }
+      if (document.hidden || $('#case-dialog').open) { pauseCarousel(); return; }
       const progress = Math.min(1, Math.max(0, (now - began) / duration));
       // Quintic Hermite curve: it continues the release momentum, then reaches
       // both zero speed and zero acceleration at the center. That soft tail is
@@ -318,8 +327,8 @@
     const rect = tab.getBoundingClientRect();
     const railRect = rail.getBoundingClientRect();
     const target = world + rect.left + rect.width / 2 - railRect.left - rail.clientWidth / 2;
-    choose(nearestVirtual(target));
     rail.focus({preventScroll: true});
+    choose(nearestVirtual(target));
   });
   rail.addEventListener('keydown', event => {
     let target;
@@ -333,11 +342,24 @@
     choose(target);
     rail.focus({preventScroll: true});
   });
+  questionPlay.addEventListener('click', () => {
+    questionAutoplay = !questionAutoplay;
+    pauseCarousel();
+    syncQuestionPlay();
+    schedule();
+  });
+  [rail, panel].forEach(element => {
+    element.addEventListener('focusin', pauseCarousel);
+    element.addEventListener('focusout', () => queueMicrotask(schedule));
+  });
+  syncQuestionPlay();
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) pauseCarousel();
     else schedule();
   });
   reduced.addEventListener('change', () => {
+    if (reduced.matches) questionAutoplay = false;
+    syncQuestionPlay();
     pauseCarousel();
     schedule();
     reserveQuestionSpace();
@@ -482,6 +504,11 @@
   document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && !mobileNav.hidden) closeMenu(true); });
   matchMedia('(min-width:801px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+  // Menu and sticky controls use the actual header height, including enlarged text.
+  const nav = $('.site-header .nav');
+  const syncNavHeight = () => document.documentElement.style.setProperty('--nav-height', Math.ceil(nav.getBoundingClientRect().height) + 'px');
+  new ResizeObserver(syncNavHeight).observe(nav);
+  syncNavHeight();
 
   // Mobile gallery: four complete cards, a blurred preview, and an explicit reveal.
   const casesSection = $('#cases');
@@ -714,14 +741,19 @@ const play = aboutRoot.querySelector('#assistant-play');
 const progressBar = aboutRoot.querySelector('#assistant-progress');
 let index = 0;
 const AUTO_INTERVAL = 18000;
-let autoplay = true;
+const reducedAssistantMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const touchPresentation = matchMedia('(hover: none) and (pointer: coarse)');
+let autoplay = !reducedAssistantMotion.matches && !touchPresentation.matches;
 let hoverPaused = false;
 let touchPaused = false;
+let focusPaused = false;
+let keyboardInteraction = false;
 let timer = null;
 let raf = null;
 let startedAt = 0;
 let duration = 0;
 let revealTimers = [];
+let renderTimer = null;
 let touchStartX = null;
   let storyVisible = !('IntersectionObserver' in window);
 
@@ -774,7 +806,7 @@ function scheduleAuto() {
 
   // Any hover/touch interaction pauses the slideshow without changing
   // the user's Auto/Pause preference. Leaving the screen starts a fresh 18 s.
-  if (!autoplay || hoverPaused || touchPaused || !storyVisible) {
+  if (!autoplay || hoverPaused || touchPaused || focusPaused || document.hidden || !storyVisible) {
     progressBar.style.width = '0%';
     return;
   }
@@ -791,8 +823,10 @@ function scheduleAuto() {
 
 function render() {
   clearTimers();
+  clearTimeout(renderTimer);
   content.classList.add('is-changing');
-  setTimeout(() => {
+  renderTimer = setTimeout(() => {
+    renderTimer = null;
     content.innerHTML = SCREENS[index];
     scrollArea.scrollTo({top:0,behavior:'instant'});
     counter.textContent = `${index + 1} / ${SCREENS.length}`;
@@ -822,7 +856,7 @@ function go(i, manual=false) {
 function syncPlay() {
   play.classList.toggle('paused', autoplay);
   play.setAttribute('aria-label', autoplay ? 'Пауза автоматического показа' : 'Включить автоматический показ');
-  aboutRoot.querySelector('#assistant-play-text').textContent = autoplay ? 'Авто' : 'Пауза';
+  aboutRoot.querySelector('#assistant-play-text').textContent = autoplay ? 'Пауза' : 'Авто';
 }
 
 prev.addEventListener('click',()=>go(index-1,true));
@@ -835,9 +869,9 @@ aboutRoot.addEventListener('keydown', e=>{
   if (e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)) {e.preventDefault();autoplay=!autoplay;syncPlay();scheduleAuto();}
 });
 
-// Desktop: merely moving the pointer onto the laptop screen pauses Auto.
-// No click is required. Leaving the screen always starts a NEW full 18-second timer.
-screenEl.addEventListener('mouseenter', () => {
+// Only a real mouse hover pauses Auto; touch compatibility events must not latch it.
+screenEl.addEventListener('pointerenter', event => {
+  if (event.pointerType !== 'mouse' || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   hoverPaused = true;
   clearTimeout(timer);
   cancelAnimationFrame(raf);
@@ -846,7 +880,8 @@ screenEl.addEventListener('mouseenter', () => {
   progressBar.style.width = '0%';
 });
 
-screenEl.addEventListener('mouseleave', () => {
+screenEl.addEventListener('pointerleave', event => {
+  if (event.pointerType !== 'mouse') return;
   hoverPaused = false;
   scheduleAuto();
 });
@@ -882,6 +917,20 @@ scrollArea.addEventListener('touchcancel',()=>{
   touchPaused = false;
   scheduleAuto();
 },{passive:true});
+
+document.addEventListener('keydown', () => { keyboardInteraction = true; }, true);
+document.addEventListener('pointerdown', () => {
+  keyboardInteraction = false;
+  if (focusPaused) { focusPaused = false; scheduleAuto(); }
+}, true);
+scrollArea.addEventListener('focus', () => { focusPaused = keyboardInteraction; scheduleAuto(); });
+scrollArea.addEventListener('blur', () => { focusPaused = false; scheduleAuto(); });
+reducedAssistantMotion.addEventListener('change', () => {
+  if (reducedAssistantMotion.matches) autoplay = false;
+  syncPlay();
+  scheduleAuto();
+});
+document.addEventListener('visibilitychange', scheduleAuto);
 
 
 if ('IntersectionObserver' in window) {
@@ -997,12 +1046,15 @@ render();
       status.textContent = 'Нет назначенных прав доступа. Добавьте права доступа для пользователей.';
       renderRights();
       permissionDialog.hidden = false;
+      permissionDialog.showModal();
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       closeButton?.focus();
     };
 
     const closePermissionDialog = () => {
+      if (!permissionDialog.open) return;
+      permissionDialog.close();
       permissionDialog.hidden = true;
       document.body.style.overflow = previousOverflow;
       lastTrigger?.focus();
@@ -1028,8 +1080,20 @@ render();
 
     closeButton?.addEventListener('click', closePermissionDialog);
     closeBackdrop?.addEventListener('click', closePermissionDialog);
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && !permissionDialog.hidden) closePermissionDialog();
+    permissionDialog.addEventListener('keydown', event => {
+      if (event.key !== 'Tab') return;
+      const focusable = [...permissionDialog.querySelectorAll('button, a[href], input, select, textarea, [tabindex]')]
+        .filter(element => !element.disabled && element.tabIndex >= 0 && element.getClientRects().length);
+      const first = focusable[0];
+      if (!first) return;
+      event.preventDefault();
+      const current = focusable.indexOf(document.activeElement);
+      const next = (current + (event.shiftKey ? -1 : 1) + focusable.length) % focusable.length;
+      focusable[next].focus();
+    });
+    permissionDialog.addEventListener('cancel', event => {
+      event.preventDefault();
+      closePermissionDialog();
     });
   }
 
