@@ -586,36 +586,41 @@
       if(!root)return;
       const pages=[...root.querySelectorAll('.as-page')];
       const body=root.querySelector('#as-screen-body');
+      const screen=root.querySelector('.as-screen');
       const dots=root.querySelector('.as-dots');
       const count=root.querySelector('#as-count');
       const auto=root.querySelector('#as-auto');
-      let current=0,playing=false,timer=null;
+      let current=0,playing=false,timer=null,inView=false;
       const dotButtons=pages.map((page,i)=>{
         const button=document.createElement('button');
         button.className='as-dot';button.setAttribute('aria-label',`${i+1}. ${page.dataset.title}`);
         button.setAttribute('aria-current',i===0?'true':'false');button.innerHTML='<span></span>';
-        button.addEventListener('click',()=>show(i,true));dots.append(button);return button;
+        button.addEventListener('click',()=>show(i));dots.append(button);return button;
       });
-      function schedule(){clearTimeout(timer);timer=null;if(playing&&!document.hidden)timer=setTimeout(()=>show(current+1),25000);}
+      function schedule(){
+        clearTimeout(timer);timer=null;
+        if(playing&&inView&&!document.hidden)timer=setTimeout(()=>show(current+1),25000);
+      }
       function setPlaying(value){playing=value;auto.setAttribute('aria-pressed',String(value));auto.setAttribute('aria-label',value?'Остановить автоматическое переключение':'Включить автоматическое переключение каждые 25 секунд');auto.querySelector('use').setAttribute('href',value?'#as-pause':'#as-play');schedule();}
-      function show(index,userAction=false){
-        if(userAction)setPlaying(false);
+      function show(index){
         current=(index+pages.length)%pages.length;
         pages.forEach((page,i)=>{page.hidden=i!==current;});
         dotButtons.forEach((button,i)=>button.setAttribute('aria-current',i===current?'true':'false'));
         body.scrollTo({top:0,behavior:'instant'});count.textContent=`${current+1} / ${pages.length}`;
         schedule();
       }
-      root.querySelector('#as-prev').addEventListener('click',()=>show(current-1,true));
-      root.querySelector('#as-next').addEventListener('click',()=>show(current+1,true));
+      root.querySelector('#as-prev').addEventListener('click',()=>show(current-1));
+      root.querySelector('#as-next').addEventListener('click',()=>show(current+1));
       auto.addEventListener('click',()=>setPlaying(!playing));
       document.addEventListener('visibilitychange',schedule);
-      body.addEventListener('wheel',()=>{if(playing)setPlaying(false);},{passive:true});
-      body.addEventListener('pointerdown',()=>{if(playing)setPlaying(false);},{passive:true});
-      root.querySelector('.as-screen').addEventListener('keydown',event=>{
+      // Reading and manual navigation restart the 25-second interval without disabling Auto.
+      body.addEventListener('wheel',schedule,{passive:true});
+      body.addEventListener('pointerdown',schedule,{passive:true});
+      body.addEventListener('scroll',schedule,{passive:true});
+      screen.addEventListener('keydown',event=>{
         if(event.target.closest('[role=tablist]'))return;
-        if(event.key==='ArrowRight'){event.preventDefault();show(current+1,true);}
-        if(event.key==='ArrowLeft'){event.preventDefault();show(current-1,true);}
+        if(event.key==='ArrowRight'){event.preventDefault();show(current+1);}
+        if(event.key==='ArrowLeft'){event.preventDefault();show(current-1);}
       });
       let touchStart=null;
       body.addEventListener('touchcancel',()=>{touchStart=null;},{passive:true});
@@ -623,11 +628,18 @@
       body.addEventListener('touchend',event=>{
         if(!touchStart||touchStart.target.closest('button,a')){touchStart=null;return;}
         const t=event.changedTouches[0],dx=t.clientX-touchStart.x,dy=t.clientY-touchStart.y;
-        if(Math.abs(dx)>75&&Math.abs(dx)>Math.abs(dy)*1.8)show(current+(dx<0?1:-1),true);
+        if(Math.abs(dx)>75&&Math.abs(dx)>Math.abs(dy)*1.8)show(current+(dx<0?1:-1));
         touchStart=null;
       },{passive:true});
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(entries=>{
+          const visible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.1;
+          if(visible!==inView){inView=visible;schedule();}
+        },{threshold:.1}).observe(screen);
+      }else inView=true;
       const start=Number(new URLSearchParams(location.search).get('assistant-screen'));
-      if(Number.isInteger(start)&&start>=1&&start<=pages.length)show(start-1);
+      show(Number.isInteger(start)&&start>=1&&start<=pages.length?start-1:0);
+      setPlaying(true);
     })();
 
 /* Interactive controls from the supplied account demo, scoped to this section. */
