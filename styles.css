@@ -133,6 +133,20 @@ to{opacity:1;transform:none}
 #syntolk-about .assistant-showcase .as-icon svg{width:18px;height:18px}
 #syntolk-about .assistant-showcase .as-quiet-line{margin-top:14px;font-size:15px;line-height:1.5;color:#505865}
 #syntolk-about .assistant-showcase .as-quiet-line strong{color:var(--ink);font-weight:550}
+#syntolk-about .assistant-showcase .as-overview-layout{display:grid;grid-template-columns:1.08fr 1fr;align-items:start;gap:20px}
+#syntolk-about .assistant-showcase .as-overview-copy p{font-size:16px;line-height:1.55;color:#505865}
+#syntolk-about .assistant-showcase .as-overview-copy .as-overview-proof{margin-top:16px;padding:15px 16px;border-radius:12px;background:var(--tint);color:#334374}
+#syntolk-about .assistant-showcase .as-overview-proof strong{display:block;margin-bottom:5px;font-weight:550;color:var(--ink)}
+#syntolk-about .assistant-showcase .as-overview-sources h3{font-size:16px;line-height:1.4;margin-bottom:10px}
+#syntolk-about .assistant-showcase .as-overview-sources ul{list-style:disc;padding-left:18px;margin:0}
+#syntolk-about .assistant-showcase .as-overview-sources li{padding:6px 0 6px 2px;font-size:15px;line-height:1.5;color:#505865}
+#syntolk-about .assistant-showcase .as-overview-sources li+li{border-top:1px solid #edf0f4}
+#syntolk-about .assistant-showcase .as-overview-sources li::marker{font-size:10px;color:#768397}
+@media(max-width:760px){
+#syntolk-about .assistant-showcase .as-overview-layout{grid-template-columns:1fr;gap:16px}
+#syntolk-about .assistant-showcase .as-overview-copy .as-overview-proof{margin-top:14px;padding:14px}
+#syntolk-about .assistant-showcase .as-overview-sources li{font-size:16px;padding-block:7px}
+}
 #syntolk-about .assistant-showcase .as-benefit{display:flex;align-items:flex-start;gap:10px;border-radius:12px;padding:12px 15px;background:var(--tint);color:#334374;font-size:15px;line-height:1.5;margin-top:14px}
 #syntolk-about .assistant-showcase .as-benefit svg{margin-top:3px;width:18px;height:18px;color:var(--blue)}
 #syntolk-about .assistant-showcase .as-benefit strong{font-weight:550}
