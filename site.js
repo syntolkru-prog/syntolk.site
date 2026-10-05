@@ -591,6 +591,7 @@
       const count=root.querySelector('#as-count');
       const auto=root.querySelector('#as-auto');
       let current=0,playing=false,timer=null,inView=false;
+      let hovering=window.matchMedia('(hover: hover) and (pointer: fine)').matches&&screen.matches(':hover');
       const dotButtons=pages.map((page,i)=>{
         const button=document.createElement('button');
         button.className='as-dot';button.setAttribute('aria-label',`${i+1}. ${page.dataset.title}`);
@@ -599,7 +600,7 @@
       });
       function schedule(){
         clearTimeout(timer);timer=null;
-        if(playing&&inView&&!document.hidden)timer=setTimeout(()=>show(current+1),25000);
+        if(playing&&inView&&!hovering&&!document.hidden)timer=setTimeout(()=>show(current+1),25000);
       }
       function setPlaying(value){playing=value;auto.setAttribute('aria-pressed',String(value));auto.setAttribute('aria-label',value?'Остановить автоматическое переключение':'Включить автоматическое переключение каждые 25 секунд');auto.querySelector('use').setAttribute('href',value?'#as-pause':'#as-play');schedule();}
       function show(index){
@@ -613,6 +614,12 @@
       root.querySelector('#as-next').addEventListener('click',()=>show(current+1));
       auto.addEventListener('click',()=>setPlaying(!playing));
       document.addEventListener('visibilitychange',schedule);
+      function setHover(value,event){
+        if(event.pointerType==='touch')return;
+        hovering=value;schedule();
+      }
+      screen.addEventListener('pointerenter',event=>setHover(true,event));
+      screen.addEventListener('pointerleave',event=>setHover(false,event));
       // Reading and manual navigation restart the 25-second interval without disabling Auto.
       body.addEventListener('wheel',schedule,{passive:true});
       body.addEventListener('pointerdown',schedule,{passive:true});
