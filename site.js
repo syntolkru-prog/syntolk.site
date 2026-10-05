@@ -581,345 +581,54 @@
 })();
 
 
-(() => {
-  const aboutRoot = document.getElementById('syntolk-about');
-  if (!aboutRoot) return;
-
-// One topic per screen, with a shared composition for short and long pages.
-const ASSISTANT_PAGES = [
-  {
-    topic: 'Syntolk Assistant',
-    title: 'Помощник по вашим документам',
-    intro: 'Загрузите договоры, отчёты или инструкции и задайте вопрос обычными словами. Syntolk использует эти материалы для поиска, анализа и подготовки ответа.',
-    points: [
-      ['Договоры и правила', 'Помогает разобраться в обязательствах, сроках и внутренних процедурах.'],
-      ['Технические материалы', 'Работает с заданиями, спецификациями и документацией по проекту.'],
-      ['Отчёты и переписка', 'Собирает сведения из разных файлов в ответ на вашу задачу.']
-    ],
-    example: ['Пример запроса', 'Какие документы нужны для приёмки работ по этому проекту?', 'В ответе — требования из договора, технического задания и регламента, которые вы загрузили.']
-  },
-  {
-    topic: 'Источники',
-    title: 'Ответ можно проверить',
-    intro: 'Вместе с ответом Syntolk может показать документы и фрагменты, на которые он опирается. Откройте источник и проверьте важный вывод перед использованием.',
-    points: [
-      ['Название документа', 'Посмотрите, из какого файла взята информация.'],
-      ['Подтверждающий фрагмент', 'Прочитайте пункт или раздел, на котором основан ответ.'],
-      ['Контекст', 'Проверьте дату, версию и условия, к которым относится формулировка.']
-    ],
-    example: ['Пример проверки', 'Срок оплаты — 10 рабочих дней после подписания акта.', 'По ссылке на фрагмент можно проверить и сам срок, и событие, от которого он отсчитывается.']
-  },
-  {
-    topic: 'Анализ условий',
-    title: 'Условия читаются вместе',
-    intro: 'Для ответа иногда недостаточно одного найденного пункта. Syntolk сопоставляет его с другими положениями и может продолжить поиск по ссылкам внутри документа.',
-    points: [
-      ['К чему относится вопрос', 'Учитывает нужную компанию, договор, период или версию.'],
-      ['На что ссылается пункт', 'Ищет связанные разделы, приложения и документы.'],
-      ['Какие есть ограничения', 'Проверяет условия применения, оговорки и исключения.']
-    ],
-    example: ['Пример запроса', 'Можно ли расторгнуть договор без штрафа?', 'Для ответа нужно сопоставить условия расторжения, срок уведомления и ответственность сторон.']
-  },
-  {
-    topic: 'Недостающие данные',
-    title: 'Понятно, каких данных не хватает',
-    intro: 'Если документы дают ответ только на часть вопроса, Syntolk отделяет найденные сведения от того, что пока нельзя подтвердить.',
-    points: [
-      ['Что удалось подтвердить', 'Показывает сведения, которые есть в загруженных материалах.'],
-      ['Что осталось открытым', 'Указывает, на какую часть вопроса данных недостаточно.'],
-      ['Что проверить дальше', 'Отмечает недостающий документ или условие, которое нужно уточнить.']
-    ],
-    example: ['Пример ситуации', 'Цена есть в договоре, а условия оплаты — в незагруженном приложении.', 'Для полного ответа нужно это приложение. Ассистент укажет, каких сведений не хватает.']
-  },
-  {
-    topic: 'Точность формулировок',
-    title: 'Смысл формулировок сохраняется',
-    intro: 'Одно слово может изменить смысл условия. При анализе Syntolk учитывает, что именно написано: право, обязанность, рекомендация или требование с оговоркой.',
-    points: [
-      ['«Вправе» и «обязан»', 'Право совершить действие отличается от обязанности его выполнить.'],
-      ['«До 30 дней» и «30 дней»', 'Предельный срок отличается от конкретно указанного срока.'],
-      ['Правило и исключение', 'Условие применения остаётся частью вывода.']
-    ],
-    example: ['Пример формулировки', 'Заказчик вправе запросить дополнительные документы.', 'Это право заказчика. Из этой фразы не следует, что он обязан запрашивать документы каждый раз.']
-  },
-  {
-    topic: 'Расхождения',
-    title: 'Расхождения видны в ответе',
-    intro: 'Когда источники содержат разные сведения, Syntolk показывает обе формулировки. Так проще разобраться, чем вызвано расхождение и какой документ нужно проверить.',
-    points: [
-      ['Обе формулировки', 'Показывает, что написано в каждом из источников.'],
-      ['Даты и версии', 'Отмечает, к каким редакциям и периодам относятся сведения.'],
-      ['Основание для вывода', 'Указывает, хватает ли информации, чтобы определить применимое условие.']
-    ],
-    example: ['Пример расхождения', 'В договоре — поставка за 15 дней. В спецификации — за 20 дней.', 'Приоритет документа нужно проверить по условиям договора. Если оснований нет, расхождение останется отмеченным в ответе.']
-  },
-  {
-    topic: 'Поиск в архиве',
-    title: 'Поиск по всему архиву',
-    intro: 'Можно искать сразу в папках с договорами, отчётами и перепиской. Syntolk собирает сведения из разных файлов по одному запросу.',
-    points: [
-      ['Упоминания условия', 'Находит документы, в которых встречается нужное требование.'],
-      ['Сведения по проекту', 'Собирает информацию из связанных материалов.'],
-      ['Сроки и суммы', 'Помогает найти нужные значения и документы, где они указаны.']
-    ],
-    example: ['Пример запроса', 'Собери все сроки сдачи работ по проекту «Север».', 'Результат — список сроков с указанием документов. При необходимости поиск можно сузить до нужной папки или файла.']
-  },
-  {
-    topic: 'Сравнение',
-    title: 'Сравните версии и предложения',
-    intro: 'Syntolk помогает сопоставить документы и выделить различия по важным для вас условиям. Задайте критерии сравнения или попросите найти изменения.',
-    points: [
-      ['Редакции документов', 'Что добавили, удалили или изменили в новой версии.'],
-      ['Предложения поставщиков', 'Как отличаются цены, сроки, оплата и другие условия.'],
-      ['Материалы подразделений', 'В чём расходятся требования и формулировки.']
-    ],
-    example: ['Пример запроса', 'Что изменилось в новой редакции договора?', 'Можно попросить таблицу: пункт, старая формулировка, новая формулировка и суть изменения.']
-  },
-  {
-    topic: 'Готовый материал',
-    title: 'Один анализ — разные форматы',
-    intro: 'Укажите, кому нужен результат и как вы будете его использовать. На основе документов можно подготовить записку, справку, письмо или текст для презентации.',
-    points: [
-      ['Для руководителя', 'Кратко: основные условия, выводы и вопросы, требующие решения.'],
-      ['Для специалиста', 'Подробный разбор с формулировками и ссылками на документы.'],
-      ['Для коллеги или клиента', 'Понятное объяснение, инструкция или проект делового ответа.']
-    ],
-    example: ['Пример запроса', 'Подготовь записку: основные условия, спорные пункты и вопросы для согласования.', 'Вы сами задаёте объём, тон и структуру. Готовый текст можно уточнить следующим сообщением.']
-  }
-];
-const SCREENS = ASSISTANT_PAGES.map(page => `
-  <div class="assistant-page">
-    <header class="assistant-page-header">
-      <p class="assistant-topic">${page.topic}</p>
-      <h2>${page.title}</h2>
-      <p class="assistant-intro">${page.intro}</p>
-    </header>
-    <div class="assistant-page-body">
-      <ol class="assistant-points">
-        ${page.points.map(([title, text]) => `<li><h3>${title}</h3><p>${text}</p></li>`).join('')}
-      </ol>
-      <aside class="assistant-example" aria-label="${page.example[0]}">
-        <p class="assistant-example-label">${page.example[0]}</p>
-        <p class="assistant-example-text">${page.example[1]}</p>
-        <p class="assistant-example-note">${page.example[2]}</p>
-      </aside>
-    </div>
-  </div>`);
-const TITLES = ASSISTANT_PAGES.map(page => page.title);
-const content = aboutRoot.querySelector('#assistant-content');
-const scrollArea = aboutRoot.querySelector('#assistant-scroll-area');
-const screenEl = aboutRoot.querySelector('.screen');
-const counter = aboutRoot.querySelector('#assistant-counter');
-const sceneTitle = aboutRoot.querySelector('#assistant-scene-title');
-const prev = aboutRoot.querySelector('#assistant-prev');
-const next = aboutRoot.querySelector('#assistant-next');
-const dots = aboutRoot.querySelector('#assistant-dots');
-const play = aboutRoot.querySelector('#assistant-play');
-const progressBar = aboutRoot.querySelector('#assistant-progress');
-let index = 0;
-const AUTO_INTERVAL = 18000;
-let autoplay = true;
-let hoverPaused = false;
-let touchPaused = false;
-let timer = null;
-let raf = null;
-let startedAt = 0;
-let duration = 0;
-let revealTimers = [];
-let renderTimer = null;
-let touchStartX = null;
-let touchStartY = null;
-  let storyVisible = !('IntersectionObserver' in window);
-
-SCREENS.forEach((_, i) => {
-  const b = document.createElement('button');
-  b.className = 'dot';
-  b.setAttribute('aria-label', `Экран ${i+1}: ${TITLES[i]}`);
-  b.addEventListener('click', () => go(i, true));
-  dots.appendChild(b);
-});
-
-function readingDuration() {
-  return AUTO_INTERVAL;
-}
-
-function clearTimers() {
-  clearTimeout(timer); timer = null;
-  cancelAnimationFrame(raf); raf = null;
-  revealTimers.forEach(clearTimeout); revealTimers = [];
-}
-
-function markRevealables() {
-  const firstHeading = content.querySelector('h1,h2,h3');
-  if (firstHeading) firstHeading.classList.add('screen-heading');
-
-  content.classList.remove('page-enter','page-enter-active');
-  content.classList.add('page-enter');
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => content.classList.add('page-enter-active'));
-  });
-  const t = setTimeout(() => {
-    content.classList.remove('page-enter','page-enter-active');
-  }, 700);
-  revealTimers.push(t);
-}
-
-function updateProgress() {
-  if (!autoplay) { progressBar.style.width = '0%'; return; }
-  const elapsed = performance.now() - startedAt;
-  const pct = Math.min(100, (elapsed / duration) * 100);
-  progressBar.style.width = pct + '%';
-  if (pct < 100) raf = requestAnimationFrame(updateProgress);
-}
-
-function scheduleAuto() {
-  clearTimeout(timer);
-  cancelAnimationFrame(raf);
-  timer = null;
-  raf = null;
-
-  // Any hover/touch interaction pauses the slideshow without changing
-  // the user's Auto/Pause preference. Leaving the screen starts a fresh 18 s.
-  if (!autoplay || hoverPaused || touchPaused || !storyVisible) {
-    progressBar.style.width = '0%';
-    return;
-  }
-
-  duration = readingDuration();
-  startedAt = performance.now();
-  progressBar.style.width = '0%';
-  raf = requestAnimationFrame(updateProgress);
-
-  // Keep the presentation running as a carousel: after the last screen,
-  // return to the first one without changing the Auto/Pause preference.
-  timer = setTimeout(() => go((index + 1) % SCREENS.length, false), duration);
-}
-
-function render() {
-  clearTimers();
-  clearTimeout(renderTimer);
-  content.classList.add('is-changing');
-  renderTimer = setTimeout(() => {
-    renderTimer = null;
-    content.innerHTML = SCREENS[index];
-    scrollArea.scrollTo({top:0,behavior:'instant'});
-    counter.textContent = `${index + 1} / ${SCREENS.length}`;
-    sceneTitle.textContent = TITLES[index];
-    prev.disabled = false;
-    next.disabled = false;
-    [...dots.children].forEach((d,i)=>{
-      d.classList.toggle('active',i===index);
-      if (i===index) d.setAttribute('aria-current','true');
-      else d.removeAttribute('aria-current');
-    });
-    content.classList.remove('is-changing');
-    markRevealables();
-    scheduleAuto();
-  }, 220);
-}
-
-function go(i, manual=false) {
-  const target = ((i % SCREENS.length) + SCREENS.length) % SCREENS.length;
-  if (target === index) return;
-  index = target;
-  // Manual navigation no longer disables Auto. If the pointer is over the
-  // screen, hover pause keeps the current page still until the pointer leaves.
-  render();
-}
-
-function syncPlay() {
-  play.classList.toggle('paused', autoplay);
-  play.setAttribute('aria-label', autoplay ? 'Пауза автоматического показа' : 'Включить автоматический показ');
-  aboutRoot.querySelector('#assistant-play-text').textContent = autoplay ? 'Авто' : 'Пауза';
-}
-
-prev.addEventListener('click',()=>go(index-1,true));
-next.addEventListener('click',()=>go(index+1,true));
-play.addEventListener('click',()=>{autoplay=!autoplay;syncPlay();scheduleAuto();});
-
-aboutRoot.addEventListener('keydown', e=>{
-  if (e.key==='ArrowRight') go(index+1,true);
-  if (e.key==='ArrowLeft') go(index-1,true);
-  if (e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)) {e.preventDefault();autoplay=!autoplay;syncPlay();scheduleAuto();}
-});
-
-// Desktop: merely moving the pointer onto the laptop screen pauses Auto.
-// No click is required. Leaving the screen always starts a NEW full 18-second timer.
-screenEl.addEventListener('pointerenter', event => {
-  if (event.pointerType !== 'mouse' || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  hoverPaused = true;
-  clearTimeout(timer);
-  cancelAnimationFrame(raf);
-  timer = null;
-  raf = null;
-  progressBar.style.width = '0%';
-});
-
-screenEl.addEventListener('pointerleave', event => {
-  if (event.pointerType !== 'mouse') return;
-  hoverPaused = false;
-  scheduleAuto();
-});
-
-// Wheel scrolling is free while the pointer is over the screen; hover already
-// keeps the slideshow paused, so scrolling never permanently disables Auto.
-scrollArea.addEventListener('wheel', () => {}, {passive:true});
-
-// Touch devices have no hover. A touch temporarily pauses the slideshow;
-// after the finger is lifted, a fresh 18-second timer starts.
-scrollArea.addEventListener('touchstart',e=>{
-  touchPaused = true;
-  clearTimeout(timer);
-  cancelAnimationFrame(raf);
-  timer = null;
-  raf = null;
-  progressBar.style.width = '0%';
-  touchStartX=e.changedTouches[0].clientX;
-  touchStartY=e.changedTouches[0].clientY;
-},{passive:true});
-
-scrollArea.addEventListener('touchend',e=>{
-  if (touchStartX!==null) {
-    const dx=e.changedTouches[0].clientX-touchStartX;
-    const dy=e.changedTouches[0].clientY-touchStartY;
-    if (Math.abs(dx)>55 && Math.abs(dx)>Math.abs(dy)*1.25) go(index + (dx<0?1:-1), true);
-  }
-  touchStartX=null;
-  touchStartY=null;
-  touchPaused = false;
-  scheduleAuto();
-},{passive:true});
-
-scrollArea.addEventListener('touchcancel',()=>{
-  touchStartX=null;
-  touchStartY=null;
-  touchPaused = false;
-  scheduleAuto();
-},{passive:true});
-
-
-if ('IntersectionObserver' in window) {
-  const storyObserver = new IntersectionObserver(([entry]) => {
-    const visible = entry.isIntersecting && entry.intersectionRatio >= 0.2;
-    if (visible === storyVisible) return;
-    storyVisible = visible;
-    if (visible) {
-      scheduleAuto();
-    } else {
-      clearTimeout(timer);
-      cancelAnimationFrame(raf);
-      timer = null;
-      raf = null;
-      progressBar.style.width = '0%';
-    }
-  }, {threshold:[0,0.2]});
-  storyObserver.observe(aboutRoot);
-}
-
-syncPlay();
-render();
-
-})();
+(()=>{
+      const root=document.querySelector('#syntolk-about .assistant-showcase');
+      if(!root)return;
+      const pages=[...root.querySelectorAll('.as-page')];
+      const body=root.querySelector('#as-screen-body');
+      const dots=root.querySelector('.as-dots');
+      const count=root.querySelector('#as-count');
+      const auto=root.querySelector('#as-auto');
+      let current=0,playing=false,timer=null;
+      const dotButtons=pages.map((page,i)=>{
+        const button=document.createElement('button');
+        button.className='as-dot';button.setAttribute('aria-label',`${i+1}. ${page.dataset.title}`);
+        button.setAttribute('aria-current',i===0?'true':'false');button.innerHTML='<span></span>';
+        button.addEventListener('click',()=>show(i,true));dots.append(button);return button;
+      });
+      function schedule(){clearTimeout(timer);timer=null;if(playing&&!document.hidden)timer=setTimeout(()=>show(current+1),25000);}
+      function setPlaying(value){playing=value;auto.setAttribute('aria-pressed',String(value));auto.setAttribute('aria-label',value?'Остановить автоматическое переключение':'Включить автоматическое переключение каждые 25 секунд');auto.querySelector('use').setAttribute('href',value?'#as-pause':'#as-play');schedule();}
+      function show(index,userAction=false){
+        if(userAction)setPlaying(false);
+        current=(index+pages.length)%pages.length;
+        pages.forEach((page,i)=>{page.hidden=i!==current;});
+        dotButtons.forEach((button,i)=>button.setAttribute('aria-current',i===current?'true':'false'));
+        body.scrollTo({top:0,behavior:'instant'});count.textContent=`${current+1} / ${pages.length}`;
+        schedule();
+      }
+      root.querySelector('#as-prev').addEventListener('click',()=>show(current-1,true));
+      root.querySelector('#as-next').addEventListener('click',()=>show(current+1,true));
+      auto.addEventListener('click',()=>setPlaying(!playing));
+      document.addEventListener('visibilitychange',schedule);
+      body.addEventListener('wheel',()=>{if(playing)setPlaying(false);},{passive:true});
+      body.addEventListener('pointerdown',()=>{if(playing)setPlaying(false);},{passive:true});
+      root.querySelector('.as-screen').addEventListener('keydown',event=>{
+        if(event.target.closest('[role=tablist]'))return;
+        if(event.key==='ArrowRight'){event.preventDefault();show(current+1,true);}
+        if(event.key==='ArrowLeft'){event.preventDefault();show(current-1,true);}
+      });
+      let touchStart=null;
+      body.addEventListener('touchcancel',()=>{touchStart=null;},{passive:true});
+      body.addEventListener('touchstart',event=>{const t=event.touches[0];touchStart={x:t.clientX,y:t.clientY,target:event.target};},{passive:true});
+      body.addEventListener('touchend',event=>{
+        if(!touchStart||touchStart.target.closest('button,a')){touchStart=null;return;}
+        const t=event.changedTouches[0],dx=t.clientX-touchStart.x,dy=t.clientY-touchStart.y;
+        if(Math.abs(dx)>75&&Math.abs(dx)>Math.abs(dy)*1.8)show(current+(dx<0?1:-1),true);
+        touchStart=null;
+      },{passive:true});
+      const start=Number(new URLSearchParams(location.search).get('assistant-screen'));
+      if(Number.isInteger(start)&&start>=1&&start<=pages.length)show(start-1);
+    })();
 
 /* Interactive controls from the supplied account demo, scoped to this section. */
 
