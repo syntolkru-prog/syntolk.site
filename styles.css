@@ -246,6 +246,29 @@ to{opacity:1;transform:none}
 #syntolk-about .assistant-showcase .as-review-list strong{font-weight:550;color:var(--ink)}
 #syntolk-about .assistant-showcase .as-source-caption{font-size:14px;color:var(--muted);margin-top:10px}
 #syntolk-about .assistant-showcase .as-sources-page{max-width:960px;margin-inline:auto}
+#syntolk-about .assistant-showcase .as-usage-scope{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:18px;padding:14px 0;border-top:1px solid #d9dde2;border-bottom:1px solid #d9dde2}
+#syntolk-about .assistant-showcase .as-usage-scope section{min-width:0;padding:0 18px}
+#syntolk-about .assistant-showcase .as-usage-scope section:first-child{padding-left:0}
+#syntolk-about .assistant-showcase .as-usage-scope section+section{border-left:1px solid #d9dde2}
+#syntolk-about .assistant-showcase .as-usage-scope h3{font-size:17px;line-height:1.3;letter-spacing:-.02em;margin-bottom:5px}
+#syntolk-about .assistant-showcase .as-usage-scope p{font-size:15px;line-height:1.45;color:#626873}
+#syntolk-about .assistant-showcase .as-usage-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px}
+#syntolk-about .assistant-showcase .as-usage-guide section{min-width:0}
+#syntolk-about .assistant-showcase .as-usage-guide section:nth-child(n+3){border-top:1px solid #e1e5eb;padding-top:13px}
+#syntolk-about .assistant-showcase .as-usage-guide h3{font-size:18px;line-height:1.3;letter-spacing:-.02em;margin-bottom:6px}
+#syntolk-about .assistant-showcase .as-usage-guide p{font-size:15px;line-height:1.5;color:#505865}
+#syntolk-about .assistant-showcase .as-usage-note{margin-top:16px;padding-left:14px;border-left:3px solid #20242b;font-size:15px;line-height:1.5;color:#505865}
+@media(max-width:760px){
+#syntolk-about .assistant-showcase .as-usage-scope{grid-template-columns:1fr;gap:12px;padding:16px 0;margin-bottom:20px}
+#syntolk-about .assistant-showcase .as-usage-scope section{padding:0}
+#syntolk-about .assistant-showcase .as-usage-scope section+section{border-left:0;border-top:1px solid #e1e5eb;padding-top:12px}
+#syntolk-about .assistant-showcase .as-usage-scope h3{font-size:17px}
+#syntolk-about .assistant-showcase .as-usage-scope p{font-size:16px;line-height:1.5}
+#syntolk-about .assistant-showcase .as-usage-guide{grid-template-columns:1fr;gap:18px}
+#syntolk-about .assistant-showcase .as-usage-guide section+section{border-top:1px solid #e1e5eb;padding-top:16px}
+#syntolk-about .assistant-showcase .as-usage-guide p,#syntolk-about .assistant-showcase .as-usage-note{font-size:16px}
+#syntolk-about .assistant-showcase .as-usage-note{margin-top:20px}
+}
 #syntolk-about .assistant-showcase .as-sources-page .as-page-header{margin-bottom:18px}
 #syntolk-about .assistant-showcase .as-sources-page .as-lead{font-size:16px;line-height:1.5}
 #syntolk-about .assistant-showcase .as-sources-sheet{padding:16px 22px;border:1px solid var(--line);border-radius:14px;background:#fff}
