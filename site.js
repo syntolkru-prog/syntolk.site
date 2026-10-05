@@ -482,6 +482,10 @@
   document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && !mobileNav.hidden) closeMenu(true); });
   matchMedia('(min-width:801px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+  const headerNav = $('.site-header .nav');
+  const syncHeaderHeight = () => mobileNav.style.setProperty('--syntolk-header-height', Math.ceil(headerNav.getBoundingClientRect().height) + 'px');
+  new ResizeObserver(syncHeaderHeight).observe(headerNav);
+  syncHeaderHeight();
 
   // Mobile gallery: four complete cards, a blurred preview, and an explicit reveal.
   const casesSection = $('#cases');
@@ -722,7 +726,9 @@ let raf = null;
 let startedAt = 0;
 let duration = 0;
 let revealTimers = [];
+let renderTimer = null;
 let touchStartX = null;
+let touchStartY = null;
   let storyVisible = !('IntersectionObserver' in window);
 
 SCREENS.forEach((_, i) => {
@@ -791,8 +797,10 @@ function scheduleAuto() {
 
 function render() {
   clearTimers();
+  clearTimeout(renderTimer);
   content.classList.add('is-changing');
-  setTimeout(() => {
+  renderTimer = setTimeout(() => {
+    renderTimer = null;
     content.innerHTML = SCREENS[index];
     scrollArea.scrollTo({top:0,behavior:'instant'});
     counter.textContent = `${index + 1} / ${SCREENS.length}`;
@@ -837,7 +845,8 @@ aboutRoot.addEventListener('keydown', e=>{
 
 // Desktop: merely moving the pointer onto the laptop screen pauses Auto.
 // No click is required. Leaving the screen always starts a NEW full 18-second timer.
-screenEl.addEventListener('mouseenter', () => {
+screenEl.addEventListener('pointerenter', event => {
+  if (event.pointerType !== 'mouse' || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   hoverPaused = true;
   clearTimeout(timer);
   cancelAnimationFrame(raf);
@@ -846,7 +855,8 @@ screenEl.addEventListener('mouseenter', () => {
   progressBar.style.width = '0%';
 });
 
-screenEl.addEventListener('mouseleave', () => {
+screenEl.addEventListener('pointerleave', event => {
+  if (event.pointerType !== 'mouse') return;
   hoverPaused = false;
   scheduleAuto();
 });
@@ -865,20 +875,24 @@ scrollArea.addEventListener('touchstart',e=>{
   raf = null;
   progressBar.style.width = '0%';
   touchStartX=e.changedTouches[0].clientX;
+  touchStartY=e.changedTouches[0].clientY;
 },{passive:true});
 
 scrollArea.addEventListener('touchend',e=>{
   if (touchStartX!==null) {
     const dx=e.changedTouches[0].clientX-touchStartX;
-    if (Math.abs(dx)>55) go(index + (dx<0?1:-1), true);
+    const dy=e.changedTouches[0].clientY-touchStartY;
+    if (Math.abs(dx)>55 && Math.abs(dx)>Math.abs(dy)*1.25) go(index + (dx<0?1:-1), true);
   }
   touchStartX=null;
+  touchStartY=null;
   touchPaused = false;
   scheduleAuto();
 },{passive:true});
 
 scrollArea.addEventListener('touchcancel',()=>{
   touchStartX=null;
+  touchStartY=null;
   touchPaused = false;
   scheduleAuto();
 },{passive:true});
@@ -980,6 +994,7 @@ render();
     let selectedRights = new Set(['Чтение', 'Загрузка', 'Удаление']);
     let lastTrigger = null;
     let previousOverflow = '';
+    let inertBackground = [];
 
     const renderRights = () => {
       permissionButtons.forEach(button => {
@@ -997,6 +1012,14 @@ render();
       status.textContent = 'Нет назначенных прав доступа. Добавьте права доступа для пользователей.';
       renderRights();
       permissionDialog.hidden = false;
+      inertBackground = [];
+      for (let branch = permissionDialog; branch && branch !== document.body; branch = branch.parentElement) {
+        for (const sibling of branch.parentElement.children) {
+          if (sibling === branch) continue;
+          inertBackground.push([sibling, sibling.inert]);
+          sibling.inert = true;
+        }
+      }
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       closeButton?.focus();
@@ -1004,8 +1027,10 @@ render();
 
     const closePermissionDialog = () => {
       permissionDialog.hidden = true;
+      inertBackground.forEach(([element, wasInert]) => { element.inert = wasInert; });
+      inertBackground = [];
       document.body.style.overflow = previousOverflow;
-      lastTrigger?.focus();
+      lastTrigger?.focus({preventScroll:true});
     };
 
     folderTriggers.forEach(trigger => {
@@ -1029,7 +1054,17 @@ render();
     closeButton?.addEventListener('click', closePermissionDialog);
     closeBackdrop?.addEventListener('click', closePermissionDialog);
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && !permissionDialog.hidden) closePermissionDialog();
+      if (permissionDialog.hidden) return;
+      if (event.key === 'Escape') closePermissionDialog();
+      if (event.key === 'Tab') {
+        const controls = [...permissionDialog.querySelectorAll('button, a[href], input, select, textarea, [tabindex]')]
+          .filter(element => !element.disabled && element.tabIndex >= 0 && element.getClientRects().length);
+        if (!controls.length) return;
+        event.preventDefault();
+        const current = controls.indexOf(document.activeElement);
+        const next = (current + (event.shiftKey ? -1 : 1) + controls.length) % controls.length;
+        controls[next].focus();
+      }
     });
   }
 

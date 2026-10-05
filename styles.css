@@ -826,6 +826,14 @@ button,input,select,textarea{font-family:inherit}
   }
 }
 
+/* A compatibility hover after a phone tap must retain the resting card padding. */
+@media(max-width:600px) and (hover:none) and (pointer:coarse){
+  #pricing .plan:not(.pop):hover{padding:15px}
+}
+@media(max-width:800px){
+  .mobile-nav{max-height:calc(100dvh - var(--syntolk-header-height,72px));overflow-y:auto;overscroll-behavior:contain}
+}
+
 /* Pricing benefit labels and amounts follow the requested reading order. */
 #pricing .llm-bonus,#pricing .plan.pop .llm-bonus{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:5px 8px;min-height:44px;margin:14px 0 0;padding:8px 12px;border:1px solid #cfe0ff;border-radius:10px;background:#f3f7ff}
 #pricing .llm-bonus strong,#pricing .plan.pop .llm-bonus strong{grid-column:1;grid-row:1;font-size:17px;color:#1769ff}
