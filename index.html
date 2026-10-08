@@ -218,14 +218,15 @@
 
     <div class="pricing-switch" role="tablist" aria-label="Тип использования">
       <span class="pricing-switch-indicator" aria-hidden="true"></span>
-      <button type="button" data-pricing-target="personal" role="tab" aria-selected="false">Для себя</button>
-      <button type="button" class="active" data-pricing-target="business" role="tab" aria-selected="true">Для бизнеса</button>
+      <button type="button" class="active" data-pricing-target="personal" role="tab" aria-selected="true">Для себя</button>
+      <button type="button" data-pricing-target="business" role="tab" aria-selected="false">Для бизнеса</button>
     </div>
 
     <div class="pricing-panels">
-      <div class="pricing-panel" data-pricing-panel="personal">
+      <div class="pricing-panel active" data-pricing-panel="personal">
         <div class="pricing-grid">
-          <article class="plan pop">
+          <article class="plan">
+            <div class="plan-badge">Личные задачи</div>
             <h3>Базовый</h3>
             <div class="price"><span class="currency">990 ₽</span></div>
             <div class="per">в месяц</div>
@@ -237,8 +238,9 @@
               <div>500 МБ хранилища</div>
               <div>300 МБ индексации/мес</div>
             </div>
-          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
-          <article class="plan">
+          </details><a class="plan-start" href="https://platform.syntolk.ru/pricing">Выбрать Базовый <span aria-hidden="true">↗</span></a></article>
+          <article class="plan pop" data-recommended>
+            <div class="plan-badge">Оптимальный выбор</div>
             <h3>Стандарт</h3>
             <div class="price"><span class="currency">1 990 ₽</span></div>
             <div class="per">в месяц</div>
@@ -250,8 +252,9 @@
               <div>1.1 ГБ хранилища</div>
               <div>660 МБ индексации/мес</div>
             </div>
-          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          </details><a class="plan-start" href="https://platform.syntolk.ru/pricing">Выбрать Стандарт <span aria-hidden="true">↗</span></a></article>
           <article class="plan">
+            <div class="plan-badge">Максимум лимитов</div>
             <h3>Максимум</h3>
             <div class="price"><span class="currency">3 990 ₽</span></div>
             <div class="per">в месяц</div>
@@ -263,11 +266,11 @@
               <div>2.4 ГБ хранилища</div>
               <div>1.4 ГБ индексации/мес</div>
             </div>
-          </details><a class="plan-start mobile-only" href="https://platform.syntolk.ru/register">Начать <span aria-hidden="true">↗</span></a></article>
+          </details><a class="plan-start" href="https://platform.syntolk.ru/pricing">Выбрать Максимум <span aria-hidden="true">↗</span></a></article>
         </div>
       </div>
 
-      <div class="pricing-panel active" data-pricing-panel="business">
+      <div class="pricing-panel" data-pricing-panel="business" hidden>
         <div class="pricing-grid">
           <article class="plan">
             <div class="plan-badge">Небольшая команда</div>
@@ -287,7 +290,7 @@
               <div>4 ГБ индексации/мес</div>
 
             </div>
-          </details><a class="plan-start" href="https://platform.syntolk.ru/register">Выбрать Старт <span aria-hidden="true">↗</span></a></article>
+          </details><a class="plan-start" href="https://platform.syntolk.ru/pricing">Выбрать Старт <span aria-hidden="true">↗</span></a></article>
           <article class="plan pop">
             <div class="plan-badge">Оптимальный выбор</div>
             <h3>Бизнес</h3>
@@ -306,7 +309,7 @@
               <div>8.8 ГБ индексации/мес</div>
 
             </div>
-          </details><a class="plan-start" href="https://platform.syntolk.ru/register">Выбрать Бизнес <span aria-hidden="true">↗</span></a></article>
+          </details><a class="plan-start" href="https://platform.syntolk.ru/pricing">Выбрать Бизнес <span aria-hidden="true">↗</span></a></article>
           <article class="plan">
             <div class="plan-badge">Максимальная выгода</div>
             <h3>Про</h3>
@@ -325,7 +328,7 @@
               <div>14.1 ГБ индексации/мес</div>
 
             </div>
-          </details><a class="plan-start" href="https://platform.syntolk.ru/register">Выбрать Про <span aria-hidden="true">↗</span></a></article>
+          </details><a class="plan-start" href="https://platform.syntolk.ru/pricing">Выбрать Про <span aria-hidden="true">↗</span></a></article>
         </div>
       </div>
     </div>
@@ -447,10 +450,9 @@
         <div class="af-mini-card af-folder-access-card">
           <div class="af-mini-head"><div class="af-folder-head"><div class="af-folder-icon">▱</div><div class="af-folder-title"><strong>Права доступа к папкам</strong><span>Управляйте доступом сотрудников к папкам</span></div></div><span>↻</span></div>
           <div class="af-folder-list">
-            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="файлы"><div class="af-folder-icon">▱</div><div class="af-name">файлы<span class="af-date">Создана: 14.09.2026</span></div><span class="af-arrow">›</span></div>
-            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="ГПХ"><div class="af-folder-icon">▱</div><div class="af-name">ГПХ<span class="af-date">Создана: 18.08.2026</span></div><span class="af-arrow">›</span></div>
-            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="заказы"><div class="af-folder-icon">▱</div><div class="af-name">заказы<span class="af-date">Создана: 02.08.2026</span></div><span class="af-arrow">›</span></div>
-            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="законы"><div class="af-folder-icon">▱</div><div class="af-name">законы<span class="af-date">Создана: 02.08.2026</span></div><span class="af-arrow">›</span></div>
+            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="Клиенты"><div class="af-folder-icon">▱</div><div class="af-name">Клиенты<span class="af-date">Создана: 14.09.2026</span></div><span class="af-arrow">›</span></div>
+            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="Проекты"><div class="af-folder-icon">▱</div><div class="af-name">Проекты<span class="af-date">Создана: 18.08.2026</span></div><span class="af-arrow">›</span></div>
+            <div class="af-folder-row" role="button" tabindex="0" aria-haspopup="dialog" data-folder="Регламенты"><div class="af-folder-icon">▱</div><div class="af-name">Регламенты<span class="af-date">Создана: 02.08.2026</span></div><span class="af-arrow">›</span></div>
           </div>
         </div>
       </div>
@@ -458,7 +460,7 @@
         <div class="af-permission-backdrop" data-af-permission-close></div>
         <div class="af-permission-panel" role="dialog" aria-modal="true" aria-labelledby="af-permission-title">
           <button class="af-permission-close" type="button" aria-label="Закрыть">×</button>
-          <h4 id="af-permission-title">Управление правами доступа к папке «<span class="af-dialog-folder">файлы</span>»</h4>
+          <h4 id="af-permission-title">Управление правами доступа к папке «<span class="af-dialog-folder">Клиенты</span>»</h4>
           <p class="af-dialog-sub">Добавить права доступа</p>
           <div class="af-employee-field"><span>Сотрудник</span><div class="af-employee-select af-employee-static" aria-disabled="true">Выберите сотрудника</div></div>
           <div class="af-permission-toggles">

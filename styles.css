@@ -1155,8 +1155,8 @@ button,input,select,textarea{font-family:inherit}
   #additional-features .af-folder-title { min-width: 0; }
   #additional-features .af-folder-title span { line-height: 1.3; }
   #additional-features .af-folder-row { gap: 7px; padding: 8px; }
-  /* Keep the mobile access preview short: the first two folders are the useful summary. */
-  #additional-features .af-folder-list .af-folder-row:nth-child(n+3) { display: none; }
+  /* Show the three selected folders in the mobile access preview. */
+  #additional-features .af-folder-list .af-folder-row:nth-child(n+4) { display: none; }
   #additional-features .af-folder-list { gap: 7px; }
   #additional-features .af-permission-dialog { padding: 10px; }
   #additional-features .af-permission-panel { max-height: calc(100dvh - 20px); overflow-y: auto; }
@@ -1238,8 +1238,8 @@ button,input,select,textarea{font-family:inherit}
 
 /* Business pricing polish: subdued labels, aligned light benefit rows and compact actions. */
 #pricing [data-pricing-panel="business"] .plan-benefits{display:grid;gap:4px;margin:12px 0 0;padding:0}
-#pricing [data-pricing-panel="business"] .plan-badge,
-#pricing [data-pricing-panel="business"] .plan.pop .plan-badge{display:inline-flex;align-items:center;justify-content:center;width:max-content;max-width:100%;white-space:nowrap;
+#pricing .plan-badge,
+#pricing .plan.pop .plan-badge{display:inline-flex;align-items:center;justify-content:center;width:max-content;max-width:100%;white-space:nowrap;
   min-height:22px;margin:0 0 9px;padding:4px 8px;border:0;border-radius:999px;
   background:#f2f4f7;color:#566274;box-shadow:none;font-size:10.5px;font-weight:500;
   line-height:1.2;animation:none;transform:none;transition:background-color .18s ease,color .18s ease;
@@ -1586,6 +1586,52 @@ button,input,select,textarea{font-family:inherit}
   color:#596372;
   border:1px solid #e3e6eb;
   box-shadow:none;
+}
+
+/* Personal plans use the same badge shape with a neutral gray fill. */
+#pricing [data-pricing-panel="personal"] .plan .plan-badge,
+#pricing [data-pricing-panel="personal"] .plan.pop .plan-badge,
+#pricing [data-pricing-panel="personal"] .plan:hover .plan-badge,
+#pricing [data-pricing-panel="personal"] .plan:focus-visible .plan-badge{
+  background:#f2f4f7;
+  color:#596372;
+  border-color:#e3e6eb;
+}
+
+/* Every plan has a visible, full-width action on desktop and phone. */
+#pricing .pricing-panel .plan{cursor:default}
+#pricing .pricing-panel .plan .plan-start{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  width:100%;
+  min-height:44px;
+  margin-top:16px;
+  padding:11px 14px;
+  border:1px solid #20242b;
+  border-radius:8px;
+  background:#20242b;
+  color:#fff;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.4;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background-color .18s ease,border-color .18s ease;
+}
+#pricing .pricing-panel .plan.pop .plan-start{
+  background:#fff;
+  border-color:#fff;
+  color:#20242b;
+}
+#pricing .pricing-panel .plan .plan-start span{font-size:16px;line-height:1}
+@media(hover:hover){
+  #pricing .pricing-panel .plan .plan-start:hover{background:#343b46;border-color:#343b46}
+  #pricing .pricing-panel .plan.pop .plan-start:hover{background:#eef0f3;border-color:#eef0f3}
+}
+@media(max-width:760px){
+  #pricing .pricing-panel .plan .plan-start{margin-top:12px}
 }
 
 /* Assistant pages share a readable composition inside the unchanged laptop screen. */

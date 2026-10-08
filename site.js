@@ -418,36 +418,6 @@
   const initialButton = buttons.find(btn => btn.classList.contains('active')) || buttons[0];
   activate(initialButton.dataset.pricingTarget, false);
 
-  function selectPlan(plan){
-    const panel = plan.closest('[data-pricing-panel]');
-    if (!panel) return;
-    const plans = [...panel.querySelectorAll('.plan')];
-    plans.forEach(item => {
-      const selected = item === plan;
-      item.classList.toggle('pop', selected);
-      item.setAttribute('aria-pressed', selected ? 'true' : 'false');
-    });
-  }
-
-  panels.forEach(panel => {
-    const plans = [...panel.querySelectorAll('.plan')];
-    plans.forEach(plan => {
-      plan.setAttribute('role', 'button');
-      plan.tabIndex = 0;
-      plan.setAttribute('aria-pressed', plan.classList.contains('pop') ? 'true' : 'false');
-      plan.addEventListener('click', event => {
-        if(event.target.closest('summary,a'))return;
-        if(window.matchMedia('(max-width:760px)').matches)return;
-        selectPlan(plan);
-      });
-      plan.addEventListener('keydown', event => {
-        if (event.target === plan && (event.key === 'Enter' || event.key === ' ')) {
-          event.preventDefault();
-          selectPlan(plan);
-        }
-      });
-    });
-  });
 })();
 
 (() => {
@@ -455,10 +425,11 @@
   const details = [...document.querySelectorAll('#pricing .plan-details')];
   const sync = () => {
     details.forEach(item => {item.open = !mobile.matches;});
-    document.querySelectorAll('#pricing .plan').forEach(item => {
-      if (mobile.matches) {item.removeAttribute('role');item.removeAttribute('tabindex');item.removeAttribute('aria-pressed');}
-      else {item.setAttribute('role','button');item.tabIndex=0;item.setAttribute('aria-pressed',String(item.classList.contains('pop')));}
-    });
+    if (mobile.matches) {
+      document.querySelectorAll('#pricing [data-pricing-panel="personal"] .plan').forEach(item => {
+        item.classList.toggle('pop', item.hasAttribute('data-recommended'));
+      });
+    }
   };
   mobile.addEventListener('change',sync);sync();
 })();
@@ -762,7 +733,7 @@
     };
 
     folderTriggers.forEach(trigger => {
-      const folder = trigger.dataset.folder || 'файлы';
+      const folder = trigger.dataset.folder || 'Клиенты';
       trigger.addEventListener('click', () => openPermissionDialog(folder, trigger));
       trigger.addEventListener('keydown', event => {
         if (event.key === 'Enter' || event.key === ' ') {
