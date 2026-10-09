@@ -883,7 +883,6 @@ to{opacity:1;transform:none}
   .af-avatar{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:26px;font-weight:800;background:linear-gradient(135deg,#2c79ff,#3166e8);position:relative}.af-avatar:after{content:"♛";position:absolute;right:-1px;bottom:-3px;width:22px;height:22px;background:#ffad0a;border-radius:50%;display:grid;place-items:center;font-size:11px;border:3px solid #fff}
   .af-profile-main{flex:1}.af-profile-main h4{margin:0 0 7px;font-size:22px}.af-chips{display:flex;gap:7px;flex-wrap:wrap}.af-chip{padding:5px 8px;border-radius:999px;font-size:10px;font-weight:750;background:#f2f5f9;color:#536277}.af-chip.af-orange{background:#ffad0a;color:white}
   .af-company-name-chip{cursor:pointer;transition:.18s ease;user-select:none}.af-company-name-chip:hover{background:#e7eef9;color:#1768ff;box-shadow:0 0 0 2px rgba(23,104,255,.08)}
-  .af-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.af-action{font-size:10px;border:1px solid #e6ebf2;border-radius:999px;padding:6px 8px;background:white}.af-action.af-edit-company{cursor:pointer;transition:.18s ease}.af-action.af-edit-company:hover{border-color:#cbdcff;color:#1768ff;background:#f6f9ff}
   .af-company{padding:15px 4px 5px}.af-company h5{margin:0 0 4px;font-size:13px}.af-company p{margin:0 0 13px;font-size:10px;color:#8b95a5}
   .af-field{border:1px solid #e5eaf2;border-radius:11px;background:#fbfcfe;padding:10px 12px;margin-bottom:10px;font-size:10px;color:#667085}.af-field strong{display:block;font-size:9px;color:#8b95a5;margin-bottom:4px;font-weight:600}
   .af-company-name-field{cursor:text;transition:.18s ease;position:relative}.af-company-name-field:hover{border-color:#b9d1ff;background:#fff}.af-company-name-field.af-editing{border-color:#5b94ff;background:#fff;box-shadow:0 0 0 3px rgba(23,104,255,.08)}
@@ -964,7 +963,7 @@ to{opacity:1;transform:none}
   #additional-features .af-buy{min-height:36px;font-size:12px}
   #additional-features .af-price-pills button{font-size:12px;min-height:32px}
   #additional-features .af-range-labels,#additional-features .af-llm-selected{font-size:11px}
-  #additional-features .af-chip,#additional-features .af-action{font-size:11px}
+#additional-features .af-chip{font-size:11px}
   #additional-features .af-company h5{font-size:14px}
   #additional-features .af-company p,#additional-features .af-field,#additional-features .af-invite p{font-size:12px;line-height:1.4}
   #additional-features .af-field strong,#additional-features .af-company-name-hint{font-size:11px}
@@ -1139,8 +1138,6 @@ button,input,select,textarea{font-family:inherit}
   #additional-features .af-chip { font-size: 10px; }
   #additional-features .af-invite button { min-height: 34px; padding: 7px; font-size: 12px; }
   #additional-features .af-company { padding: 4px 0 0; }
-  #additional-features .af-actions { display: none; }
-  #additional-features .af-action { padding: 3px 6px; font-size: 10px; }
   #additional-features .af-invite { margin-top: 4px; padding: 10px; border-radius: 10px; }
   #additional-features .af-invite p { margin: 4px 0 7px; font-size: 11px; }
   #additional-features .af-access-card,
