@@ -1787,6 +1787,9 @@ button,input,select,textarea{font-family:inherit}
 #syntolk-about .assistant-showcase .as-page .as-company-flow strong{font-size:18px;line-height:1.3;font-weight:600}
 #syntolk-about .assistant-showcase .as-page .as-company-flow .as-step-icon{padding:8px;border-radius:10px}
 #syntolk-about .assistant-showcase .as-page .as-company-flow .as-step-icon svg{width:20px;height:20px}
+#syntolk-about .assistant-showcase .as-page .as-company-points{display:grid;gap:8px;margin:0;padding:0 0 0 19px;list-style:disc;font-size:16px;line-height:1.5}
+#syntolk-about .assistant-showcase .as-page .as-company-points li{padding-left:3px}
+#syntolk-about .assistant-showcase .as-page .as-company-points li::marker{color:var(--muted)}
 #syntolk-about .assistant-showcase .as-page .as-benefit{margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--as-card-radius);background:var(--soft);font-size:16px;line-height:1.5;color:var(--as-body)}
 #syntolk-about .assistant-showcase .as-page .as-benefit svg{color:var(--muted)}
 #syntolk-about .assistant-showcase .as-page .as-analysis-steps{gap:3px 12px}
