@@ -1767,3 +1767,54 @@ button,input,select,textarea{font-family:inherit}
   #syntolk-about .assistant-example .assistant-example-text{font-size:16px;line-height:1.4}
   #syntolk-about .assistant-example .assistant-example-note{font-size:13px;line-height:1.5;padding-top:12px}
 }
+
+/* Shared editorial styles for all five Syntolk Assistant screens. */
+#syntolk-about .assistant-showcase{--as-body:#505865;--as-note-line:#dce3f4;--as-card-radius:12px}
+#syntolk-about .assistant-showcase .as-page{font-size:16px;line-height:1.5;color:var(--as-body)}
+#syntolk-about .assistant-showcase .as-page.as-overview-page{padding-top:0}
+#syntolk-about .assistant-showcase .as-page .as-page-header{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+#syntolk-about .assistant-showcase .as-page .as-screen-title{font-size:30px;line-height:1.2;font-weight:600;letter-spacing:-.035em;color:var(--ink)}
+#syntolk-about .assistant-showcase .as-page .as-overview-title-detail{font-size:inherit;line-height:inherit;font-weight:500;color:var(--muted)}
+#syntolk-about .assistant-showcase .as-page p,#syntolk-about .assistant-showcase .as-page .as-lead{font-size:16px;font-weight:400;line-height:1.5;color:var(--as-body)}
+#syntolk-about .assistant-showcase .as-page strong,#syntolk-about .assistant-showcase .as-page .as-lead strong{font-weight:600;color:var(--ink)}
+#syntolk-about .assistant-showcase .as-page h3{font-size:18px;line-height:1.3;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+#syntolk-about .assistant-showcase .as-page .as-panel{padding:16px;border-color:var(--line);border-radius:var(--as-card-radius);background:#fff}
+#syntolk-about .assistant-showcase .as-page .as-overview-sources{padding:16px;border:1px solid var(--line);border-radius:var(--as-card-radius);background:#fff}
+#syntolk-about .assistant-showcase .as-page .as-overview-sources h3{text-transform:none;letter-spacing:-.02em}
+#syntolk-about .assistant-showcase .as-page .as-overview-sources li{font-size:16px;line-height:1.5;color:var(--as-body)}
+#syntolk-about .assistant-showcase .as-page .as-overview-copy .as-overview-proof{margin-top:16px;line-height:1.5}
+#syntolk-about .assistant-showcase .as-page .as-company-flow{gap:10px;margin-bottom:12px}
+#syntolk-about .assistant-showcase .as-page .as-company-flow strong{font-size:18px;line-height:1.3;font-weight:600}
+#syntolk-about .assistant-showcase .as-page .as-company-flow .as-step-icon{padding:8px;border-radius:10px}
+#syntolk-about .assistant-showcase .as-page .as-company-flow .as-step-icon svg{width:20px;height:20px}
+#syntolk-about .assistant-showcase .as-page .as-benefit{margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--as-card-radius);background:var(--soft);font-size:16px;line-height:1.5;color:var(--as-body)}
+#syntolk-about .assistant-showcase .as-page .as-benefit svg{color:var(--muted)}
+#syntolk-about .assistant-showcase .as-page .as-analysis-steps{gap:3px 12px}
+#syntolk-about .assistant-showcase .as-page .as-analysis-steps li{padding:3px 10px;border-color:var(--line);border-radius:var(--as-card-radius);background:#fff;font-size:16px;line-height:1.5;color:var(--as-body)}
+#syntolk-about .assistant-showcase .as-page .as-analysis-summary{margin-top:12px;padding:0;border:0;border-radius:0;background:transparent;color:var(--as-body)}
+#syntolk-about .assistant-showcase .as-page .as-structure-guide{gap:12px}
+#syntolk-about .assistant-showcase .as-page .as-structure-guide section+section{padding-top:12px;border-color:var(--line)}
+#syntolk-about .assistant-showcase .as-page .as-library-folder,#syntolk-about .assistant-showcase .as-page .as-library-file{font-size:16px;line-height:1.5}
+#syntolk-about .assistant-showcase .as-page .as-library-caption{font-size:14px!important;line-height:1.5;color:var(--muted)!important}
+#syntolk-about .assistant-showcase .as-page .as-usage-scope{gap:10px;padding:0;border:0;margin-bottom:18px}
+#syntolk-about .assistant-showcase .as-page .as-usage-scope section{padding:12px;border:1px solid var(--line);border-radius:var(--as-card-radius);background:#fff}
+#syntolk-about .assistant-showcase .as-page .as-usage-guide{gap:14px 24px}
+#syntolk-about .assistant-showcase .as-page .as-usage-guide section:nth-child(n+3){padding-top:12px;border-color:var(--line)}
+#syntolk-about .assistant-showcase .as-page .as-takeaway{margin:18px 0 0;padding:12px 14px;border:1px solid var(--as-note-line);border-radius:var(--as-card-radius);background:var(--tint);color:var(--ink);font-size:16px;font-weight:500;line-height:1.5;letter-spacing:0}
+@media(max-width:760px){
+#syntolk-about .assistant-showcase .as-page .as-screen-title{font-size:26px}
+#syntolk-about .assistant-showcase .as-page .as-overview-title-detail{font-size:inherit}
+#syntolk-about .assistant-showcase .as-page .as-page-header{margin-bottom:18px;padding-bottom:16px}
+#syntolk-about .assistant-showcase .as-page .as-overview-sources{padding:16px;border:1px solid var(--line)}
+#syntolk-about .assistant-showcase .as-page .as-analysis-steps{gap:8px}
+#syntolk-about .assistant-showcase .as-page .as-analysis-steps li{padding:10px 12px}
+#syntolk-about .assistant-showcase .as-page .as-analysis-summary{margin-top:16px}
+#syntolk-about .assistant-showcase .as-page .as-usage-scope{gap:10px}
+#syntolk-about .assistant-showcase .as-page .as-usage-scope section{padding:14px;border:1px solid var(--line)}
+#syntolk-about .assistant-showcase .as-page .as-usage-guide{gap:16px}
+#syntolk-about .assistant-showcase .as-page .as-usage-guide section+section{padding-top:14px;border-color:var(--line)}
+#syntolk-about .assistant-showcase .as-page .as-takeaway{margin-top:18px;padding:12px 14px}
+}
+@media(max-width:380px){
+#syntolk-about .assistant-showcase .as-page .as-screen-title{font-size:24px}
+}
