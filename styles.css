@@ -1783,8 +1783,10 @@ button,input,select,textarea{font-family:inherit}
 #syntolk-about .assistant-showcase .as-page .as-overview-sources h3{text-transform:none;letter-spacing:-.02em}
 #syntolk-about .assistant-showcase .as-page .as-overview-sources li{font-size:16px;line-height:1.5;color:var(--as-body)}
 #syntolk-about .assistant-showcase .as-page .as-overview-copy .as-overview-proof{margin-top:16px;line-height:1.5}
-#syntolk-about .assistant-showcase .as-page .as-company-flow{gap:10px;margin-bottom:12px}
-#syntolk-about .assistant-showcase .as-page .as-company-flow strong{font-size:18px;line-height:1.3;font-weight:600}
+#syntolk-about .assistant-showcase .as-page .as-company-panel{min-width:0}
+#syntolk-about .assistant-showcase .as-page .as-company-flow{display:block;margin-bottom:12px}
+#syntolk-about .assistant-showcase .as-page .as-company-flow p{margin-top:0}
+#syntolk-about .assistant-showcase .as-page .as-company-flow h3,#syntolk-about .assistant-showcase .as-page .as-sectors-panel h3{margin:0 0 6px;font-size:18px;line-height:1.3;font-weight:600;letter-spacing:-.02em}
 #syntolk-about .assistant-showcase .as-page .as-company-flow .as-step-icon{padding:8px;border-radius:10px}
 #syntolk-about .assistant-showcase .as-page .as-company-flow .as-step-icon svg{width:20px;height:20px}
 #syntolk-about .assistant-showcase .as-page .as-company-points{display:grid;gap:8px;margin:0;padding:0 0 0 19px;list-style:disc;font-size:16px;font-weight:400;line-height:1.5}
