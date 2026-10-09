@@ -1806,6 +1806,7 @@ button,input,select,textarea{font-family:inherit}
 #syntolk-about .assistant-showcase .as-page .as-usage-guide{gap:14px 24px}
 #syntolk-about .assistant-showcase .as-page .as-usage-guide section:nth-child(n+3){padding-top:12px;border-color:var(--line)}
 #syntolk-about .assistant-showcase .as-page .as-takeaway{margin:18px 0 0;padding:12px 14px;border:1px solid var(--as-note-line);border-radius:var(--as-card-radius);background:var(--tint);color:var(--ink);font-size:16px;font-weight:500;line-height:1.5;letter-spacing:0}
+@media(min-width:761px){#syntolk-about .assistant-showcase .as-company-page .as-takeaway{margin-top:12px}}
 @media(max-width:760px){
 #syntolk-about .assistant-showcase .as-page .as-screen-title{font-size:26px}
 #syntolk-about .assistant-showcase .as-page .as-overview-title-detail{font-size:inherit}
