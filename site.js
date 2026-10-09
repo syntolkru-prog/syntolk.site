@@ -685,7 +685,6 @@
     const folderTriggers = [...root.querySelectorAll('.af-folder-row')];
     const folderLabel = permissionDialog.querySelector('.af-dialog-folder');
     const permissionButtons = [...permissionDialog.querySelectorAll('.af-permission-toggle')];
-    const status = permissionDialog.querySelector('.af-dialog-status');
     const closeButton = permissionDialog.querySelector('.af-permission-close');
     const closeBackdrop = permissionDialog.querySelector('.af-permission-backdrop');
     const savedRights = new Map();
@@ -708,7 +707,6 @@
       lastTrigger = trigger || null;
       folderLabel.textContent = activeFolder;
       selectedRights = new Set(savedRights.get(activeFolder) || ['Чтение', 'Загрузка', 'Удаление']);
-      status.textContent = 'Нет назначенных прав доступа. Добавьте права доступа для пользователей.';
       renderRights();
       permissionDialog.hidden = false;
       inertBackground = [];
