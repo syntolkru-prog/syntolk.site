@@ -3,6 +3,15 @@
   'use strict';
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
+  const withCurrentQuery = url => {
+    const destination = new URL(url, location.href);
+    new URLSearchParams(location.search).forEach((value, key) => destination.searchParams.append(key, value));
+    return destination.href;
+  };
+  $$('a[href^="https://platform.syntolk.ru/"]').forEach(anchor => {
+    const url = new URL(anchor.href);
+    if (url.pathname === '/' || url.pathname === '/register') anchor.href = withCurrentQuery(url.href);
+  });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const rail = $('.topics');
   const tabs = $$('[data-topic]');
@@ -766,6 +775,6 @@
   }
 
   root.querySelector('.af-invite-register')?.addEventListener('click', () => {
-    window.location.href = 'https://platform.syntolk.ru/register';
+    window.location.href = withCurrentQuery('https://platform.syntolk.ru/register');
   });
 })();
